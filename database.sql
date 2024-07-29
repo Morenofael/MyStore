@@ -53,3 +53,11 @@ CREATE TABLE pedido_produto(
 );
 ALTER TABLE pedido_produto ADD CONSTRAINT fk_pedido FOREIGN KEY (id_pedido) REFERENCES pedido (id);
 ALTER TABLE pedido_produto ADD CONSTRAINT fk_produto FOREIGN KEY (id_produto) REFERENCES produto (id);
+
+avaliacao_produto(
+	id INT AUTO_INCREMENT NOT NULL,
+	id_pedido INT,
+	estrelas INT,
+	comentario TEXT
+)
+ALTER TABLE avaliacao_produto ADD CONSTRAINT fk_pedido FOREIGN KEY (id_pedido) REFERENCES pedido (id);
