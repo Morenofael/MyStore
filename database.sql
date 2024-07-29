@@ -10,6 +10,7 @@ CREATE TABLE usuario(
 	data_nascimento DATE,
 	constraint pk_usuario primary key (id)
 );
+
 CREATE TABLE endereco(
 	id INT AUTO_INCREMENT NOT NULL
 	rua VARCHAR(45),
@@ -23,3 +24,10 @@ CREATE TABLE endereco(
 );
 ALTER TABLE endereco ADD CONSTRAINT fk_usuario FOREIGN KEY (id_usuario) REFERENCES usuario (id);
 
+CREATE TABLE produto(
+	id INT AUTO_INCREMENT NOT NULL,
+	id_usuario INT,
+	nome VARCHAR(256),
+	preco FLOAT,
+	descricao TEXT,
+);
