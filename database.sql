@@ -28,6 +28,20 @@ CREATE TABLE produto(
 	id INT AUTO_INCREMENT NOT NULL,
 	id_usuario INT,
 	nome VARCHAR(256),
-	preco FLOAT,
+	preco DOUBLE(5,2),
 	descricao TEXT,
 );
+ALTER TABLE produto ADD CONSTRAINT fk_usuario FOREIGN KEY (id_usuario) REFERENCES usuario (id);
+
+CREATE TABLE pedido(
+	id INT AUTO_INCREMENT NOT NULL,
+	data DATE,
+	status ENUM("I", "VV", "SE", "FE"),--Se o produto foi para o correio, se chegou, etc...
+	id_comprador INT,
+	id_vendedor INT,
+	caminhoComprovante VARCHAR(256),
+	valor_total DOUBLE(5,2)
+);
+ALTER TABLE pedido ADD CONSTRAINT fk_comprador FOREIGN KEY (id_comprador) REFERENCES usuario (id);
+ALTER TABLE pedido ADD CONSTRAINT fk_vendedor FOREIGN KEY (id_vendedor) REFERENCES usuario (id);
+
