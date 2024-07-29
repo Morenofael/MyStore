@@ -45,3 +45,11 @@ CREATE TABLE pedido(
 ALTER TABLE pedido ADD CONSTRAINT fk_comprador FOREIGN KEY (id_comprador) REFERENCES usuario (id);
 ALTER TABLE pedido ADD CONSTRAINT fk_vendedor FOREIGN KEY (id_vendedor) REFERENCES usuario (id);
 
+CREATE TABLE pedido_produto(
+	id INT AUTO_INCREMENT NOT NULL,
+	id_pedido INT,
+	id_produto INT,
+	valor DOUBLE(5,2)
+);
+ALTER TABLE pedido_produto ADD CONSTRAINT fk_pedido FOREIGN KEY (id_pedido) REFERENCES pedido (id);
+ALTER TABLE pedido_produto ADD CONSTRAINT fk_produto FOREIGN KEY (id_produto) REFERENCES produto (id);
