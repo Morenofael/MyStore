@@ -11,7 +11,7 @@ class UsuarioDAO {
     public function list() {
         $conn = Connection::getConn();
 
-        $sql = "SELECT * FROM usuarios u ORDER BY u.nome_usuario";
+        $sql = "SELECT * FROM usuarios u ORDER BY u.nome";
         $stm = $conn->prepare($sql);    
         $stm->execute();
         $result = $stm->fetchAll();
@@ -70,8 +70,8 @@ class UsuarioDAO {
     public function insert(Usuario $usuario) {
         $conn = Connection::getConn();
 
-        $sql = "INSERT INTO usuarios (nome_usuario, login, senha, papel)" .
-               " VALUES (:nome, :login, :senha, :papel)";
+        $sql = "INSERT INTO usuarios (nome, login, senha, nivel_acesso)" .
+               " VALUES (:nome, :login, :senha, :nivel_acesso)";
         
         $stm = $conn->prepare($sql);
         $stm->bindValue("nome", $usuario->getNome());
@@ -86,16 +86,16 @@ class UsuarioDAO {
     public function update(Usuario $usuario) {
         $conn = Connection::getConn();
 
-        $sql = "UPDATE usuarios SET nome_usuario = :nome, login = :login," . 
-               " senha = :senha, papel = :papel" .   
-               " WHERE id_usuario = :id";
+        $sql = "UPDATE usuarios SET nome = :nome, login = :login," . 
+               " senha = :senha, nivel_acesso = :nivel_acesso" .   
+               " WHERE id = :id";
         
         $stm = $conn->prepare($sql);
         $stm->bindValue("nome", $usuario->getNome());
         $stm->bindValue("login", $usuario->getLogin());
         $senhaCript = password_hash($usuario->getSenha(), PASSWORD_DEFAULT);
         $stm->bindValue("senha", $senhaCript);
-        $stm->bindValue("papel", $usuario->getPapel());
+        $stm->bindValue("nivel_acesso", $usuario->getNivelAcesso());
         $stm->bindValue("id", $usuario->getId());
         $stm->execute();
     }
@@ -104,7 +104,7 @@ class UsuarioDAO {
     public function deleteById(int $id) {
         $conn = Connection::getConn();
 
-        $sql = "DELETE FROM usuarios WHERE id_usuario = :id";
+        $sql = "DELETE FROM usuarios WHERE id = :id";
         
         $stm = $conn->prepare($sql);
         $stm->bindValue("id", $id);
@@ -127,11 +127,11 @@ class UsuarioDAO {
         $usuarios = array();
         foreach ($result as $reg) {
             $usuario = new Usuario();
-            $usuario->setId($reg['id_usuario']);
-            $usuario->setNome($reg['nome_usuario']);
+            $usuario->setId($reg['id']);
+            $usuario->setNome($reg['nome']);
             $usuario->setLogin($reg['login']);
             $usuario->setSenha($reg['senha']);
-            $usuario->setPapel($reg['papel']);
+            $usuario->setNivelAcesso($reg['nivel_acesso']);
             array_push($usuarios, $usuario);
         }
 

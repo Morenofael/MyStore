@@ -10,13 +10,13 @@ class Usuario implements JsonSerializable {
     private ?string $nome;
     private ?string $login;
     private ?string $senha;
-    private ?string $papel;
+    private ?int $nivelAcesso;
 
     public function jsonSerialize(): array {
         return array("id" => $this->id,
                      "nome" => $this->nome,
                      "login" => $this->login,
-                     "papel" => $this->papel);
+                     "nivelAcesso" => $this->nivelAcesso);
     }
 
     public function getId(): ?int
@@ -67,14 +67,14 @@ class Usuario implements JsonSerializable {
         return $this;
     }
 
-    public function getPapel(): ?string
+    public function getNivelAcesso(): ?int
     {
-        return $this->papel;
+        return $this->nivelAcesso;
     }
 
-    public function setPapel(?string $papel): self
+    public function setNivelAcesso(?int $nivelAcesso): self
     {
-        $this->papel = $papel;
+        $this->nivelAcesso = $nivelAcesso;
 
         return $this;
     }
