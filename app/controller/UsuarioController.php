@@ -41,14 +41,12 @@ class UsuarioController extends Controller {
         $cpf = trim($_POST['cpf']) ? trim($_POST['cpf']) : NULL;
         $telefone = trim($_POST['telefone']) ? trim($_POST['telefone']) : NULL;
         $dataNascimento = trim($_POST['data_nascimento']) ? trim($_POST['data_nascimento']) : NULL;
-        $nivelAcesso = trim($_POST['nivel_acesso']) ? trim($_POST['nivel_acesso']) : NULL;
 
         //Cria objeto Usuario
         $usuario = new Usuario();
         $usuario->setNome($nome);
         $usuario->setLogin($login);
         $usuario->setSenha($senha);
-        $usuario->setNivelAcesso($nivelAcesso);
 
         //Validar os dados
         $erros = $this->usuarioService->validarDados($usuario, $confSenha);
