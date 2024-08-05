@@ -13,8 +13,8 @@ class UsuarioController extends Controller {
 
     //Método construtor do controller - será executado a cada requisição a está classe
     public function __construct() {
-        if(! $this->usuarioLogado())
-            exit;
+        //if(! $this->usuarioLogado())
+        //    exit;
 
         $this->usuarioDao = new UsuarioDAO();
         $this->usuarioService = new UsuarioService();
@@ -34,17 +34,21 @@ class UsuarioController extends Controller {
         //Captura os dados do formulário
         $dados["id"] = isset($_POST['id']) ? $_POST['id'] : 0;
         $nome = trim($_POST['nome']) ? trim($_POST['nome']) : NULL;
+        $email = trim($_POST['email']) ? trim($_POST['email']) : NULL;
         $login = trim($_POST['login']) ? trim($_POST['login']) : NULL;
         $senha = trim($_POST['senha']) ? trim($_POST['senha']) : NULL;
         $confSenha = trim($_POST['conf_senha']) ? trim($_POST['conf_senha']) : NULL;
-        $papel = trim($_POST['papel']) ? trim($_POST['papel']) : NULL;
+        $cpf = trim($_POST['cpf']) ? trim($_POST['cpf']) : NULL;
+        $telefone = trim($_POST['telefone']) ? trim($_POST['telefone']) : NULL;
+        $dataNascimento = trim($_POST['data_nascimento']) ? trim($_POST['data_nascimento']) : NULL;
+        $nivelAcesso = trim($_POST['nivel_acesso']) ? trim($_POST['nivel_acesso']) : NULL;
 
         //Cria objeto Usuario
         $usuario = new Usuario();
         $usuario->setNome($nome);
         $usuario->setLogin($login);
         $usuario->setSenha($senha);
-        $usuario->setPapel($papel);
+        $usuario->setNivelAcesso($nivelAcesso);
 
         //Validar os dados
         $erros = $this->usuarioService->validarDados($usuario, $confSenha);
@@ -83,6 +87,7 @@ class UsuarioController extends Controller {
     protected function create() {
         //echo "Chamou o método create!";
 
+        
         $dados["id"] = 0;
         $dados["papeis"] = UsuarioPapel::getAllAsArray(); 
         $this->loadView("usuario/form.php", $dados);

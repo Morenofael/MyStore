@@ -70,15 +70,20 @@ class UsuarioDAO {
     public function insert(Usuario $usuario) {
         $conn = Connection::getConn();
 
-        $sql = "INSERT INTO usuarios (nome, login, senha, nivel_acesso)" .
-               " VALUES (:nome, :login, :senha, :nivel_acesso)";
+        $sql = "INSERT INTO usuarios (nome, email, login, senha, cpf, telefone, data_nascimento, nivel_acesso, situacao)" .
+               " VALUES (:nome, :login, :senha, :cpf, :telefone, :data_nascimento, :nivel_acesso, :situacao)";
         
         $stm = $conn->prepare($sql);
         $stm->bindValue("nome", $usuario->getNome());
+        $stm->bindValue("email", $usuario->getEmail());
         $stm->bindValue("login", $usuario->getLogin());
         $senhaCript = password_hash($usuario->getSenha(), PASSWORD_DEFAULT);
         $stm->bindValue("senha", $senhaCript);
-        $stm->bindValue("papel", $usuario->getPapel());
+        $stm->bindValue("cpf", $usuario->getCpf());
+        $stm->bindValue("telefone", $usuario->getTelefone());
+        $stm->bindValue("data_nascimento", $usuario->getDataNascimento());
+        $stm->bindValue("papel", $usuario->getNivelAcesso());
+        $stm->bindValue("situacao", $usuario->getSituacao());
         $stm->execute();
     }
 

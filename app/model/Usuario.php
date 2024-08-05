@@ -8,15 +8,26 @@ class Usuario implements JsonSerializable {
 
     private ?int $id;
     private ?string $nome;
+    private ?string $email;
     private ?string $login;
     private ?string $senha;
+    private ?string $cpf;
+    private ?string $telefone;
+    private ?string $data_nascimento;
     private ?int $nivelAcesso;
+    private ?int $situacao;
 
     public function jsonSerialize(): array {
         return array("id" => $this->id,
                      "nome" => $this->nome,
+                     "email" => $this->email,
                      "login" => $this->login,
-                     "nivelAcesso" => $this->nivelAcesso);
+                     "senha" => $this->senha,
+                     "cpf" => $this->cpf,
+                     "telefone" => $this->telefone,
+                     "dataNascimento" => $this->data_nascimento,
+                     "nivelAcesso" => $this->nivelAcesso,
+                    "situacao" => $this->situacao);
     }
 
     public function getId(): ?int
@@ -39,6 +50,18 @@ class Usuario implements JsonSerializable {
     public function setNome(?string $nome): self
     {
         $this->nome = $nome;
+
+        return $this;
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(?string $email): self
+    {
+        $this->nome = $email;
 
         return $this;
     }
@@ -67,6 +90,41 @@ class Usuario implements JsonSerializable {
         return $this;
     }
 
+    public function getCpf(): ?string
+    {
+        return $this->cpf;
+    }
+
+    public function setCpf(?string $cpf): self
+    {
+        $this->cpf = $cpf;
+
+        return $this;
+    }
+
+    public function getTelefone(): ?string
+    {
+        return $this->telefone;
+    }
+
+    public function setTelefone(?string $telefone): self
+    {
+        $this->telefone= $telefone;
+
+        return $this;
+    }
+
+    public function getDataNascimento(): ?string
+    {
+        return $this->data_nascimento;
+    }
+
+    public function setDataNascimento(?string $data_nascimento): self
+    {
+        $this->data_nascimento = $data_nascimento;
+
+        return $this;
+    }
     public function getNivelAcesso(): ?int
     {
         return $this->nivelAcesso;
@@ -75,6 +133,18 @@ class Usuario implements JsonSerializable {
     public function setNivelAcesso(?int $nivelAcesso): self
     {
         $this->nivelAcesso = $nivelAcesso;
+
+        return $this;
+    }
+    
+    public function getSituacao(): ?int
+    {
+        return $this->situacao;
+    }
+
+    public function setSituacao(?int $situacao): self
+    {
+        $this->situacao = $situacao;
 
         return $this;
     }

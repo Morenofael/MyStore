@@ -30,6 +30,7 @@ require_once(__DIR__ . "/../include/header.php");
 
                     <button type="submit" class="btn btn-success">Logar</button>
                 </form>
+                <br><a href="/app/controller/UsuarioController.php?action=create" class="btn btn-primary">Cadastre-se</a>
             </div>
         </div>
 

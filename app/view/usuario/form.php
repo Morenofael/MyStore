@@ -26,9 +26,9 @@ require_once(__DIR__ . "/../include/menu.php");
                 </div>
                 
                 <div class="form-group">
-                    <label for="txtLogin">Login:</label>
-                    <input class="form-control" type="text" id="txtLogin" name="login" 
-                        maxlength="15" placeholder="Informe o login"
+                    <label for="txtEmail">Email:</label>
+                    <input class="form-control" type="email" id="txtEmail" name="email" 
+                        maxlength="345" placeholder="Informe o email"
                         value="<?php echo (isset($dados["usuario"]) ? $dados["usuario"]->getLogin() : ''); ?>"/>
                 </div>
 
@@ -45,23 +45,25 @@ require_once(__DIR__ . "/../include/menu.php");
                         maxlength="15" placeholder="Informe a confirmação da senha"
                         value="<?php echo isset($dados['confSenha']) ? $dados['confSenha'] : '';?>"/>
                 </div>
+                
+                <div class="form-group">
+                    <label for="txtCpf">CPF:</label>
+                    <input class="form-control" type="text" id="txtCPF" name="cpf" 
+                        maxlength="15" placeholder="Informe o CPF"
+                        value="<?php echo isset($dados['cpf']) ? $dados['cpf'] : '';?>"/>
+                </div>
 
                 <div class="form-group">
-                    <label>Papel</label>
-                    <select class="form-control" name="papel" id="selPapel">
-                        <option value="">Selecione o papel</option>
-                        <?php foreach($dados["papeis"] as $papel): ?>
-                            <option value="<?= $papel ?>" 
-                                <?php 
-                                    if(isset($dados["usuario"]) && $dados["usuario"]->getPapel() == $papel) 
-                                        echo "selected";
-                                ?>    
-                            >
-                                <?= $papel ?>
-                            </option>
-                        <?php endforeach; ?>
+                    <label for="txtTelefone">Telefone:</label>
+                    <input class="form-control" type="text" id="txtTelefone" name="telefone" 
+                        maxlength="15" placeholder="Informe o telefone"
+                        value="<?php echo isset($dados['telefone']) ? $dados['telefone'] : '';?>"/>
+                </div>
 
-                    </select>
+                <div class="form-group">
+                    <label for="dateNascimento">Data de Nascimento:</label>
+                    <input class="form-control" type="date" id="dateNascimento" name="data_nascimento" 
+                        value="<?php echo isset($dados['data_nascimento']) ? $dados['data_nascimento'] : '';?>"/>
                 </div>
 
                 <input type="hidden" id="hddId" name="id" 
