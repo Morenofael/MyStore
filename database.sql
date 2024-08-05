@@ -9,7 +9,7 @@ CREATE TABLE usuario(
 	cpf VARCHAR(11),
 	telefone VARCHAR(13),
 	data_nascimento DATE,
-	nivel_acesso TINYINT(1),/*0 é usuário, 1 é administrador*/
+	nivel_acesso TINYINT(1) DEFAULT 1,/*0 é usuário, 1 é administrador*/
 	situacao TINYINT(1),/*0 é inativo, 1 é ativo*/
 	constraint pk_usuario primary key (id)
 );
