@@ -61,7 +61,7 @@ class Usuario implements JsonSerializable {
 
     public function setEmail(?string $email): self
     {
-        $this->nome = $email;
+        $this->email = $email;
 
         return $this;
     }

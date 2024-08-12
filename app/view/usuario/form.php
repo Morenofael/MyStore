@@ -29,7 +29,7 @@ require_once(__DIR__ . "/../include/menu.php");
                     <label for="txtEmail">Email:</label>
                     <input class="form-control" type="email" id="txtEmail" name="email" 
                         maxlength="345" placeholder="Informe o email"
-                        value="<?php echo (isset($dados["usuario"]) ? $dados["usuario"]->getLogin() : ''); ?>"/>
+                        value="<?php echo (isset($dados["usuario"]) ? $dados["usuario"]->getEmail() : ''); ?>"/>
                 </div>
 
                 <div class="form-group">
@@ -50,20 +50,20 @@ require_once(__DIR__ . "/../include/menu.php");
                     <label for="txtCpf">CPF:</label>
                     <input class="form-control" type="text" id="txtCPF" name="cpf" 
                         maxlength="15" placeholder="Informe o CPF"
-                        value="<?php echo isset($dados['cpf']) ? $dados['cpf'] : '';?>"/>
+                        value="<?php echo isset($dados['usuario']) ? $dados['usuario']->getCpf() : '';?>"/>
                 </div>
 
                 <div class="form-group">
                     <label for="txtTelefone">Telefone:</label>
                     <input class="form-control" type="text" id="txtTelefone" name="telefone" 
                         maxlength="15" placeholder="Informe o telefone"
-                        value="<?php echo isset($dados['telefone']) ? $dados['telefone'] : '';?>"/>
+                        value="<?php echo isset($dados['usuario']) ? $dados['usuario']->getTelefone() : '';?>"/>
                 </div>
 
                 <div class="form-group">
                     <label for="dateNascimento">Data de Nascimento:</label>
                     <input class="form-control" type="date" id="dateNascimento" name="data_nascimento" 
-                        value="<?php echo isset($dados['data_nascimento']) ? $dados['data_nascimento'] : '';?>"/>
+                        value="<?php echo isset($dados['usuario']) ? $dados['usuario']->getDataNascimento() : '';?>"/>
                 </div>
 
                 <input type="hidden" id="hddId" name="id" 

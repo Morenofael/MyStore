@@ -1,6 +1,7 @@
 <?php
     
 require_once(__DIR__ . "/../model/Usuario.php");
+require_once(__DIR__ . "/../dao/UsuarioDAO.php");
 
 class UsuarioService {
 
@@ -12,17 +13,23 @@ class UsuarioService {
         if(! $usuario->getNome())
             array_push($erros, "O campo [Nome] é obrigatório.");
 
-        if(! $usuario->getLogin())
-            array_push($erros, "O campo [Login] é obrigatório.");
-
         if(! $usuario->getSenha())
             array_push($erros, "O campo [Senha] é obrigatório.");
 
         if(! $confSenha)
             array_push($erros, "O campo [Confirmação da senha] é obrigatório.");
-
-        if(! $usuario->getPapel()) 
-            array_push($erros, "O campo [Papel] é obrigatório");
+            
+        if(! $usuario->getEmail())
+            array_push($erros, "O campo [Email] é obrigatório.");
+            
+        if(! $usuario->getCpf())
+            array_push($erros, "O campo [CPF] é obrigatório.");
+            
+        if(! $usuario->getTelefone())
+            array_push($erros, "O campo [telefone] é obrigatório.");
+            
+        if(! $usuario->getDataNascimento())
+            array_push($erros, "O campo [data de nascimento] é obrigatório.");
 
 
         //Validar se a senha é igual a contra senha
@@ -30,6 +37,7 @@ class UsuarioService {
             array_push($erros, "O campo [Senha] deve ser igual ao [Confirmação da senha].");
 
         return $erros;
+        
     }
 
 }

@@ -23,6 +23,8 @@ class UsuarioController extends Controller {
     }
 
     protected function list(string $msgErro = "", string $msgSucesso = "") {
+        if(! $this->usuarioLogado() || $_SESSION[SESSAO_USUARIO_PAPEL] != 1)
+            header("location: HomeController.php?action=home");
         $usuarios = $this->usuarioDao->list();
         //print_r($usuarios);
         $dados["lista"] = $usuarios;
@@ -35,7 +37,7 @@ class UsuarioController extends Controller {
         $dados["id"] = isset($_POST['id']) ? $_POST['id'] : 0;
         $nome = trim($_POST['nome']) ? trim($_POST['nome']) : NULL;
         $email = trim($_POST['email']) ? trim($_POST['email']) : NULL;
-        $login = trim($_POST['login']) ? trim($_POST['login']) : NULL;
+        $login = trim($_POST['email']) ? trim($_POST['email']) : NULL;
         $senha = trim($_POST['senha']) ? trim($_POST['senha']) : NULL;
         $confSenha = trim($_POST['conf_senha']) ? trim($_POST['conf_senha']) : NULL;
         $cpf = trim($_POST['cpf']) ? trim($_POST['cpf']) : NULL;
@@ -45,9 +47,14 @@ class UsuarioController extends Controller {
         //Cria objeto Usuario
         $usuario = new Usuario();
         $usuario->setNome($nome);
+        $usuario->setEmail($email);
         $usuario->setLogin($login);
         $usuario->setSenha($senha);
-
+        $usuario->setCpf($cpf);
+        $usuario->setTelefone($telefone);
+        $usuario->setDataNascimento($dataNascimento);
+        $usuario->setNivelAcesso(0); //usuário comum
+        $usuario->setSituacao(1); //usuário ativo
         //Validar os dados
         $erros = $this->usuarioService->validarDados($usuario, $confSenha);
         if(empty($erros)) {

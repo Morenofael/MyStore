@@ -24,7 +24,7 @@ class UsuarioDAO {
         $conn = Connection::getConn();
 
         $sql = "SELECT * FROM usuarios u" .
-               " WHERE u.id_usuario = ?";
+               " WHERE u.id = ?";
         $stm = $conn->prepare($sql);    
         $stm->execute([$id]);
         $result = $stm->fetchAll();
@@ -71,7 +71,7 @@ class UsuarioDAO {
         $conn = Connection::getConn();
 
         $sql = "INSERT INTO usuarios (nome, email, login, senha, cpf, telefone, data_nascimento, nivel_acesso, situacao)" .
-               " VALUES (:nome, :login, :senha, :cpf, :telefone, :data_nascimento, :nivel_acesso, :situacao)";
+               " VALUES (:nome, :email, :login, :senha, :cpf, :telefone, :data_nascimento, :nivel_acesso, :situacao)";
         
         $stm = $conn->prepare($sql);
         $stm->bindValue("nome", $usuario->getNome());
@@ -82,7 +82,7 @@ class UsuarioDAO {
         $stm->bindValue("cpf", $usuario->getCpf());
         $stm->bindValue("telefone", $usuario->getTelefone());
         $stm->bindValue("data_nascimento", $usuario->getDataNascimento());
-        $stm->bindValue("papel", $usuario->getNivelAcesso());
+        $stm->bindValue("nivel_acesso", $usuario->getNivelAcesso());
         $stm->bindValue("situacao", $usuario->getSituacao());
         $stm->execute();
     }
