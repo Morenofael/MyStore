@@ -73,7 +73,8 @@ class UsuarioController extends Controller {
                 $this->list("", $msg);
                 exit;
             } catch (PDOException $e) {
-                $erros = "[Erro ao salvar o usuário na base de dados.]";                
+                //print_r($e);
+                array_push($erros, "[Erro ao salvar o usuário na base de dados.]");                
             }
         }
 
@@ -83,7 +84,7 @@ class UsuarioController extends Controller {
         $dados["usuario"] = $usuario;
         $dados["confSenha"] = $confSenha;
         $dados["papeis"] = UsuarioPapel::getAllAsArray();
-
+        
         $msgsErro = implode("<br>", $erros);
         $this->loadView("usuario/form.php", $dados, $msgsErro);
     }

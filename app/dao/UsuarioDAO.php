@@ -39,6 +39,27 @@ class UsuarioDAO {
         die("UsuarioDAO.findById()" . 
             " - Erro: mais de um usuário encontrado.");
     }
+   
+   //Método para buscar um usuário por seu Email 
+    public function findByEmail(string $email) {
+        $conn = Connection::getConn();
+
+        $sql = "SELECT * FROM usuarios u" .
+               " WHERE u.email = ?";
+        $stm = $conn->prepare($sql);    
+        $stm->execute([$email]);
+        $result = $stm->fetchAll();
+
+        $usuarios = $this->mapUsuarios($result);
+
+        if(count($usuarios) == 1)
+            return $usuarios[0];
+        elseif(count($usuarios) == 0)
+            return null;
+
+        die("UsuarioDAO.findByEmail()" . 
+            " - Erro: mais de um usuário encontrado.");
+    }
 
 
     //Método para buscar um usuário por seu login e senha
