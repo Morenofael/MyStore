@@ -19,6 +19,11 @@ class UsuarioDAO {
         return $this->mapUsuarios($result);
     }
 
+
+    public function test(){
+        echo "teste";
+        exit;
+    }
     //Método para buscar um usuário por seu ID
     public function findById(int $id) {
         $conn = Connection::getConn();
