@@ -14,6 +14,15 @@ CREATE TABLE usuarios(
 	constraint pk_usuario primary key (id)
 );
 
+CREATE TABLE brechos(
+	id INT AUTO_INCREMENT NOT NULL,
+	nome VARCHAR(256) NOT NULL,
+	descricao TEXT,
+	data_criacao,
+	constraint pk_brecho primary key (id)
+);
+ALTER TABLE brechos ADD CONSTRAINT fk_usuario_endereco FOREIGN KEY (id_usuario) REFERENCES usuarios (id);
+
 CREATE TABLE enderecos(
 	id INT AUTO_INCREMENT NOT NULL,
 	rua VARCHAR(45) NOT NULL,
@@ -26,7 +35,7 @@ CREATE TABLE enderecos(
 	id_usuario INT,
 	constraint pk_endereco primary key (id)
 );
-ALTER TABLE endereco ADD CONSTRAINT fk_usuario_endereco FOREIGN KEY (id_usuario) REFERENCES usuarios (id);
+ALTER TABLE enderecos ADD CONSTRAINT fk_usuario_brecho FOREIGN KEY (id_usuario) REFERENCES usuarios (id);
 
 CREATE TABLE produtos(
 	id INT AUTO_INCREMENT NOT NULL,
@@ -36,7 +45,7 @@ CREATE TABLE produtos(
 	descricao TEXT NOT NULL,
 	constraint pk_produto primary key (id)
 );
-ALTER TABLE produto ADD CONSTRAINT fk_usuario FOREIGN KEY (id_usuario) REFERENCES usuarios (id);
+ALTER TABLE produtos ADD CONSTRAINT fk_usuario FOREIGN KEY (id_usuario) REFERENCES usuarios (id);
 
 CREATE TABLE pedidos(
 	id INT AUTO_INCREMENT NOT NULL,
@@ -48,8 +57,8 @@ CREATE TABLE pedidos(
 	valor_total DOUBLE(5,2),
 	constraint pk_pedido primary key (id)
 );
-ALTER TABLE pedido ADD CONSTRAINT fk_comprador FOREIGN KEY (id_comprador) REFERENCES usuarios (id);
-ALTER TABLE pedido ADD CONSTRAINT fk_vendedor FOREIGN KEY (id_vendedor) REFERENCES usuarios (id);
+ALTER TABLE pedidos ADD CONSTRAINT fk_comprador FOREIGN KEY (id_comprador) REFERENCES usuarios (id);
+ALTER TABLE pedidos ADD CONSTRAINT fk_vendedor FOREIGN KEY (id_vendedor) REFERENCES usuarios (id);
 
 CREATE TABLE pedidos_produtos(
 	id INT AUTO_INCREMENT NOT NULL,
