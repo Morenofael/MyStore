@@ -39,13 +39,13 @@ ALTER TABLE enderecos ADD CONSTRAINT fk_usuario_brecho FOREIGN KEY (id_usuario) 
 
 CREATE TABLE produtos(
 	id INT AUTO_INCREMENT NOT NULL,
-	id_usuario INT,
+	id_brecho INT,
 	nome VARCHAR(256) NOT NULL,
 	preco DOUBLE(5,2) NOT NULL,
 	descricao TEXT NOT NULL,
 	constraint pk_produto primary key (id)
 );
-ALTER TABLE produtos ADD CONSTRAINT fk_usuario FOREIGN KEY (id_usuario) REFERENCES usuarios (id);
+ALTER TABLE produtos ADD CONSTRAINT fk_usuario FOREIGN KEY (id_brecho) REFERENCES brechos (id);
 
 CREATE TABLE pedidos(
 	id INT AUTO_INCREMENT NOT NULL,
