@@ -2,14 +2,14 @@ CREATE DATABASE mystore;
 USE mystore;
 CREATE TABLE usuarios(
 	id INT AUTO_INCREMENT NOT NULL,
-	nome VARCHAR(256),
-	email VARCHAR(100),
-	login VARCHAR(256),
-	senha VARCHAR(256),
+	nome VARCHAR(256) NOT NULL,
+	email VARCHAR(100) NOT NULL,
+	login VARCHAR(256) NOT NULL,
+	senha VARCHAR(256) NOT NULL,
 	cpf VARCHAR(11),
 	telefone VARCHAR(13),
 	data_nascimento DATE,
-	nivel_acesso TINYINT(1),/*0 é usuário, 1 é administrador*/
+	nivel_acesso TINYINT(1) NOT NULL,/*0 é usuário, 1 é administrador*/
 	situacao TINYINT(1),/*0 é inativo, 1 é ativo*/
 	constraint pk_usuario primary key (id)
 );
