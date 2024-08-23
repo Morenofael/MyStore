@@ -16,12 +16,12 @@ CREATE TABLE usuarios(
 
 CREATE TABLE enderecos(
 	id INT AUTO_INCREMENT NOT NULL,
-	rua VARCHAR(45),
-	numero VARCHAR(45),
+	rua VARCHAR(45) NOT NULL,
+	numero VARCHAR(45) NOT NULL,
 	bairro VARCHAR(256),
-	cidade VARCHAR(256),
-	estado VARCHAR(2),
-	país VARCHAR(3),
+	cidade VARCHAR(256)NOT NULL,
+	estado VARCHAR(2) NOT NULL,
+	país VARCHAR(3) NOT NULL,
 	CEP VARCHAR(8),
 	id_usuario INT,
 	constraint pk_endereco primary key (id)
@@ -31,9 +31,9 @@ ALTER TABLE endereco ADD CONSTRAINT fk_usuario_endereco FOREIGN KEY (id_usuario)
 CREATE TABLE produtos(
 	id INT AUTO_INCREMENT NOT NULL,
 	id_usuario INT,
-	nome VARCHAR(256),
-	preco DOUBLE(5,2),
-	descricao TEXT,
+	nome VARCHAR(256) NOT NULL,
+	preco DOUBLE(5,2) NOT NULL,
+	descricao TEXT NOT NULL,
 	constraint pk_produto primary key (id)
 );
 ALTER TABLE produto ADD CONSTRAINT fk_usuario FOREIGN KEY (id_usuario) REFERENCES usuarios (id);
