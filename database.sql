@@ -26,7 +26,7 @@ CREATE TABLE enderecos(
 	id_usuario INT,
 	constraint pk_endereco primary key (id)
 );
-ALTER TABLE endereco ADD CONSTRAINT fk_usuario FOREIGN KEY (id_usuario) REFERENCES usuarios (id);
+ALTER TABLE endereco ADD CONSTRAINT fk_usuario_endereco FOREIGN KEY (id_usuario) REFERENCES usuarios (id);
 
 CREATE TABLE produtos(
 	id INT AUTO_INCREMENT NOT NULL,
