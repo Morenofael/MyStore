@@ -1,23 +1,19 @@
 <?php
 #Classe controller para Usuário
 require_once(__DIR__ . "/Controller.php");
-//require_once(__DIR__ . "/../dao/UsuarioDAO.php");
-//require_once(__DIR__ . "/../service/UsuarioService.php");
-//require_once(__DIR__ . "/../model/Usuario.php");
-//require_once(__DIR__ . "/../model/enum/UsuarioPapel.php");
+require_once(__DIR__ . "/../dao/BrechoDAO.php");
+require_once(__DIR__ . "/../model/Brecho.php");
 
-class UsuarioController extends Controller {
+class BrechoController extends Controller {
 
-    //private UsuarioDAO $usuarioDao;
-    //private UsuarioService $usuarioService;
+    private BrechoDAO $brechoDao;
 
     //Método construtor do controller - será executado a cada requisição a está classe
     public function __construct() {
         //if(! $this->usuarioLogado())
         //    exit;
 
-        //$this->usuarioDao = new UsuarioDAO();
-        //$this->usuarioService = new UsuarioService();
+        $this->brechoDao = new BrechoDAO();
 
         $this->handleAction();
     }
@@ -38,20 +34,16 @@ class UsuarioController extends Controller {
         $nome = trim($_POST['nome']) ? trim($_POST['nome']) : NULL;
         $descricao = trim($_POST['descricao']) ? trim($_POST['descricao']) : NULL;
         $dataCriacao = date('d/m/Y', null);
-        //id_usuario
+        $id_usuario = $_SESSION[SESSAO_USUARIO_ID];
 
         //Cria objeto Usuario
-        $usuario = new Usuario();
-        $usuario->setNome($nome);
-        $usuario->setEmail($email);
-        $usuario->setLogin($login);
-        $usuario->setSenha($senha);
-        $usuario->setCpf($cpf);
-        $usuario->setTelefone($telefone);
-        $usuario->setDataNascimento($dataNascimento);
-        $usuario->setNivelAcesso(0); //usuário comum
-        $usuario->setSituacao(1); //usuário ativo
+        $brecho = new Brecho();
+        $brecho->setNome($nome);
+        $brecho->setDescricao($descricao);
+        $brecho->setDataCriacao($dataCriacao);
+        $brecho->setId_usuario($id_usuario);
         //Validar os dados
+        //TODO - implementar brechoService
         $erros = $this->usuarioService->validarDados($usuario, $confSenha);
         if(empty($erros)) {
             //Persiste o objeto
