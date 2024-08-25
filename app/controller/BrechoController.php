@@ -90,17 +90,16 @@ class UsuarioController extends Controller {
      */}
 
     //Método create
-    protected function create() {/*
+    protected function create() {
         //echo "Chamou o método create!";
 
         
         $dados["id"] = 0;
-        $dados["papeis"] = UsuarioPapel::getAllAsArray(); 
-        $this->loadView("usuario/form.php", $dados);
+        $this->loadView("brecho/form.php", $dados);
     }
 
     //Método edit
-    protected function edit() {
+    protected function edit() {/*
         $usuario = $this->findUsuarioById();
         
         if($usuario) {
@@ -128,9 +127,9 @@ class UsuarioController extends Controller {
             $this->list("Usuário não encontrado!");
 
         }               
-    }
+     */}
 
-    protected function listJson() {
+    protected function listJson() {/*
         $listaUsuarios = $this->usuarioDao->list();
         $json = json_encode($listaUsuarios);
         echo $json;
