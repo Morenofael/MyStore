@@ -24,6 +24,8 @@ require_once(__DIR__ . "/../include/menu.php");
 
         <a href="#" class="btn btn-info" 
             onclick="usuarios();">Chamada AJAX</a>
+        <a href="#" class="btn btn-success" 
+            >Criar brecho</a>
     </div>
 
 </div>
