@@ -20,49 +20,15 @@ require_once(__DIR__ . "/../include/menu.php");
                     <label for="txtNome">Nome:</label>
                     <input class="form-control" type="text" id="txtNome" name="nome"
                         maxlength="70" placeholder="Informe o nome"
-                        value="<?php echo (isset($dados["usuario"]) ? $dados["usuario"]->getNome() : ''); ?>" />
+                        value="<?php echo (isset($dados["brecho"]) ? $dados["brecho"]->getNome() : ''); ?>" />
+                </div>
+                <div class="form-group">
+                    <label for="txtDescricao">Descrição:</label>
+                    <textarea class="form-control" type="text" id="txtDescricao" name="descricao"
+                        maxlength="1000" placeholder="Informe a descrição" rows="15"
+                        value="<?php echo (isset($dados["brecho"]) ? $dados["brecho"]->getDescricao() : ''); ?>"></textarea>
                 </div>
 
-                <div class="form-group">
-                    <label for="txtEmail">Email:</label>
-                    <input class="form-control" type="email" id="txtEmail" name="email"
-                        maxlength="345" placeholder="Informe o email"
-                        value="<?php echo (isset($dados["usuario"]) ? $dados["usuario"]->getEmail() : ''); ?>"/>
-                </div>
-
-                <div class="form-group">
-                    <label for="txtSenha">Senha:</label>
-                    <input class="form-control" type="password" id="txtPassword" name="senha"
-                        maxlength="15" placeholder="Informe a senha"
-                        value="<?php echo (isset($dados["usuario"]) ? $dados["usuario"]->getSenha() : ''); ?>"/>
-                </div>
-
-                <div class="form-group">
-                    <label for="txtConfSenha">Confirmação da senha:</label>
-                    <input class="form-control" type="password" id="txtConfSenha" name="conf_senha"
-                        maxlength="15" placeholder="Informe a confirmação da senha"
-                        value="<?php echo isset($dados['confSenha']) ? $dados['confSenha'] : '';?>"/>
-                </div>
-
-                <div class="form-group">
-                    <label for="txtCpf">CPF:</label>
-                    <input class="form-control" type="text" id="txtCPF" name="cpf"
-                        maxlength="15" placeholder="Informe o CPF"
-                        value="<?php echo isset($dados['usuario']) ? $dados['usuario']->getCpf() : '';?>"/>
-                </div>
-
-                <div class="form-group">
-                    <label for="txtTelefone">Telefone:</label>
-                    <input class="form-control" type="text" id="txtTelefone" name="telefone"
-                        maxlength="15" placeholder="Informe o telefone"
-                        value="<?php echo isset($dados['usuario']) ? $dados['usuario']->getTelefone() : '';?>"/>
-                </div>
-
-                <div class="form-group">
-                    <label for="dateNascimento">Data de Nascimento:</label>
-                    <input class="form-control" type="date" id="dateNascimento" name="data_nascimento"
-                        value="<?php echo isset($dados['usuario']) ? $dados['usuario']->getDataNascimento() : '';?>"/>
-                </div>
 
                 <input type="hidden" id="hddId" name="id"
                     value="<?= $dados['id']; ?>" />
