@@ -32,17 +32,13 @@ class UsuarioController extends Controller {
         $this->loadView("usuario/list.php", $dados, $msgErro, $msgSucesso);
          */}
 
-    protected function save() {/*
+    protected function save() {
         //Captura os dados do formulário
         $dados["id"] = isset($_POST['id']) ? $_POST['id'] : 0;
         $nome = trim($_POST['nome']) ? trim($_POST['nome']) : NULL;
-        $email = trim($_POST['email']) ? trim($_POST['email']) : NULL;
-        $login = trim($_POST['email']) ? trim($_POST['email']) : NULL;
-        $senha = trim($_POST['senha']) ? trim($_POST['senha']) : NULL;
-        $confSenha = trim($_POST['conf_senha']) ? trim($_POST['conf_senha']) : NULL;
-        $cpf = trim($_POST['cpf']) ? trim($_POST['cpf']) : NULL;
-        $telefone = trim($_POST['telefone']) ? trim($_POST['telefone']) : NULL;
-        $dataNascimento = trim($_POST['data_nascimento']) ? trim($_POST['data_nascimento']) : NULL;
+        $descricao = trim($_POST['descricao']) ? trim($_POST['descricao']) : NULL;
+        $dataCriacao = date('d/m/Y', null);
+        //id_usuario
 
         //Cria objeto Usuario
         $usuario = new Usuario();
@@ -87,7 +83,7 @@ class UsuarioController extends Controller {
         
         $msgsErro = implode("<br>", $erros);
         $this->loadView("usuario/form.php", $dados, $msgsErro);
-     */}
+     }
 
     //Método create
     protected function create() {
