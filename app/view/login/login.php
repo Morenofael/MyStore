@@ -17,7 +17,7 @@ require_once(__DIR__ . "/../include/header.php");
                     <div class="form-group">
                         <label for="txtLogin">Login:</label>
                         <input type="text" class="form-control" name="login" id="txtLogin"
-                            maxlength="15" placeholder="Informe o login"
+                            placeholder="Informe o login"
                             value="<?php echo isset($dados['login']) ? $dados['login'] : '' ?>" />        
                     </div>
 
