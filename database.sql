@@ -19,7 +19,7 @@ CREATE TABLE brechos(
 	id_usuario INT,
 	nome VARCHAR(256) NOT NULL,
 	descricao TEXT,
-	data_criacao DATE,
+	data_criacao,
 	constraint pk_brecho primary key (id)
 );
 ALTER TABLE brechos ADD CONSTRAINT fk_usuario_brecho FOREIGN KEY (id_usuario) REFERENCES usuarios (id);

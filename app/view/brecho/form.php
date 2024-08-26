@@ -1,6 +1,6 @@
 <?php
-#Nome do arquivo: usuario/list.php
-#Objetivo: interface para listagem dos usuários do sistema
+#Nome do arquivo: brecho/form.php
+#Objetivo: interface para inserção dos brechós do sistema
 
 require_once(__DIR__ . "/../include/header.php");
 require_once(__DIR__ . "/../include/menu.php");
@@ -15,7 +15,7 @@ require_once(__DIR__ . "/../include/menu.php");
 
         <div class="col-6">
             <form id="frmUsuario" method="POST"
-                action="<?= BASEURL ?>/controller/UsuarioController.php?action=save" >
+                action="<?= BASEURL ?>/controller/BrechoController.php?action=save" >
                 <div class="form-group">
                     <label for="txtNome">Nome:</label>
                     <input class="form-control" type="text" id="txtNome" name="nome"
@@ -46,7 +46,7 @@ require_once(__DIR__ . "/../include/menu.php");
     <div class="row" style="margin-top: 30px;">
         <div class="col-12">
         <a class="btn btn-secondary"
-                href="<?= BASEURL ?>/controller/UsuarioController.php?action=list">Voltar</a>
+                href="<?= BASEURL ?>/../">Voltar</a>
         </div>
     </div>
 </div>

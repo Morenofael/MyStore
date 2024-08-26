@@ -15,7 +15,7 @@ class Brecho implements JsonSerializable {
                      "nome" => $this->nome,
                      "descricao" => $this->descricao,
                      "dataCriacao" => $this->dataCriacao,
-                     "id_usuario" => $this->id_usuario
+                     "id_usuario" => $this->id_usuario);
     }
 
     public function getId(): ?int

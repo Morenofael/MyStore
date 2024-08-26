@@ -73,7 +73,7 @@ class UsuarioController extends Controller {
                 $this->list("", $msg);
                 exit;
             } catch (PDOException $e) {
-                //print_r($e);
+                print_r($e);
                 array_push($erros, "[Erro ao salvar o usuário na base de dados.]");                
             }
         }

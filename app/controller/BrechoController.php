@@ -3,17 +3,23 @@
 require_once(__DIR__ . "/Controller.php");
 require_once(__DIR__ . "/../dao/BrechoDAO.php");
 require_once(__DIR__ . "/../model/Brecho.php");
+require_once(__DIR__ . "/../service/UsuarioService.php");
+require_once(__DIR__ . "/../service/BrechoService.php");
 
 class BrechoController extends Controller {
 
     private BrechoDAO $brechoDao;
+    private BrechoService $brechoService;
+    private UsuarioService $usuarioService;
 
     //Método construtor do controller - será executado a cada requisição a está classe
     public function __construct() {
-        //if(! $this->usuarioLogado())
-        //    exit;
+        if(! $this->usuarioLogado())
+            exit;
 
         $this->brechoDao = new BrechoDAO();
+        $this->brechoService = new BrechoService();
+        $this->usuarioService = new UsuarioService();
 
         $this->handleAction();
     }
@@ -29,59 +35,61 @@ class BrechoController extends Controller {
          */}
 
     protected function save() {
-        //Captura os dados do formulário
+            //Captura os dados do formulário
         $dados["id"] = isset($_POST['id']) ? $_POST['id'] : 0;
         $nome = trim($_POST['nome']) ? trim($_POST['nome']) : NULL;
         $descricao = trim($_POST['descricao']) ? trim($_POST['descricao']) : NULL;
-        $dataCriacao = date('d/m/Y', null);
         $id_usuario = $_SESSION[SESSAO_USUARIO_ID];
 
         //Cria objeto Usuario
         $brecho = new Brecho();
         $brecho->setNome($nome);
         $brecho->setDescricao($descricao);
-        $brecho->setDataCriacao($dataCriacao);
         $brecho->setId_usuario($id_usuario);
         //Validar os dados
-        //TODO - implementar brechoService
-        $erros = $this->usuarioService->validarDados($usuario, $confSenha);
+        $erros = $this->brechoService->validarDados($brecho);
         if(empty($erros)) {
             //Persiste o objeto
             try {
                 
-                if($dados["id"] == 0)  //Inserindo
-                    $this->usuarioDao->insert($usuario);
+                if($dados["id"] == 0){  //Inserindo
+                    $this->brechoDao->insert($brecho);
+                    header("location: ./HomeController.php?action=home");
+
+                }
                 else { //Alterando
-                    $usuario->setId($dados["id"]);
-                    $this->usuarioDao->update($usuario);
+                    $brecho->setId($dados["id"]);
+                    $this->brechoDao->update($brecho);
                 }
 
                 //TODO - Enviar mensagem de sucesso
-                $msg = "Usuário salvo com sucesso.";
+                $msg = "Brechó salvo com sucesso.";
                 $this->list("", $msg);
                 exit;
             } catch (PDOException $e) {
                 //print_r($e);
-                array_push($erros, "[Erro ao salvar o usuário na base de dados.]");                
+                array_push($erros, "[Erro ao salvar o brechó na base de dados.]");                
             }
         }
 
         //Se há erros, volta para o formulário
         
         //Carregar os valores recebidos por POST de volta para o formulário
-        $dados["usuario"] = $usuario;
-        $dados["confSenha"] = $confSenha;
-        $dados["papeis"] = UsuarioPapel::getAllAsArray();
+        $dados["brecho"] = $brecho;
         
         $msgsErro = implode("<br>", $erros);
-        $this->loadView("usuario/form.php", $dados, $msgsErro);
+        $this->loadView("brecho/form.php", $dados, $msgsErro);
      }
 
     //Método create
     protected function create() {
         //echo "Chamou o método create!";
 
-        
+        if($this->brechoService->verificarExistente($_SESSION[SESSAO_USUARIO_ID])){
+            echo "Já possui brechó";
+            exit;
+            header("location: ./HomeController.php?action=home");
+        }
         $dados["id"] = 0;
         $this->loadView("brecho/form.php", $dados);
     }
@@ -137,4 +145,4 @@ class BrechoController extends Controller {
 
 
 #Criar objeto da classe para assim executar o construtor
-new UsuarioController();
+new BrechoController();
