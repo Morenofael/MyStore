@@ -24,9 +24,11 @@ $brecho = $dados["brecho"];
         <div class="col-12">
         <a class="btn btn-secondary"
                 href="<?= BASEURL ?>/../">Voltar</a>
+        <?php if($brecho->getId_usuario() == $_SESSION[SESSAO_USUARIO_ID]):?>
         <a class="btn btn-success"
                 href="<?= BASEURL ?>/controller/BrechoController.php?action=edit&id=<?=$brecho->getId()?>">Editar</a>
         </div>
+        <?php endif;?>
         </div>
     </div>
 </div>
