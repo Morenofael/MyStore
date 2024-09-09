@@ -34,7 +34,9 @@ class BrechoController extends Controller {
         $this->loadView("usuario/list.php", $dados, $msgErro, $msgSucesso);
          */}
     protected function display(){
-        $dados["brecho"] = $this->brechoDao->findByIdUsuario($_SESSION[SESSAO_USUARIO_ID]);
+        //DAR id depois do edit
+        $id = $_GET['id'];
+        $dados["brecho"] = $this->brechoDao->findById($id);
         $this->loadView("brecho/brecho.php", $dados);
     }
     protected function save() {
@@ -90,8 +92,9 @@ class BrechoController extends Controller {
         //echo "Chamou o método create!";
 
         if($this->brechoService->verificarExistente($_SESSION[SESSAO_USUARIO_ID])){
+            $brechoId = $this->brechoDao->findByIdUsuario($_SESSION[SESSAO_USUARIO_ID])->getId();
             echo "Já possui brechó" . "<br>";
-            echo "<a href='" . BASEURL . "/controller/BrechoController.php?action=display'>" . "Ver" . "</a>";
+            echo "<a href='" . BASEURL . "/controller/BrechoController.php?action=display&id=" . $brechoId . "'>" . "Ver" . "</a>";
             exit;
         }
         $dados["id"] = 0;
@@ -101,17 +104,20 @@ class BrechoController extends Controller {
     //Método edit
     protected function edit() {
         $brecho = $this->findBrechoById();
-        
-        if($brecho) {
+        if(! $brecho){
+            $this->list("Brechó não encontrado");
+        }elseif($brecho->getId_usuario() == $_SESSION[SESSAO_USUARIO_ID]) {
             
             //Setar os dados
             $dados["id"] = $brecho->getId();
             $dados["nome"] = $brecho->getNome();
-            $dados["descricao"] = $brecho->getDescricao(); 
+            $dados["descricao"] = $brecho->getDescricao();
 
             $this->loadView("brecho/form.php", $dados);
-        } else 
-            $this->list("Brechó não encontrado");
+        }else{
+            echo "405 Forbidden";
+            exit;
+        }
     }
 
     //Método para excluir
