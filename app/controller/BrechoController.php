@@ -33,7 +33,10 @@ class BrechoController extends Controller {
 
         $this->loadView("usuario/list.php", $dados, $msgErro, $msgSucesso);
          */}
-
+    protected function display(){
+        $dados["brecho"] = $this->brechoDao->findByIdUsuario($_SESSION[SESSAO_USUARIO_ID]);
+        $this->loadView("brecho/brecho.php", $dados);
+    }
     protected function save() {
             //Captura os dados do formulário
         $dados["id"] = isset($_POST['id']) ? $_POST['id'] : 0;
@@ -60,6 +63,7 @@ class BrechoController extends Controller {
                 else { //Alterando
                     $brecho->setId($dados["id"]);
                     $this->brechoDao->update($brecho);
+                    header("location: ./BrechoController.php?action=display");
                 }
 
                 //TODO - Enviar mensagem de sucesso
@@ -67,7 +71,7 @@ class BrechoController extends Controller {
                 $this->list("", $msg);
                 exit;
             } catch (PDOException $e) {
-                //print_r($e);
+                print_r($e);
                 array_push($erros, "[Erro ao salvar o brechó na base de dados.]");                
             }
         }
@@ -86,30 +90,29 @@ class BrechoController extends Controller {
         //echo "Chamou o método create!";
 
         if($this->brechoService->verificarExistente($_SESSION[SESSAO_USUARIO_ID])){
-            echo "Já possui brechó";
+            echo "Já possui brechó" . "<br>";
+            echo "<a href='" . BASEURL . "/controller/BrechoController.php?action=display'>" . "Ver" . "</a>";
             exit;
-            header("location: ./HomeController.php?action=home");
         }
         $dados["id"] = 0;
         $this->loadView("brecho/form.php", $dados);
     }
 
     //Método edit
-    protected function edit() {/*
-        $usuario = $this->findUsuarioById();
+    protected function edit() {
+        $brecho = $this->findBrechoById();
         
-        if($usuario) {
-            $usuario->setSenha("");
+        if($brecho) {
             
             //Setar os dados
-            $dados["id"] = $usuario->getId();
-            $dados["usuario"] = $usuario;
-            $dados["papeis"] = UsuarioPapel::getAllAsArray(); 
+            $dados["id"] = $brecho->getId();
+            $dados["nome"] = $brecho->getNome();
+            $dados["descricao"] = $brecho->getDescricao(); 
 
-            $this->loadView("usuario/form.php", $dados);
+            $this->loadView("brecho/form.php", $dados);
         } else 
-            $this->list("Usuário não encontrado");
-     */}
+            $this->list("Brechó não encontrado");
+    }
 
     //Método para excluir
     protected function delete() {/*
@@ -140,6 +143,15 @@ class BrechoController extends Controller {
         $usuario = $this->usuarioDao->findById($id);
         return $usuario;
      */}
+
+     private function findBrechoById() {
+        $id = 0;
+        if(isset($_GET['id']))
+            $id = $_GET['id'];
+
+        $brecho = $this->brechoDao->findById($id);
+        return $brecho;
+    }
 
 }
 
