@@ -20,12 +20,13 @@ class BrechoDAO{
     public function update(Brecho $brecho) {
         $conn = Connection::getConn();
 
-        $sql = "UPDATE brechos SET nome = :nome, descricao = :descricao," . 
+        $sql = "UPDATE brechos SET nome = :nome, descricao = :descricao" . 
                " WHERE id = :id";
         
         $stm = $conn->prepare($sql);
         $stm->bindValue("nome", $brecho->getNome());
         $stm->bindValue("descricao", $brecho->getDescricao());
+        $stm->bindValue("id", $brecho->getId());
         $stm->execute();
     }
 
@@ -48,7 +49,27 @@ class BrechoDAO{
         die("BrechoDAO.findById()" . 
             " - Erro: mais de um brechó encontrado.");
     }
+    
+    public function findById(int $id) {
+        $conn = Connection::getConn();
 
+        $sql = "SELECT * FROM brechos b" .
+               " WHERE b.id = ?";
+        $stm = $conn->prepare($sql);    
+        $stm->execute([$id]);
+        $result = $stm->fetchAll();
+
+        $brechos = $this->mapBrechos($result);
+
+        if(count($brechos) == 1)
+            return $brechos[0];
+        elseif(count($brechos) == 0)
+            return null;
+
+        die("BrechoDAO.findById()" . 
+            " - Erro: mais de um brechó encontrado.");
+    }
+    
     private function mapBrechos($result) {
         $brechos = array();
         foreach ($result as $reg) {
