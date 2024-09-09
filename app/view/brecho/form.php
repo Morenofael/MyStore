@@ -20,13 +20,13 @@ require_once(__DIR__ . "/../include/menu.php");
                     <label for="txtNome">Nome:</label>
                     <input class="form-control" type="text" id="txtNome" name="nome"
                         maxlength="70" placeholder="Informe o nome"
-                        value="<?php echo (isset($dados["brecho"]) ? $dados["brecho"]->getNome() : ''); ?>" />
+                        value="<?php echo (isset($dados["nome"]) ? $dados["nome"] : ''); ?>" />
                 </div>
                 <div class="form-group">
                     <label for="txtDescricao">Descrição:</label>
                     <textarea class="form-control" type="text" id="txtDescricao" name="descricao"
                         maxlength="1000" placeholder="Informe a descrição" rows="15"
-                        value="<?php echo (isset($dados["brecho"]) ? $dados["brecho"]->getDescricao() : ''); ?>"></textarea>
+                        ><?php echo (isset($dados["descricao"]) ? $dados["descricao"] : ''); ?></textarea>
                 </div>
 
 
