@@ -23,16 +23,16 @@ class BrechoController extends Controller {
 
         $this->handleAction();
     }
-
-    protected function list(string $msgErro = "", string $msgSucesso = "") {
-        /*if(! $this->usuarioLogado() || $_SESSION[SESSAO_USUARIO_PAPEL] != 1)
+    
+    /*protected function list(string $msgErro = "", string $msgSucesso = "") {
+        if(! $this->usuarioLogado() || $_SESSION[SESSAO_USUARIO_PAPEL] != 1)
             header("location: HomeController.php?action=home");
         $usuarios = $this->usuarioDao->list();
         //print_r($usuarios);
         $dados["lista"] = $usuarios;
 
         $this->loadView("usuario/list.php", $dados, $msgErro, $msgSucesso);
-         */}
+    }*/
     protected function display(){
         //DAR id depois do edit
         $id = $_GET['id'];
