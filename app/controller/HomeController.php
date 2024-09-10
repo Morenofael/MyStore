@@ -2,10 +2,12 @@
 
 require_once(__DIR__ . "/Controller.php");
 require_once(__DIR__ . "/../dao/UsuarioDAO.php");
+require_once(__DIR__ . "/../dao/BrechoDAO.php");
 
 class HomeController extends Controller {
 
     private UsuarioDAO $usuarioDao;
+    private BrechoDAO $brechoDao;
 
     public function __construct() {
         //Testar se o usuário está logado
@@ -15,16 +17,16 @@ class HomeController extends Controller {
 
         //Criar o objeto do UsuarioDAO
         $this->usuarioDao = new UsuarioDAO();
+        $this->brechoDao = new BrechoDAO();
 
         $this->handleAction();       
     }
 
     protected function home() {
         $totalUsuarios = $this->usuarioDao->count();
-        $listaUsuario = $this->usuarioDao->list();    
+        $listaUsuario = $this->brechoDao->list();    
 
-        $dados["totalUsuarios"] = $totalUsuarios;
-        $dados["listaUsuarios"] = $listaUsuario;
+        $dados["listaBrechos"] = $listaUsuario;
 
         //echo "<pre>" . print_r($dados, true) . "</pre>";
         $this->loadView("home/home.php", $dados);
