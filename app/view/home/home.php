@@ -8,16 +8,12 @@ require_once(__DIR__ . "/../include/menu.php");
 
 <div class="row mt-3 justify-content-center">
     <div class="col-3 text-center">
-        <span class="fonte-grande">Usuários ativos: </span>
-
-        <span class="badge badge-info fonte-grande">
-            <?= $dados["totalUsuarios"] ?>
-        </span>
+        <span class="fonte-grande">Brechos: </span>
 
         <ul>
             <?php 
-                foreach($dados["listaUsuarios"] as $u) {
-                    echo "<li>". $u->getNome() . "</li>";
+                foreach($dados["listaBrechos"] as $b) {
+                    echo "<li>". $b->getNome() . "</li>";
                 }
             ?>
         </ul>
