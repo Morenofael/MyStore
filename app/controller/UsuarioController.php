@@ -68,7 +68,6 @@ class UsuarioController extends Controller {
                     $this->usuarioDao->update($usuario);
                 }
 
-                //TODO - Enviar mensagem de sucesso
                 $msg = "Usuário salvo com sucesso.";
                 $this->list("", $msg);
                 exit;
