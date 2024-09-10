@@ -3,6 +3,18 @@ include_once(__DIR__ . "/../connection/Connection.php");
 include_once(__DIR__ . "/../model/Brecho.php");
 
 class BrechoDAO{
+
+    public function list() {
+        $conn = Connection::getConn();
+
+        $sql = "SELECT * FROM brechos";
+        $stm = $conn->prepare($sql);
+        $stm->execute();
+        $result = $stm->fetchAll();
+
+        return $this->mapBrechos($result);
+    }
+
     public function insert(Brecho $brecho) {
         $conn = Connection::getConn();
 
@@ -78,6 +90,7 @@ class BrechoDAO{
             $brecho->setNome($reg['nome']);
             $brecho->setDescricao($reg['descricao']);
             $brecho->setDataCriacao($reg['data_criacao']);
+            $brecho->setId_usuario($reg['id_usuario']);
             array_push($brechos, $brecho);
         }
 
