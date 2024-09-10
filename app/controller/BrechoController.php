@@ -65,10 +65,9 @@ class BrechoController extends Controller {
                 else { //Alterando
                     $brecho->setId($dados["id"]);
                     $this->brechoDao->update($brecho);
-                    header("location: ./BrechoController.php?action=display");
+                    header("location: ./BrechoController.php?action=display&id=" . $brecho->getId());
                 }
 
-                //TODO - Enviar mensagem de sucesso
                 $msg = "Brechó salvo com sucesso.";
                 $this->list("", $msg);
                 exit;
