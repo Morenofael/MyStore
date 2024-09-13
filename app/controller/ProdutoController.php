@@ -4,11 +4,12 @@ require_once(__DIR__ . "/Controller.php");
 require_once(__DIR__ . "/../dao/ProdutoDAO.php");
 require_once(__DIR__ . "/../model/Produto.php");
 require_once(__DIR__ . "/../controller/BrechoController.php");
+require_once(__DIR__ . "/../dao/BrechoDAO.php");
 
 class ProdutoController extends Controller {
 
     private ProdutoDAO $produtoDao;
-    private BrechoController $brechoCont;
+    private BrechoDAO $brechoDao;
 
     //Método construtor do controller - será executado a cada requisição a está classe
     public function __construct() {
@@ -16,7 +17,7 @@ class ProdutoController extends Controller {
             exit;
 
         $this->produtoDao = new ProdutoDAO();
-        $this->brechoCont = new BrechoController();
+        $this->brechoDao = new BrechoDAO();
 
         $this->handleAction();
     }
@@ -41,16 +42,16 @@ class ProdutoController extends Controller {
         $nome = trim($_POST['nome']) ? trim($_POST['nome']) : NULL;
         $preco = trim($_POST['preco']) ? trim($_POST['preco']) : NULL;
         $descricao = trim($_POST['descricao']) ? trim($_POST['descricao']) : NULL;
-        //TODO perguntar pro Daniel se fazer assim é bom e perguntar se é daora chamar o DAO no service ou se é mais mec usar o controlelr
-        //TODO concertar brechoService
-        $idBrecho = $brechoCont->findUsuarioById($_SESSION[SESSAO_USUARIO_ID]);
+        //TODO perguntar pro Daniel se fazer assim é bom
+        $idBrecho = $this->brechoDao->findByIdUsuario($_SESSION[SESSAO_USUARIO_ID]);
 
         //Cria objeto Usuario
         $brecho = new Brecho();
         $brecho->setNome($nome);
+        $brecho->setPreco($preco);
         $brecho->setDescricao($descricao);
-        $brecho->setId_usuario($id_usuario);
-        //Validar os dados
+        $brecho->setIdBrecho($idBrecho);
+        //Validar os dados (TODO)
         $erros = $this->brechoService->validarDados($brecho);
         if(empty($erros)) {
             //Persiste o objeto
