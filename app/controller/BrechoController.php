@@ -149,6 +149,11 @@ class BrechoController extends Controller {
         return $usuario;
      */}
 
+     protected function findByIdUsuario(int $id){
+        $brecho = $this->brechoDao->findByIdUsuario($id);
+        return $brecho;
+     }
+
      private function findBrechoById() {
         $id = 0;
         if(isset($_GET['id']))
