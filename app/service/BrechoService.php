@@ -1,18 +1,18 @@
 <?php
     
 require_once(__DIR__ . "/../model/Brecho.php");
-require_once(__DIR__ . "/../controller/BrechoController.php");
+require_once(__DIR__ . "/../dao/BrechoDAO.php");
 
 class BrechoService {
-    private BrechoController $brechoCont;
+    private BrechoDAO $brechoDao;
 
     public function __construct(){
-        $this->brechoCont = new BrechoController();
+        $this->brechoDao = new BrechoDAO();
     }
 
     public function verificarExistente(?int $id){
         $erros = array();
-        if($this->brechoCont->findByIdUsuario($id) != null)
+        if($this->brechoDao->findByIdUsuario($id) != null)
             array_push($erros, "Usuário já possui brechó");
         return $erros;
     }

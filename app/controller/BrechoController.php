@@ -10,7 +10,7 @@ class BrechoController extends Controller {
 
     private BrechoDAO $brechoDao;
     private BrechoService $brechoService;
-    private UsuarioService $usuarioService;
+//    private UsuarioService $usuarioService;
 
     //Método construtor do controller - será executado a cada requisição a está classe
     public function __construct() {
@@ -19,7 +19,7 @@ class BrechoController extends Controller {
 
         $this->brechoDao = new BrechoDAO();
         $this->brechoService = new BrechoService();
-        $this->usuarioService = new UsuarioService();
+        //$this->usuarioService = new UsuarioService();
 
         $this->handleAction();
     }
@@ -148,11 +148,6 @@ class BrechoController extends Controller {
         $usuario = $this->usuarioDao->findById($id);
         return $usuario;
      */}
-
-     protected function findByIdUsuario(int $id){
-        $brecho = $this->brechoDao->findByIdUsuario($id);
-        return $brecho;
-     }
 
      private function findBrechoById() {
         $id = 0;
