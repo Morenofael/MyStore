@@ -49,7 +49,7 @@ require_once(__DIR__ . "/../include/menu.php");
                 <div class="form-group">
                     <label for="txtCpf">CPF:</label>
                     <input class="form-control" type="text" id="txtCPF" name="cpf" 
-                        maxlength="15" placeholder="Informe o CPF"
+                        maxlength="11" placeholder="Informe o CPF"
                         value="<?php echo isset($dados['usuario']) ? $dados['usuario']->getCpf() : '';?>"/>
                 </div>
 
