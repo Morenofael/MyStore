@@ -1,50 +1,49 @@
 <?php
-#Classe controller para Usuário
+#Classe controller para Produto
 require_once(__DIR__ . "/Controller.php");
-require_once(__DIR__ . "/../dao/BrechoDAO.php");
-require_once(__DIR__ . "/../model/Brecho.php");
-require_once(__DIR__ . "/../service/UsuarioService.php");
-require_once(__DIR__ . "/../service/BrechoService.php");
+require_once(__DIR__ . "/../dao/ProdutoDAO.php");
+require_once(__DIR__ . "/../model/Produto.php");
+require_once(__DIR__ . "/../controller/BrechoController.php");
 
-class BrechoController extends Controller {
+class ProdutoController extends Controller {
 
-    private BrechoDAO $brechoDao;
-    private BrechoService $brechoService;
-    private UsuarioService $usuarioService;
+    private ProdutoDAO $produtoDao;
+    private BrechoController $brechoCont;
 
     //Método construtor do controller - será executado a cada requisição a está classe
     public function __construct() {
         if(! $this->usuarioLogado())
             exit;
 
-        $this->brechoDao = new BrechoDAO();
-        $this->brechoService = new BrechoService();
-        $this->usuarioService = new UsuarioService();
+        $this->produtoDao = new ProdutoDAO();
+        $this->brechoCont = new BrechoController();
 
         $this->handleAction();
     }
-    
-    /*protected function list(string $msgErro = "", string $msgSucesso = "") {
-        if(! $this->usuarioLogado() || $_SESSION[SESSAO_USUARIO_PAPEL] != 1)
-            header("location: HomeController.php?action=home");
-        $usuarios = $this->usuarioDao->list();
-        //print_r($usuarios);
-        $dados["lista"] = $usuarios;
 
-        $this->loadView("usuario/list.php", $dados, $msgErro, $msgSucesso);
-    }*/
+    protected function list(string $msgErro = "", string $msgSucesso = "") {
+        if(! $this->usuarioLogado())
+            header("location: HomeController.php?action=home");
+        $produtos = $this->produtoDao->list();
+        //print_r($usuarios);
+        return $produtos;
+    }
+    /*
     protected function display(){
         //DAR id depois do edit
         $id = $_GET['id'];
         $dados["brecho"] = $this->brechoDao->findById($id);
         $this->loadView("brecho/brecho.php", $dados);
-    }
+    }*/
     protected function save() {
             //Captura os dados do formulário
         $dados["id"] = isset($_POST['id']) ? $_POST['id'] : 0;
         $nome = trim($_POST['nome']) ? trim($_POST['nome']) : NULL;
+        $preco = trim($_POST['preco']) ? trim($_POST['preco']) : NULL;
         $descricao = trim($_POST['descricao']) ? trim($_POST['descricao']) : NULL;
-        $id_usuario = $_SESSION[SESSAO_USUARIO_ID];
+        //TODO perguntar pro Daniel se fazer assim é bom e perguntar se é daora chamar o DAO no service ou se é mais mec usar o controlelr
+        //TODO concertar brechoService
+        $idBrecho = $brechoCont->findUsuarioById($_SESSION[SESSAO_USUARIO_ID]);
 
         //Cria objeto Usuario
         $brecho = new Brecho();
@@ -99,7 +98,7 @@ class BrechoController extends Controller {
         $dados["id"] = 0;
         $this->loadView("brecho/form.php", $dados);
     }
-
+/*
     //Método edit
     protected function edit() {
         $brecho = $this->findBrechoById();
@@ -131,13 +130,13 @@ class BrechoController extends Controller {
             $this->list("Usuário não encontrado!");
 
         }               
-     */}
+     }
 
     protected function listJson() {/*
         $listaUsuarios = $this->usuarioDao->list();
         $json = json_encode($listaUsuarios);
         echo $json;
-     */}
+     }
 
     //Método para buscar o usuário com base no ID recebido por parâmetro GET
     private function findUsuarioById() {/*
@@ -147,11 +146,6 @@ class BrechoController extends Controller {
 
         $usuario = $this->usuarioDao->findById($id);
         return $usuario;
-     */}
-
-     protected function findByIdUsuario(int $id){
-        $brecho = $this->brechoDao->findByIdUsuario($id);
-        return $brecho;
      }
 
      private function findBrechoById() {
@@ -162,9 +156,9 @@ class BrechoController extends Controller {
         $brecho = $this->brechoDao->findById($id);
         return $brecho;
     }
-
+*/
 }
 
 
 #Criar objeto da classe para assim executar o construtor
-new BrechoController();
+new ProdutoController();

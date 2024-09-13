@@ -27,7 +27,9 @@ $brecho = $dados["brecho"];
         <?php if($brecho->getId_usuario() == $_SESSION[SESSAO_USUARIO_ID]):?>
         <a class="btn btn-success"
                 href="<?= BASEURL ?>/controller/BrechoController.php?action=edit&id=<?=$brecho->getId()?>">Editar</a>
-        </div>
+        <a class="btn btn-primary"
+                href="<?= BASEURL ?>/controller/ProdutoController.php?action=create?>">Adicionar produto</a>
+                <h1 style="color:red;">TODO: ADD CRUD PRODUTO</h1>
         <?php endif;?>
         </div>
     </div>

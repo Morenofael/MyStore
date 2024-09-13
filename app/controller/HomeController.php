@@ -23,10 +23,9 @@ class HomeController extends Controller {
     }
 
     protected function home() {
-        $totalUsuarios = $this->usuarioDao->count();
-        $listaUsuario = $this->brechoDao->list();    
+        $listaBrecho = $this->brechoDao->list();    
 
-        $dados["listaBrechos"] = $listaUsuario;
+        $dados["listaBrechos"] = $listaBrecho;
 
         //echo "<pre>" . print_r($dados, true) . "</pre>";
         $this->loadView("home/home.php", $dados);
