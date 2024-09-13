@@ -3,11 +3,12 @@
 require_once(__DIR__ . "/Controller.php");
 require_once(__DIR__ . "/../dao/ProdutoDAO.php");
 require_once(__DIR__ . "/../model/Produto.php");
-//require_once(__DIR__ . "/../service/BrechoService.php");
+require_once(__DIR__ . "/../controller/BrechoController.php");
 
 class ProdutoController extends Controller {
 
     private ProdutoDAO $produtoDao;
+    private BrechoController $brechoCont;
 
     //Método construtor do controller - será executado a cada requisição a está classe
     public function __construct() {
@@ -15,6 +16,7 @@ class ProdutoController extends Controller {
             exit;
 
         $this->produtoDao = new ProdutoDAO();
+        $this->brechoCont = new BrechoController();
 
         $this->handleAction();
     }
@@ -24,23 +26,24 @@ class ProdutoController extends Controller {
             header("location: HomeController.php?action=home");
         $produtos = $this->produtoDao->list();
         //print_r($usuarios);
-        $dados["lista"] = $produtos;
-
-        //$this->loadView("usuario/list.php", $dados, $msgErro, $msgSucesso);
-         }
+        return $produtos;
+    }
     /*
     protected function display(){
         //DAR id depois do edit
         $id = $_GET['id'];
         $dados["brecho"] = $this->brechoDao->findById($id);
         $this->loadView("brecho/brecho.php", $dados);
-    }
+    }*/
     protected function save() {
             //Captura os dados do formulário
         $dados["id"] = isset($_POST['id']) ? $_POST['id'] : 0;
         $nome = trim($_POST['nome']) ? trim($_POST['nome']) : NULL;
+        $preco = trim($_POST['preco']) ? trim($_POST['preco']) : NULL;
         $descricao = trim($_POST['descricao']) ? trim($_POST['descricao']) : NULL;
-        $id_usuario = $_SESSION[SESSAO_USUARIO_ID];
+        //TODO perguntar pro Daniel se fazer assim é bom e perguntar se é daora chamar o DAO no service ou se é mais mec usar o controlelr
+        //TODO concertar brechoService
+        $idBrecho = $brechoCont->findUsuarioById($_SESSION[SESSAO_USUARIO_ID]);
 
         //Cria objeto Usuario
         $brecho = new Brecho();
@@ -95,7 +98,7 @@ class ProdutoController extends Controller {
         $dados["id"] = 0;
         $this->loadView("brecho/form.php", $dados);
     }
-
+/*
     //Método edit
     protected function edit() {
         $brecho = $this->findBrechoById();
