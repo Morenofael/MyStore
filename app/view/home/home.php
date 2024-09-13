@@ -13,7 +13,7 @@ require_once(__DIR__ . "/../include/menu.php");
         <ul>
             <?php 
                 foreach($dados["listaBrechos"] as $b) {
-                    echo "<li>". $b->getNome() . "</li>";
+                    echo "<li>". "<a href='" . BASEURL . "/controller/BrechoController.php?action=display&id=" . $b->getId() . "'>" . $b->getNome() . "</a>" . "</li>";
                 }
             ?>
         </ul>
