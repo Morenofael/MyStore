@@ -3,12 +3,13 @@
 require_once(__DIR__ . "/Controller.php");
 require_once(__DIR__ . "/../dao/ProdutoDAO.php");
 require_once(__DIR__ . "/../model/Produto.php");
-require_once(__DIR__ . "/../controller/BrechoController.php");
+require_once(__DIR__ . "/../service/ProdutoService.php");
 require_once(__DIR__ . "/../dao/BrechoDAO.php");
 
 class ProdutoController extends Controller {
 
     private ProdutoDAO $produtoDao;
+    private ProdutoService $produtoService;
     private BrechoDAO $brechoDao;
 
     //Método construtor do controller - será executado a cada requisição a está classe
@@ -17,6 +18,7 @@ class ProdutoController extends Controller {
             exit;
 
         $this->produtoDao = new ProdutoDAO();
+        $this->produtoService = new ProdutoService();
         $this->brechoDao = new BrechoDAO();
 
         $this->handleAction();
@@ -37,34 +39,33 @@ class ProdutoController extends Controller {
         $this->loadView("brecho/brecho.php", $dados);
     }*/
     protected function save() {
-            //Captura os dados do formulário
+        //Captura os dados do formulário
         $dados["id"] = isset($_POST['id']) ? $_POST['id'] : 0;
         $nome = trim($_POST['nome']) ? trim($_POST['nome']) : NULL;
         $preco = trim($_POST['preco']) ? trim($_POST['preco']) : NULL;
         $descricao = trim($_POST['descricao']) ? trim($_POST['descricao']) : NULL;
-        //TODO perguntar pro Daniel se fazer assim é bom
-        $idBrecho = $this->brechoDao->findByIdUsuario($_SESSION[SESSAO_USUARIO_ID]);
+        $brecho = $this->brechoDao->findByIdUsuario($_SESSION[SESSAO_USUARIO_ID]);
 
         //Cria objeto Usuario
-        $brecho = new Brecho();
-        $brecho->setNome($nome);
-        $brecho->setPreco($preco);
-        $brecho->setDescricao($descricao);
-        $brecho->setIdBrecho($idBrecho);
-        //Validar os dados (TODO)
-        $erros = $this->brechoService->validarDados($brecho);
+        $produto = new Produto();
+        $produto->setNome($nome);
+        $produto->setPreco($preco);
+        $produto->setDescricao($descricao);
+        $produto->setIdBrecho($brecho->getId());
+        //Validar dados
+        $erros = $this->produtoService->validarDados($produto);
         if(empty($erros)) {
             //Persiste o objeto
             try {
                 
                 if($dados["id"] == 0){  //Inserindo
-                    $this->brechoDao->insert($brecho);
-                    header("location: ./HomeController.php?action=home");
+                    $this->produtoDao->insert($produto);
+                    header("location: ./BrechoController.php?action=display&id=" . $brecho->getId());
 
                 }
                 else { //Alterando
-                    $brecho->setId($dados["id"]);
-                    $this->brechoDao->update($brecho);
+                    $produto->setId($dados["id"]);
+                    $this->produtoDao->update($produto);
                     header("location: ./BrechoController.php?action=display&id=" . $brecho->getId());
                 }
 
@@ -72,7 +73,7 @@ class ProdutoController extends Controller {
                 $this->list("", $msg);
                 exit;
             } catch (PDOException $e) {
-                print_r($e);
+                //print_r($e);
                 array_push($erros, "[Erro ao salvar o brechó na base de dados.]");                
             }
         }
@@ -90,14 +91,8 @@ class ProdutoController extends Controller {
     protected function create() {
         //echo "Chamou o método create!";
 
-        if($this->brechoService->verificarExistente($_SESSION[SESSAO_USUARIO_ID])){
-            $brechoId = $this->brechoDao->findByIdUsuario($_SESSION[SESSAO_USUARIO_ID])->getId();
-            echo "Já possui brechó" . "<br>";
-            echo "<a href='" . BASEURL . "/controller/BrechoController.php?action=display&id=" . $brechoId . "'>" . "Ver" . "</a>";
-            exit;
-        }
         $dados["id"] = 0;
-        $this->loadView("brecho/form.php", $dados);
+        $this->loadView("produto/form.php", $dados);
     }
 /*
     //Método edit
