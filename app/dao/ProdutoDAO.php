@@ -100,25 +100,23 @@ class ProdutoDAO {
         $stm->bindValue("descricao", $produto->getDescricao());
         $stm->execute();
     }
-/*
-    //Método para atualizar um Usuario
-    public function update(Usuario $usuario) {
+
+    //Método para atualizar um Produto
+    public function update(Produto $produto) {
         $conn = Connection::getConn();
 
-        $sql = "UPDATE usuarios SET nome = :nome, login = :login," . 
-               " senha = :senha, nivel_acesso = :nivel_acesso" .   
+        $sql = "UPDATE usuarios SET nome = :nome, descricao = :descricao," . 
+               " preco = :preco" .   
                " WHERE id = :id";
         
         $stm = $conn->prepare($sql);
-        $stm->bindValue("nome", $usuario->getNome());
-        $stm->bindValue("login", $usuario->getLogin());
-        $senhaCript = password_hash($usuario->getSenha(), PASSWORD_DEFAULT);
-        $stm->bindValue("senha", $senhaCript);
-        $stm->bindValue("nivel_acesso", $usuario->getNivelAcesso());
-        $stm->bindValue("id", $usuario->getId());
+        $stm->bindValue("nome", $produto->getNome());
+        $stm->bindValue("descricao", $produto->getDescricao());
+        $stm->bindValue("preco", $produto->getPreco());
+        $stm->bindValue("id", $produto->getId());
         $stm->execute();
     }
-
+/*
     //Método para excluir um Usuario pelo seu ID
     public function deleteById(int $id) {
         $conn = Connection::getConn();
