@@ -2,7 +2,7 @@
 #Nome do arquivo: Produto.php
 #Objetivo: classe Model para Produto 
 
-class Brecho implements JsonSerializable {
+class Produto implements JsonSerializable {
 
     private ?int $id;
     private ?int $idBrecho;
