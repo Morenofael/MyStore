@@ -42,7 +42,7 @@ CREATE TABLE produtos(
 	id INT AUTO_INCREMENT NOT NULL,
 	id_brecho INT,
 	nome VARCHAR(256) NOT NULL,
-	preco DOUBLE(5,2) NOT NULL,
+	preco DOUBLE(7,2) NOT NULL,
 	descricao TEXT NOT NULL,
 	constraint pk_produto primary key (id)
 );
@@ -55,7 +55,7 @@ CREATE TABLE pedidos(
 	id_comprador INT,
 	id_vendedor INT,
 	caminhoComprovante VARCHAR(256),
-	valor_total DOUBLE(5,2),
+	valor_total DOUBLE(7,2),
 	constraint pk_pedido primary key (id)
 );
 ALTER TABLE pedidos ADD CONSTRAINT fk_comprador FOREIGN KEY (id_comprador) REFERENCES usuarios (id);
@@ -65,7 +65,7 @@ CREATE TABLE pedidos_produtos(
 	id INT AUTO_INCREMENT NOT NULL,
 	id_pedido INT,
 	id_produto INT,
-	valor DOUBLE(5,2),
+	valor DOUBLE(7,2),
 	constraint pk_pedido_produto primary key (id)
 );
 ALTER TABLE pedidos_produtos ADD CONSTRAINT fk_pedido FOREIGN KEY (id_pedido) REFERENCES pedidos (id);
