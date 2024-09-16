@@ -5,6 +5,7 @@
 require_once(__DIR__ . "/../include/header.php");
 require_once(__DIR__ . "/../include/menu.php");
 $brecho = $dados["brecho"];
+$produtos = $dados["produtos"];
 ?>
 <h3 class="text-center">
     <?= $brecho->getNome()?>
@@ -29,6 +30,14 @@ $brecho = $dados["brecho"];
         <a class="btn btn-primary"
                 href="<?= BASEURL ?>/controller/ProdutoController.php?action=create">Adicionar produto</a>
         <?php endif;?>
+        <ul>
+            <?php foreach($produtos as $p): ?>
+                <li>
+                    <?=$p->getNome()?>
+                </li> 
+            <?php endforeach; ?>
+        </ul>
+        
         </div>
     </div>
 </div>

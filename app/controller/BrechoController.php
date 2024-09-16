@@ -2,15 +2,15 @@
 #Classe controller para Usuário
 require_once(__DIR__ . "/Controller.php");
 require_once(__DIR__ . "/../dao/BrechoDAO.php");
+require_once(__DIR__ . "/../dao/ProdutoDAO.php");
 require_once(__DIR__ . "/../model/Brecho.php");
-require_once(__DIR__ . "/../service/UsuarioService.php");
 require_once(__DIR__ . "/../service/BrechoService.php");
 
 class BrechoController extends Controller {
 
     private BrechoDAO $brechoDao;
+    private ProdutoDAO $produtoDao;
     private BrechoService $brechoService;
-//    private UsuarioService $usuarioService;
 
     //Método construtor do controller - será executado a cada requisição a está classe
     public function __construct() {
@@ -19,6 +19,7 @@ class BrechoController extends Controller {
 
         $this->brechoDao = new BrechoDAO();
         $this->brechoService = new BrechoService();
+        $this->produtoDao = new ProdutoDAO();
         //$this->usuarioService = new UsuarioService();
 
         $this->handleAction();
@@ -37,6 +38,7 @@ class BrechoController extends Controller {
         //DAR id depois do edit
         $id = $_GET['id'];
         $dados["brecho"] = $this->brechoDao->findById($id);
+        $dados["produtos"] = $this->produtoDao->listByBrecho($dados["brecho"]->getId());
         $this->loadView("brecho/brecho.php", $dados);
     }
     protected function save() {
@@ -68,11 +70,9 @@ class BrechoController extends Controller {
                     header("location: ./BrechoController.php?action=display&id=" . $brecho->getId());
                 }
 
-                $msg = "Brechó salvo com sucesso.";
-                $this->list("", $msg);
-                exit;
+                header("location: ./HomeController.php?action=home");
             } catch (PDOException $e) {
-                print_r($e);
+                //print_r($e);
                 array_push($erros, "[Erro ao salvar o brechó na base de dados.]");                
             }
         }
@@ -104,7 +104,7 @@ class BrechoController extends Controller {
     protected function edit() {
         $brecho = $this->findBrechoById();
         if(! $brecho){
-            $this->list("Brechó não encontrado");
+            echo "Brechó não encontrado";
         }elseif($brecho->getId_usuario() == $_SESSION[SESSAO_USUARIO_ID]) {
             
             //Setar os dados

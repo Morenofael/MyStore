@@ -18,6 +18,19 @@ class ProdutoDAO {
         
         return $this->mapProdutos($result);
     }
+
+    public function listByBrecho(int $idBrecho){
+        $conn = Connection::getConn();
+
+        $sql = "SELECT * FROM produtos p " . 
+            " WHERE id_brecho = ?";
+        $stm = $conn->prepare($sql);    
+        $stm->execute([$idBrecho]);
+        $result = $stm->fetchAll();
+        
+        return $this->mapProdutos($result);
+
+    }
 /*    //Método para buscar um usuário por seu ID
     public function findById(int $id) {
         $conn = Connection::getConn();

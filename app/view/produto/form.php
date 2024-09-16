@@ -34,8 +34,8 @@ require_once(__DIR__ . "/../include/menu.php");
 
                 <div class="form-group">
                     <label for="numPreco">Preco:</label>
-                    <input class="form-control" type="number" id="numPreco" name="preco" 
-                        maxlength="6" placeholder="Informe o preço"
+                    <input class="form-control" type="number" id="numPreco" name="preco" step="0.01" 
+                        max="999999" placeholder="Informe o preço"
                         value="<?php echo (isset($dados["produto"]) ? $dados["produto"]->getPreco() : ''); ?>"/>
                 </div>
 

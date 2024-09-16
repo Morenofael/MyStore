@@ -56,7 +56,7 @@ require_once(__DIR__ . "/../include/menu.php");
                 <div class="form-group">
                     <label for="txtTelefone">Telefone:</label>
                     <input class="form-control" type="text" id="txtTelefone" name="telefone" 
-                        maxlength="15" placeholder="Informe o telefone"
+                        maxlength="13" placeholder="Informe o telefone"
                         value="<?php echo isset($dados['usuario']) ? $dados['usuario']->getTelefone() : '';?>"/>
                 </div>
 
