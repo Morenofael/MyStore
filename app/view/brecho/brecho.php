@@ -28,8 +28,7 @@ $brecho = $dados["brecho"];
         <a class="btn btn-success"
                 href="<?= BASEURL ?>/controller/BrechoController.php?action=edit&id=<?=$brecho->getId()?>">Editar</a>
         <a class="btn btn-primary"
-                href="<?= BASEURL ?>/controller/ProdutoController.php?action=create?>">Adicionar produto</a>
-                <h1 style="color:red;">TODO: ADD CRUD PRODUTO</h1>
+                href="<?= BASEURL ?>/controller/ProdutoController.php?action=create">Adicionar produto</a>
         <?php endif;?>
         </div>
     </div>
