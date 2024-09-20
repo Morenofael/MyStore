@@ -5,12 +5,14 @@ require_once(__DIR__ . "/../dao/ProdutoDAO.php");
 require_once(__DIR__ . "/../model/Produto.php");
 require_once(__DIR__ . "/../service/ProdutoService.php");
 require_once(__DIR__ . "/../dao/BrechoDAO.php");
+require_once(__DIR__ . "/../dao/UsuarioDAO.php");
 
 class ProdutoController extends Controller {
 
     private ProdutoDAO $produtoDao;
     private ProdutoService $produtoService;
     private BrechoDAO $brechoDao;
+    private UsuarioDAO $usuarioDao;
 
     //Método construtor do controller - será executado a cada requisição a está classe
     public function __construct() {
@@ -20,6 +22,7 @@ class ProdutoController extends Controller {
         $this->produtoDao = new ProdutoDAO();
         $this->produtoService = new ProdutoService();
         $this->brechoDao = new BrechoDAO();
+        $this->usuarioDao = new UsuarioDAO();
 
         $this->handleAction();
     }
@@ -36,6 +39,7 @@ class ProdutoController extends Controller {
         //DAR id depois do edit
         $id = $_GET['id'];
         $dados["produto"] = $this->produtoDao->findById($id);
+        $dados["vendedor"] = $this->usuarioDao->findByBrecho($dados["produto"]->getIdBrecho());
         $this->loadView("produto/produto.php", $dados);
     }
 
@@ -70,12 +74,12 @@ class ProdutoController extends Controller {
                     header("location: ./BrechoController.php?action=display&id=" . $brecho->getId());
                 }
 
-                $msg = "Brechó salvo com sucesso.";
+                $msg = "Produto salvo com sucesso.";
                 $this->list("", $msg);
                 exit;
             } catch (PDOException $e) {
                 //print_r($e);
-                array_push($erros, "[Erro ao salvar o brechó na base de dados.]");                
+                array_push($erros, "[Erro ao salvar o produto na base de dados.]");                
             }
         }
 
