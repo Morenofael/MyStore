@@ -31,49 +31,28 @@ class ProdutoDAO {
         return $this->mapProdutos($result);
 
     }
-/*    //Método para buscar um usuário por seu ID
+
     public function findById(int $id) {
         $conn = Connection::getConn();
 
-        $sql = "SELECT * FROM usuarios u" .
-               " WHERE u.id = ?";
+        $sql = "SELECT * FROM produtos p" .
+               " WHERE p.id = ?";
         $stm = $conn->prepare($sql);    
         $stm->execute([$id]);
         $result = $stm->fetchAll();
 
-        $usuarios = $this->mapProdutos($result);
+        $produtos = $this->mapProdutos($result);
 
-        if(count($usuarios) == 1)
-            return $usuarios[0];
-        elseif(count($usuarios) == 0)
+        if(count($produtos) == 1)
+            return $produtos[0];
+        elseif(count($produtos) == 0)
             return null;
 
-        die("UsuarioDAO.findById()" . 
-            " - Erro: mais de um usuário encontrado.");
-    }
-   
-   //Método para buscar um usuário por seu Email 
-    public function findByEmail(string $email) {
-        $conn = Connection::getConn();
-
-        $sql = "SELECT * FROM usuarios u" .
-               " WHERE u.email = ?";
-        $stm = $conn->prepare($sql);    
-        $stm->execute([$email]);
-        $result = $stm->fetchAll();
-
-        $usuarios = $this->mapProdutos($result);
-
-        if(count($usuarios) == 1)
-            return $usuarios[0];
-        elseif(count($usuarios) == 0)
-            return null;
-
-        die("UsuarioDAO.findByEmail()" . 
-            " - Erro: mais de um usuário encontrado.");
+        die("ProdutoDAO.findById()" . 
+            " - Erro: mais de um produto encontrado.");
     }
 
-
+/*
     //Método para buscar um usuário por seu login e senha
     public function findByLoginSenha(string $login, string $senha) {
         $conn = Connection::getConn();

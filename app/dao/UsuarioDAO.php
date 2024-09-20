@@ -92,6 +92,26 @@ class UsuarioDAO {
             " - Erro: mais de um usuário encontrado.");
     }
 
+    public function findByBrecho(int $idUsuarioBrecho){
+        $conn = Connection::getConn();
+
+        $sql = "SELECT * FROM usuarios u" .
+               " WHERE u.id = ?";
+        $stm = $conn->prepare($sql);    
+        $stm->execute([$idUsuarioBrecho]);
+        $result = $stm->fetchAll();
+
+        $usuarios = $this->mapUsuarios($result);
+
+        if(count($usuarios) == 1)
+            return $usuarios[0];
+        elseif(count($usuarios) == 0)
+            return null;
+
+        die("UsuarioDAO.findByEmail()" . 
+            " - Erro: mais de um usuário encontrado.");
+    }
+
     //Método para inserir um Usuario
     public function insert(Usuario $usuario) {
         $conn = Connection::getConn();
