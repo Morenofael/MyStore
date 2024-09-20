@@ -1,13 +1,13 @@
 <?php
     
 require_once(__DIR__ . "/../model/Produto.php");
-//require_once(__DIR__ . "/../dao/ProdutoDAO.php");
+require_once(__DIR__ . "/../dao/UsuarioDAO.php");
 
 class ProdutoService{
-//    private ProdutoDAO $produtoDao;
+    private UsuarioDAO $usuarioDao;
 
     public function __construct(){
-  //      $this->produtoDao = new ProdutoDAO();
+        $this->usuarioDao = new UsuarioDAO();
     }
 
     /* Método para validar os dados do usuário que vem do formulário */
@@ -26,6 +26,10 @@ class ProdutoService{
         
         return $erros;
         
+    }
+
+    public function getUsuarioProduto(Produto $produto){
+        $usuario = $this->usuarioDao->findByBrecho($produto->getIdBrecho());
     }
 
 }
