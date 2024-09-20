@@ -92,13 +92,14 @@ class UsuarioDAO {
             " - Erro: mais de um usuário encontrado.");
     }
 
-    public function findByBrecho(int $idUsuarioBrecho){
+    public function findByBrecho(int $id){
         $conn = Connection::getConn();
 
         $sql = "SELECT * FROM usuarios u" .
-               " WHERE u.id = ?";
+                " JOIN brechos b ON (u.id = b.id_usuario)" .
+               " WHERE b.id = ?";
         $stm = $conn->prepare($sql);    
-        $stm->execute([$idUsuarioBrecho]);
+        $stm->execute([$id]);
         $result = $stm->fetchAll();
 
         $usuarios = $this->mapUsuarios($result);
@@ -108,9 +109,10 @@ class UsuarioDAO {
         elseif(count($usuarios) == 0)
             return null;
 
-        die("UsuarioDAO.findByEmail()" . 
-            " - Erro: mais de um usuário encontrado.");
+        die("UsuarioDAO.findByBrecho()" . 
+            " - Erro: mais de um usuario encontrado.");
     }
+
 
     //Método para inserir um Usuario
     public function insert(Usuario $usuario) {
