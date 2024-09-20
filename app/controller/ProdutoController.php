@@ -31,13 +31,14 @@ class ProdutoController extends Controller {
         //print_r($usuarios);
         return $produtos;
     }
-    /*
+    
     protected function display(){
         //DAR id depois do edit
         $id = $_GET['id'];
-        $dados["brecho"] = $this->brechoDao->findById($id);
-        $this->loadView("brecho/brecho.php", $dados);
-    }*/
+        $dados["produto"] = $this->produtoDao->findById($id);
+        $this->loadView("produto/produto.php", $dados);
+    }
+
     protected function save() {
         //Captura os dados do formulário
         $dados["id"] = isset($_POST['id']) ? $_POST['id'] : 0;
