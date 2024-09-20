@@ -33,7 +33,9 @@ $produtos = $dados["produtos"];
         <ul>
             <?php foreach($produtos as $p): ?>
                 <li>
-                    <?=$p->getNome()?>
+                    <a href="<?=BASEURL?>/controller/ProdutoController.php?action=display&id=<?=$p->getId()?>">
+                        <?=$p->getNome()?>
+                    </a>
                 </li> 
             <?php endforeach; ?>
         </ul>
