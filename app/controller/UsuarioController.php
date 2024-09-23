@@ -22,6 +22,13 @@ class UsuarioController extends Controller {
         $this->handleAction();
     }
 
+    protected function display(){
+        //DAR id depois do edit
+        $id = $_GET['id'];
+        $dados["usuario"] = $this->usuarioDao->findById($id);
+        $this->loadView("usuario/usuario.php", $dados);
+    }
+
     protected function list(string $msgErro = "", string $msgSucesso = "") {
         if(! $this->usuarioLogado() || $_SESSION[SESSAO_USUARIO_PAPEL] != 1)
             header("location: HomeController.php?action=home");
