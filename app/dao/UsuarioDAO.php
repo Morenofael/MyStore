@@ -92,10 +92,10 @@ class UsuarioDAO {
             " - Erro: mais de um usuário encontrado.");
     }
 
-    public function findByBrecho(int $id){
+    public function findByIdBrecho(int $id){
         $conn = Connection::getConn();
 
-        $sql = "SELECT * FROM usuarios u" .
+        $sql = "SELECT u.* FROM usuarios u" .
                 " JOIN brechos b ON (u.id = b.id_usuario)" .
                " WHERE b.id = ?";
         $stm = $conn->prepare($sql);    
