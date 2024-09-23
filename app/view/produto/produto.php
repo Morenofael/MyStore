@@ -5,10 +5,6 @@
 require_once(__DIR__ . "/../include/header.php");
 require_once(__DIR__ . "/../include/menu.php");
 $produto = $dados["produto"];
-echo "<pre>" . print_r($dados["produto"]) . "</pre>";
-echo "<pre>";
-print_r($dados["vendedor"]);
-echo "</pre>";
 ?>
 <h3 class="text-center">
     <?= $produto->getNome()?>

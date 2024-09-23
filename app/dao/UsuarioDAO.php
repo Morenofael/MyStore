@@ -178,9 +178,6 @@ class UsuarioDAO {
     //Método para converter um registro da base de dados em um objeto Usuario
     private function mapUsuarios($result) {
         //TODO mapear produto com objetos e perguntar para o professor Daniel
-        echo "<pre>";
-        print_r($result);
-        echo "</pre>";
         $usuarios = array();
         foreach ($result as $reg) {
             $usuario = new Usuario();
