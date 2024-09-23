@@ -65,13 +65,13 @@ class ProdutoController extends Controller {
                 
                 if($dados["id"] == 0){  //Inserindo
                     $this->produtoDao->insert($produto);
-                    header("location: ./BrechoController.php?action=display&id=" . $brecho->getId());
+                    header("location: ./ProdutoController.php?action=display&id=" . $produto->getId());
 
                 }
                 else { //Alterando
-                    $produto->setId($dados["id"]);
+                    $produto->setId($dados["produto"]->getId());
                     $this->produtoDao->update($produto);
-                    header("location: ./BrechoController.php?action=display&id=" . $brecho->getId());
+                    header("location: ./ProdutoController.php?action=display&id=" . $produto->getId());
                 }
 
                 $msg = "Produto salvo com sucesso.";
@@ -99,26 +99,24 @@ class ProdutoController extends Controller {
         $dados["id"] = 0;
         $this->loadView("produto/form.php", $dados);
     }
-/*
+
     //Método edit
     protected function edit() {
-        $brecho = $this->findBrechoById();
-        if(! $brecho){
-            $this->list("Brechó não encontrado");
-        }elseif($brecho->getId_usuario() == $_SESSION[SESSAO_USUARIO_ID]) {
+        $produto = $this->findProdutoById();
+        if(! $produto){
+            $this->list("Produto não encontrado");
+        }elseif($this->usuarioDao->findByIdBrecho($produto->getIdbrecho())->getId() == $_SESSION[SESSAO_USUARIO_ID]) {
             
             //Setar os dados
-            $dados["id"] = $brecho->getId();
-            $dados["nome"] = $brecho->getNome();
-            $dados["descricao"] = $brecho->getDescricao();
+            $dados["produto"] = $produto;
 
-            $this->loadView("brecho/form.php", $dados);
+            $this->loadView("produto/form.php", $dados);
         }else{
             echo "405 Forbidden";
             exit;
         }
     }
-
+/*
     //Método para excluir
     protected function delete() {/*
         $usuario = $this->findUsuarioById();
@@ -148,16 +146,16 @@ class ProdutoController extends Controller {
         $usuario = $this->usuarioDao->findById($id);
         return $usuario;
      }
-
-     private function findBrechoById() {
+*/
+     private function findProdutoById() {
         $id = 0;
         if(isset($_GET['id']))
             $id = $_GET['id'];
 
-        $brecho = $this->brechoDao->findById($id);
-        return $brecho;
+        $produto = $this->produtoDao->findById($id);
+        return $produto;
     }
-*/
+
 }
 
 
