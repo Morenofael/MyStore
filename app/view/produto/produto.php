@@ -5,6 +5,7 @@
 require_once(__DIR__ . "/../include/header.php");
 require_once(__DIR__ . "/../include/menu.php");
 $produto = $dados["produto"];
+$vendedor = $dados["vendedor"];
 ?>
 <h3 class="text-center">
     <?= $produto->getNome()?>
@@ -24,17 +25,10 @@ $produto = $dados["produto"];
         <div class="col-12">
         <a class="btn btn-secondary"
                 href="<?= BASEURL ?>/../">Voltar</a>
-        <?php if($brecho->getId_usuario() == $_SESSION[SESSAO_USUARIO_ID]):?>
+        <?php if($vendedor->getId() == $_SESSION[SESSAO_USUARIO_ID]):?>
         <a class="btn btn-success"
-                href="<?= BASEURL ?>/controller/BrechoController.php?action=edit&id=<?=$brecho->getId()?>">Editar</a>
+                href="<?= BASEURL ?>/controller/ProdutoController.php?action=edit&id=<?=$produto->getId()?>">Editar</a>
         <?php endif;?>
-        <ul>
-            <?php foreach($produtos as $p): ?>
-                <li>
-                    <?=$p->getNome()?>
-                </li> 
-            <?php endforeach; ?>
-        </ul>
         
         </div>
     </div>
