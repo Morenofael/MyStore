@@ -30,7 +30,11 @@ if(isset($_SESSION[SESSAO_USUARIO_NOME]))
         </ul>
 
         <ul class="navbar-nav mr-left">
-            <li class="nav-item active"><?= $nome?></li>
+            <li class="nav-item active">
+                <?php if($_SESSION[SESSAO_USUARIO_ID]):?>
+                <a href="<?=BASEURL?>/controller/UsuarioController.php?action=display&id=<?=$_SESSION[SESSAO_USUARIO_ID]?>"><?= $nome?></a>
+                <?php endif;?>
+            </li>
         </ul>
     </div>
 </nav>
