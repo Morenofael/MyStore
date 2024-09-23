@@ -26,6 +26,9 @@ class UsuarioService {
             
         if(! $usuario->getEmail())
             array_push($erros, "O campo [Email] é obrigatório.");
+        //Validar se email já foi registrado
+        else if($this->usuarioDao->findByEmail($usuario->getEmail()) != null)
+            array_push($erros, "O campo [Email] já foi registrado para outro usuário.");
             
         if(! $usuario->getCpf())
             array_push($erros, "O campo [CPF] é obrigatório.");
@@ -35,10 +38,7 @@ class UsuarioService {
             
         if(! $usuario->getDataNascimento())
             array_push($erros, "O campo [data de nascimento] é obrigatório.");
-        //Validar se email já foi registrado
-        if($this->usuarioDao->findByEmail($usuario->getEmail()) != null)
-            array_push($erros, "Email já foi registrado");
-        
+                
         //Validar se a senha é igual a contra senha
         if($usuario->getSenha() && $confSenha && $usuario->getSenha() != $confSenha)
             array_push($erros, "O campo [Senha] deve ser igual ao [Confirmação da senha].");
