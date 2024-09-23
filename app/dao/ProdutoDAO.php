@@ -52,32 +52,8 @@ class ProdutoDAO {
             " - Erro: mais de um produto encontrado.");
     }
 
-/*
-    //Método para buscar um usuário por seu login e senha
-    public function findByLoginSenha(string $login, string $senha) {
-        $conn = Connection::getConn();
 
-        $sql = "SELECT * FROM usuarios u" .
-               " WHERE BINARY u.login = ?";
-        $stm = $conn->prepare($sql);    
-        $stm->execute([$login]);
-        $result = $stm->fetchAll();
 
-        $usuarios = $this->mapProdutos($result);
-
-        if(count($usuarios) == 1) {
-            //Tratamento para senha criptografada
-            if(password_verify($senha, $usuarios[0]->getSenha()))
-                return $usuarios[0];
-            else
-                return null;
-        } elseif(count($usuarios) == 0)
-            return null;
-
-        die("UsuarioDAO.findByLoginSenha()" . 
-            " - Erro: mais de um usuário encontrado.");
-    }
-*/
     //Método para inserir um Produto
     public function insert(Produto $produto) {
         $conn = Connection::getConn();
@@ -108,18 +84,18 @@ class ProdutoDAO {
         $stm->bindValue("id", $produto->getId());
         $stm->execute();
     }
-/*
+
     //Método para excluir um Usuario pelo seu ID
     public function deleteById(int $id) {
         $conn = Connection::getConn();
 
-        $sql = "DELETE FROM usuarios WHERE id = :id";
+        $sql = "DELETE FROM produtos WHERE id = :id";
         
         $stm = $conn->prepare($sql);
         $stm->bindValue("id", $id);
         $stm->execute();
     }
-
+/*
     public function count() {
         $conn = Connection::getConn();
 

@@ -65,7 +65,7 @@ class ProdutoController extends Controller {
                 
                 if($dados["id"] == 0){  //Inserindo
                     $this->produtoDao->insert($produto);
-                    header("location: ./ProdutoController.php?action=display&id=" . $produto->getId());
+                    header("location: ./BrechoController.php?action=display&id=" . $produto->getIdBrecho());
 
                 }
                 else { //Alterando
@@ -114,14 +114,15 @@ class ProdutoController extends Controller {
             exit;
         }
     }
-/*
+
     //Método para excluir
-    protected function delete() {/*
-        $usuario = $this->findUsuarioById();
-        if($usuario) {
+    protected function delete() {
+        $produto = $this->findProdutoById();
+        if($produto) {
             //Excluir
-            $this->usuarioDao->deleteById($usuario->getId());
+            $this->produtoDao->deleteById($produto->getId());
             $this->list("", "Usuário excluído com sucesso!");
+            header("location: ./BrechoController.php?action=display&id=" . $produto->getIdBrecho());
         } else {
             //Mensagem q não encontrou o usuário
             $this->list("Usuário não encontrado!");
@@ -129,23 +130,15 @@ class ProdutoController extends Controller {
         }               
      }
 
-    protected function listJson() {/*
+   /* protected function listJson() {/*
         $listaUsuarios = $this->usuarioDao->list();
         $json = json_encode($listaUsuarios);
         echo $json;
      }
 
     //Método para buscar o usuário com base no ID recebido por parâmetro GET
-    private function findUsuarioById() {/*
-        $id = 0;
-        if(isset($_GET['id']))
-            $id = $_GET['id'];
-
-        $usuario = $this->usuarioDao->findById($id);
-        return $usuario;
-     }
-*/
-     private function findProdutoById() {
+     */ 
+       private function findProdutoById() {
         $id = 0;
         if(isset($_GET['id']))
             $id = $_GET['id'];

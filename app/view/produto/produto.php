@@ -28,6 +28,8 @@ $vendedor = $dados["vendedor"];
         <?php if($vendedor->getId() == $_SESSION[SESSAO_USUARIO_ID]):?>
         <a class="btn btn-success"
                 href="<?= BASEURL ?>/controller/ProdutoController.php?action=edit&id=<?=$produto->getId()?>">Editar</a>
+        <a class="btn btn-danger" onclick="confirm('deseja excluir?')"
+                href="<?= BASEURL ?>/controller/ProdutoController.php?action=delete&id=<?=$produto->getId()?>">Excluir</a>
         <?php endif;?>
         
         </div>
