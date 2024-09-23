@@ -24,6 +24,8 @@ class UsuarioController extends Controller {
 
     protected function display(){
         //DAR id depois do edit
+        if(! $this->usuarioLogado())
+        exit;
         $id = $_GET['id'];
         $dados["usuario"] = $this->usuarioDao->findById($id);
         $this->loadView("usuario/usuario.php", $dados);
