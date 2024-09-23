@@ -15,9 +15,9 @@ require_once(__DIR__ . "/../include/header.php");
                 <!-- Formulário de login -->
                 <form id="frmLogin" action="./LoginController.php?action=logon" method="POST" >
                     <div class="form-group">
-                        <label for="txtLogin">Login:</label>
+                        <label for="txtLogin">Email:</label>
                         <input type="text" class="form-control" name="login" id="txtLogin"
-                            placeholder="Informe o login"
+                            placeholder="Informe o email"
                             value="<?php echo isset($dados['login']) ? $dados['login'] : '' ?>" />        
                     </div>
 
