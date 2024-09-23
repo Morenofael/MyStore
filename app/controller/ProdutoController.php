@@ -51,7 +51,7 @@ class ProdutoController extends Controller {
         $descricao = trim($_POST['descricao']) ? trim($_POST['descricao']) : NULL;
         $brecho = $this->brechoDao->findByIdUsuario($_SESSION[SESSAO_USUARIO_ID]);
 
-        //Cria objeto Usuario
+        //Cria objeto Produto 
         $produto = new Produto();
         $produto->setNome($nome);
         $produto->setPreco($preco);
@@ -69,16 +69,13 @@ class ProdutoController extends Controller {
 
                 }
                 else { //Alterando
-                    $produto->setId($dados["produto"]->getId());
+                    $produto->setId($dados["id"]);
                     $this->produtoDao->update($produto);
                     header("location: ./ProdutoController.php?action=display&id=" . $produto->getId());
                 }
 
-                $msg = "Produto salvo com sucesso.";
-                $this->list("", $msg);
-                exit;
             } catch (PDOException $e) {
-                //print_r($e);
+                print_r($e);
                 array_push($erros, "[Erro ao salvar o produto na base de dados.]");                
             }
         }
@@ -86,10 +83,10 @@ class ProdutoController extends Controller {
         //Se há erros, volta para o formulário
         
         //Carregar os valores recebidos por POST de volta para o formulário
-        $dados["brecho"] = $brecho;
+        $dados["produto"] = $produto;
         
         $msgsErro = implode("<br>", $erros);
-        $this->loadView("brecho/form.php", $dados, $msgsErro);
+        $this->loadView("produto/form.php", $dados, $msgsErro);
      }
 
     //Método create
@@ -108,6 +105,7 @@ class ProdutoController extends Controller {
         }elseif($this->usuarioDao->findByIdBrecho($produto->getIdbrecho())->getId() == $_SESSION[SESSAO_USUARIO_ID]) {
             
             //Setar os dados
+            $dados["id"] = $produto->getId();
             $dados["produto"] = $produto;
 
             $this->loadView("produto/form.php", $dados);

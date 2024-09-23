@@ -97,7 +97,7 @@ class ProdutoDAO {
     public function update(Produto $produto) {
         $conn = Connection::getConn();
 
-        $sql = "UPDATE usuarios SET nome = :nome, descricao = :descricao," . 
+        $sql = "UPDATE produtos SET nome = :nome, descricao = :descricao," . 
                " preco = :preco" .   
                " WHERE id = :id";
         
