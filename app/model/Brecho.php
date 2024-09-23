@@ -2,6 +2,8 @@
 #Nome do arquivo: Brecho.php
 #Objetivo: classe Model para Brechó 
 
+require_once(__DIR__ . "/Usuario.php");
+
 class Brecho implements JsonSerializable {
 
     private ?int $id;
@@ -9,6 +11,11 @@ class Brecho implements JsonSerializable {
     private ?string $descricao;
     private ?string $dataCriacao;
     private ?int $id_usuario;
+    private ?Usuario $usuario;
+
+    public function __construct() {
+        $this->usuario = null;        
+    }
 
     public function jsonSerialize(): array {
         return array("id" => $this->id,
@@ -102,5 +109,23 @@ class Brecho implements JsonSerializable {
     public function setId_usuario($id_usuario)
     {
         $this->id_usuario = $id_usuario;
+    }
+
+    /**
+     * Get the value of usuario
+     */
+    public function getUsuario(): ?Usuario
+    {
+        return $this->usuario;
+    }
+
+    /**
+     * Set the value of usuario
+     */
+    public function setUsuario(?Usuario $usuario): self
+    {
+        $this->usuario = $usuario;
+
+        return $this;
     }
 }
