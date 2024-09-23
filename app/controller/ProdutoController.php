@@ -39,7 +39,7 @@ class ProdutoController extends Controller {
         //DAR id depois do edit
         $id = $_GET['id'];
         $dados["produto"] = $this->produtoDao->findById($id);
-        $dados["vendedor"] = $this->usuarioDao->findByBrecho($dados["produto"]->getIdBrecho());
+        $dados["vendedor"] = $this->usuarioDao->findByIdBrecho($dados["produto"]->getIdBrecho());
         $this->loadView("produto/produto.php", $dados);
     }
 
