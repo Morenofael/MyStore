@@ -92,9 +92,7 @@ class BrechoController extends Controller {
 
         if($this->brechoService->verificarExistente($_SESSION[SESSAO_USUARIO_ID])){
             $brechoId = $this->brechoDao->findByIdUsuario($_SESSION[SESSAO_USUARIO_ID])->getId();
-            echo "Já possui brechó" . "<br>";
-            echo "<a href='" . BASEURL . "/controller/BrechoController.php?action=display&id=" . $brechoId . "'>" . "Ver" . "</a>";
-            exit;
+            header("location: ./BrechoController.php?action=display&id=" . $brechoId);
         }
         $dados["id"] = 0;
         $this->loadView("brecho/form.php", $dados);
