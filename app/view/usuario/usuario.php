@@ -27,6 +27,8 @@ $usuario = $dados["usuario"];
         <div class="col-12">
         <a class="btn btn-secondary"
                 href="<?= BASEURL ?>/../">Voltar</a>
+        <a class="btn btn-info"
+                href="<?= BASEURL ?>/../">Adicionar endereço</a>
         </div>
     </div>
 </div>
