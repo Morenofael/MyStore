@@ -83,13 +83,8 @@ class EnderecoController extends Controller {
     //Método create
     protected function create() {
         //echo "Chamou o método create!";
-
-        if($this->brechoService->verificarExistente($_SESSION[SESSAO_USUARIO_ID])){
-            $brechoId = $this->brechoDao->findByIdUsuario($_SESSION[SESSAO_USUARIO_ID])->getId();
-            header("location: ./BrechoController.php?action=display&id=" . $brechoId);
-        }
         $dados["id"] = 0;
-        $this->loadView("brecho/form.php", $dados);
+        $this->loadView("endereco/form.php", $dados);
     }
 
     //Método edit
@@ -154,4 +149,4 @@ class EnderecoController extends Controller {
 
 
 #Criar objeto da classe para assim executar o construtor
-new BrechoController();
+new EnderecoController();

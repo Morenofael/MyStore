@@ -28,7 +28,8 @@ $usuario = $dados["usuario"];
         <a class="btn btn-secondary"
                 href="<?= BASEURL ?>/../">Voltar</a>
         <a class="btn btn-info"
-                href="<?= BASEURL ?>/../">Adicionar endereço</a>
+
+                href="<?= BASEURL ?>/controller/EnderecoController.php?action=create">Adicionar endereço</a>
         </div>
     </div>
 </div>
