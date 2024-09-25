@@ -183,9 +183,14 @@ class UsuarioDAO {
             $usuario = new Usuario();
             $usuario->setId($reg['id'])
                     ->setNome($reg['nome'])
+                    ->setEmail($reg['email'])
                     ->setLogin($reg['login'])
                     ->setSenha($reg['senha'])
-                    ->setNivelAcesso($reg['nivel_acesso']);
+                    ->setCpf($reg['cpf'])
+                    ->setTelefone($reg['telefone'])
+                    ->setDataNascimento($reg['data_nascimento'])
+                    ->setNivelAcesso($reg['nivel_acesso'])
+                    ->setSituacao($reg['situacao']);
             array_push($usuarios, $usuario);
         }
 
