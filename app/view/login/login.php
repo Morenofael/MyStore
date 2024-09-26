@@ -4,13 +4,11 @@
 
 require_once(__DIR__ . "/../include/header.php");
 ?>
-
-<div class="container">
-    <div class="row" style="margin-top: 20px;">
-        <div class="col-6">
-            <div class="alert alert-info">
-                <h4>Informe os dados para logar:</h4>
-                <br>
+<!-- TODO perguntar para o professor se não é melhor não usar o BASEURL-->
+<link rel="stylesheet" href="<?=BASEURL?>/view/login/login.css" media="all">
+<section class="main">
+<h4>LOGIN</h4>
+    <div class="form-container">
 
                 <!-- Formulário de login -->
                 <form id="frmLogin" action="./LoginController.php?action=logon" method="POST" >
@@ -30,16 +28,13 @@ require_once(__DIR__ . "/../include/header.php");
 
                     <button type="submit" class="btn btn-success">Logar</button>
                 </form>
-                <br><a href="/app/controller/UsuarioController.php?action=create" class="btn btn-primary">Cadastre-se</a>
-            </div>
-        </div>
+                <a href="/app/controller/UsuarioController.php?action=create" class="btn btn-primary">Cadastre-se</a>
 
         <div class="col-6">
             <?php include_once(__DIR__ . "/../include/msg.php") ?>
         </div>
     </div>
-</div>
-
+</section>
 <?php  
 require_once(__DIR__ . "/../include/footer.php");
 ?>

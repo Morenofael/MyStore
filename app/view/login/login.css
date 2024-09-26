@@ -1,0 +1,20 @@
+body{
+	background-image: url('/app/view/img/bg/bg-login.jpg');
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+}
+h4{
+	font-size: 4rem;
+}
+.main{
+	min-height:100vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding:20px;
+}
+.form-container{
+	width: 500px;
+}
