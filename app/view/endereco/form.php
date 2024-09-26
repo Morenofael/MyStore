@@ -34,7 +34,40 @@ require_once(__DIR__ . "/../include/menu.php");
                         maxlength="65" placeholder="Informe o bairro"
                         value="<?php echo (isset($dados["endereco"]) ? $dados["endereco"]->getBairro() : ''); ?>" />
                 </div>
-
+                <div class="form-group">
+                    <label for="selPais">País:</label>
+                    <select name="pais" class="form-control" id="selPais">
+        <option value="">Selecione</option>
+        <?php foreach($paises as $pais): ?>
+                        <option value="<?= $pais->getCod(); ?>"
+                            <?php 
+                                if($endereco && $endereco->getPais() && 
+                                    $endereco->getPais() == $pais["cod"])
+                                    echo 'selected';
+                            ?>
+                        >
+                            <?= $pais["nome"]; ?>
+                        </option>
+                    <?php endforeach; ?>
+    </select> 
+                </div>
+                <div class="form-group">
+                    <label for="selEstado">Estado:</label>
+                    <select name="estado" class="form-control" id="selEstado">
+        <option value="">Selecione</option>
+        <?php foreach($estados as $estado): ?>
+                        <option value="<?= $estado->getCod(); ?>"
+                            <?php 
+                                if($endereco && $endereco->getEstado() && 
+                                    $endereco->getEstado() == $estado["cod"])
+                                    echo 'selected';
+                            ?>
+                        >
+                            <?= $estado["nome"]; ?>
+                        </option>
+                    <?php endforeach; ?>
+    </select> 
+                </div>
 
                 <input type="hidden" id="hddId" name="id"
                     value="<?= $dados['id']; ?>" />
