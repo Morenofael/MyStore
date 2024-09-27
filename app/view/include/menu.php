@@ -10,6 +10,9 @@ if(isset($_SESSION[SESSAO_USUARIO_NOME]))
     <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
+                <span class="nav-link">MySports</span>
+            </li>
+            <li class="nav-item active">
                 <a class="nav-link" href="<?= HOME_PAGE ?>">Home</a>
             </li>
 
