@@ -4,7 +4,7 @@
 
 require_once(__DIR__ . "/../include/header.php");
 ?>
-<link rel="stylesheet" href="<?=BASEURL?>/view/usuario/usuario.css" media="all">
+<link rel="stylesheet" href="<?=BASEURL?>/public/css/form.css" media="all">
 
 <section class="main">
 <h4 class="text-center">

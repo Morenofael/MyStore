@@ -4,7 +4,7 @@
 require_once(__DIR__ . "/../include/header.php");
 require_once(__DIR__ . "/../include/menu.php");
 ?>
-<link rel="stylesheet" href="<?= BASEURL ?>/view/home/home.css">
+<link rel="stylesheet" href="<?= BASEURL ?>/public/css/home.css">
 
 <div class="row mt-3 justify-content-center">
     <div class="col-3 text-center">
@@ -26,7 +26,7 @@ require_once(__DIR__ . "/../include/menu.php");
 
 </div>
 
-<script src="<?= BASEURL ?>/view/home/home.js"></script>
+<script src="<?= BASEURL ?>/public/js/home.js"></script>
 
 <?php
 require_once(__DIR__ . "/../include/footer.php");
