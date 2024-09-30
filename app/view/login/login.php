@@ -6,6 +6,7 @@ require_once(__DIR__ . "/../include/header.php");
 ?>
 <!-- TODO perguntar para o professor se não é melhor não usar o BASEURL-->
 <link rel="stylesheet" href="<?=BASEURL?>/public/css/form.css" media="all">
+<link rel="stylesheet" href="<?=BASEURL?>/public/css/login.css" media="all">
 <section class="main">
 <h4>LOGIN</h4>
     <div class="form-container">
