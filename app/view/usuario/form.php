@@ -5,6 +5,7 @@
 require_once(__DIR__ . "/../include/header.php");
 ?>
 <link rel="stylesheet" href="<?=BASEURL?>/public/css/form.css" media="all">
+<link rel="stylesheet" href="<?=BASEURL?>/public/css/cadastro-usuario.css" media="all">
 
 <section class="main">
 <h4 class="text-center">
@@ -66,7 +67,7 @@ require_once(__DIR__ . "/../include/header.php");
                 <input type="hidden" id="hddId" name="id" 
                     value="<?= $dados['id']; ?>" />
 
-                <button type="submit" class="btn btn-success">Gravar</button>
+                <button type="submit">Gravar</button>
                 <button type="reset" class="btn btn-danger">Limpar</button>
             </form>            
 

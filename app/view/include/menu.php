@@ -15,25 +15,26 @@ if(isset($_SESSION[SESSAO_USUARIO_NOME]))
             <li class="nav-item active">
                 <a class="nav-link" href="<?= HOME_PAGE ?>">Home</a>
             </li>
-
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-                role="button" data-toggle="dropdown" aria-haspopup="true" 
-                aria-expanded="false"> Cadastros </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" 
-                        href="<?= BASEURL . '/controller/UsuarioController.php?action=list' ?>">Usuários</a>
-                    <a class="dropdown-item" href="#">Outro cadastro</a>
-                </div>
-            </li>
-
             <li class="nav-item active">
-                <a class="nav-link" href="<?= LOGOUT_PAGE ?>">Sair</a>
+                <a class="nav-link" href="#">Masculino</a>
             </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Feminino</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Infantil</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Ofertas</a>
+            </li>
+
         </ul>
 
         <ul class="navbar-nav mr-left">
-            <li class="nav-item active">
+            <li class="nav-item active m-2">
+                <a class="" href="<?= LOGOUT_PAGE ?>">Sair</a>
+            </li>
+            <li class="nav-item active m-2">
                 <?php if($_SESSION[SESSAO_USUARIO_ID]):?>
                 <a href="<?=BASEURL?>/controller/UsuarioController.php?action=display&id=<?=$_SESSION[SESSAO_USUARIO_ID]?>"><?= $nome?></a>
                 <?php endif;?>
