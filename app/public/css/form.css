@@ -1,8 +1,5 @@
 body{
-	background-image: url('/app/view/img/bg/bg-login.jpg');
-	background-repeat: no-repeat;
-	background-attachment: fixed;
-	background-size: cover;
+	background-color: #cbcbcb;
 }
 h4{
 	font-size: 4rem;
