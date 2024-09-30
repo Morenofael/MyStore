@@ -5,6 +5,13 @@
 .no-decoration{
     list-style-type: none;
 }
+.icon{
+    width: 2rem;
+    height: auto;
+}
+.sidebar a{
+    color: black;
+}
 .fonte-grande {
     font-size: 18px;
 }
