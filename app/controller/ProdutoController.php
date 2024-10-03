@@ -39,6 +39,7 @@ class ProdutoController extends Controller {
         //DAR id depois do edit
         $id = $_GET['id'];
         $dados["produto"] = $this->produtoDao->findById($id);
+        $dados["generoString"] = $this->produtoService->generoCharToString($dados["produto"]->getGenero());
         $dados["vendedor"] = $this->usuarioDao->findByIdBrecho($dados["produto"]->getIdBrecho());
         $this->loadView("produto/produto.php", $dados);
     }

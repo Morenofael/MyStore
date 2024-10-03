@@ -6,6 +6,7 @@ require_once(__DIR__ . "/../include/header.php");
 require_once(__DIR__ . "/../include/menu.php");
 $produto = $dados["produto"];
 $vendedor = $dados["vendedor"];
+print_r($produto);
 ?>
 <h3 class="text-center">
     <?= $produto->getNome()?>
@@ -17,6 +18,7 @@ $vendedor = $dados["vendedor"];
         <div class="col-6">
            <h4><?= $produto->getDescricao()?></h4>
            <h4>R$<?= $produto->getPreco()?></h4> 
+           <h4>Gênero:<?= $dados["generoString"]?></h4> 
         </div>
 
     </div>

@@ -119,7 +119,7 @@ class ProdutoDAO {
             $produto->setNome($reg['nome']);
             $produto->setPreco($reg['preco']);
             $produto->setDescricao($reg['descricao']);
-            $produto->setGenero($reg['descricao']);
+            $produto->setGenero($reg['genero']);
             array_push($produtos, $produto);
         }
 

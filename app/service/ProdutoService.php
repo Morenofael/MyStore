@@ -25,4 +25,23 @@ class ProdutoService{
         
     }
 
+    public function generoCharToString(?string $genero){
+        switch ($genero){
+            case "m":
+                return "Masculino";
+                break;
+            case "f":
+                return "Feminino";
+                break;
+            case "u":
+                return "Unissex";
+                break;
+            case "i":
+                return "Infantil";
+                break;
+            default:
+                return "Unissex";
+        }
+                
+    }
 }
