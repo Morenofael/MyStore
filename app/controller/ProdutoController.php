@@ -49,6 +49,7 @@ class ProdutoController extends Controller {
         $nome = trim($_POST['nome']) ? trim($_POST['nome']) : NULL;
         $preco = trim($_POST['preco']) ? trim($_POST['preco']) : NULL;
         $descricao = trim($_POST['descricao']) ? trim($_POST['descricao']) : NULL;
+        $genero = trim($_POST['genero']) ? trim($_POST['genero']) : NULL;
         $brecho = $this->brechoDao->findByIdUsuario($_SESSION[SESSAO_USUARIO_ID]);
 
         //Cria objeto Produto 
@@ -56,6 +57,7 @@ class ProdutoController extends Controller {
         $produto->setNome($nome);
         $produto->setPreco($preco);
         $produto->setDescricao($descricao);
+        $produto->setGenero($genero);
         $produto->setIdBrecho($brecho->getId());
         //Validar dados
         $erros = $this->produtoService->validarDados($produto);

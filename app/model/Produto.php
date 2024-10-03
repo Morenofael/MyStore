@@ -9,13 +9,15 @@ class Produto implements JsonSerializable {
     private ?string $nome;
     private ?string $descricao;
     private ?float $preco;
+    private ?string $genero;
 
     public function jsonSerialize(): array {
         return array("id" => $this->id,
                      "idBrecho" => $this->idBrecho,
                      "nome" => $this->nome,
                      "descricao" => $this->descricao,
-                     "preco" => $this->preco);
+                     "preco" => $this->preco,
+                     "genero" => $this->genero);
     }
 
     public function getId(): ?int
@@ -101,4 +103,24 @@ class Produto implements JsonSerializable {
 
         return $this;
     }
+     
+     /**
+      * Get genero.
+      *
+      * @return genero.
+      */
+     public function getGenero()
+     {
+         return $this->genero;
+     }
+     
+     /**
+      * Set genero.
+      *
+      * @param genero the value to set.
+      */
+     public function setGenero($genero)
+     {
+         $this->genero = $genero;
+     }
 }

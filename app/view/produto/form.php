@@ -39,6 +39,18 @@ require_once(__DIR__ . "/../include/menu.php");
                         value="<?php echo (isset($dados["produto"]) ? $dados["produto"]->getPreco() : ''); ?>"/>
                 </div>
 
+                <div class="form-group">
+                    <label for="selGenero">Gênero:</label>
+                    <select class="form-control" type="number" id="numPreco" name="genero"
+                        placeholder="Informe o gênero"
+                        value="<?php echo (isset($dados["produto"]) ? $dados["produto"]->getGenero() : ''); ?>"/>
+                    <option value="m">Masculino</option>
+                    <option value="f">Feminino</option>
+                    <option value="u">Unissex</option>
+                    <option value="i">Infantil</option>
+                    </select>
+                </div>
+
                 <input type="hidden" id="hddId" name="id" 
                     value="<?= $dados['id']; ?>" />
 
