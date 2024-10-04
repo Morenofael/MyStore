@@ -52,7 +52,33 @@ class ProdutoController extends Controller {
         $descricao = trim($_POST['descricao']) ? trim($_POST['descricao']) : NULL;
         $genero = trim($_POST['genero']) ? trim($_POST['genero']) : NULL;
         $brecho = $this->brechoDao->findByIdUsuario($_SESSION[SESSAO_USUARIO_ID]);
+		
+		$arquivoImg = $_FILES["imagem"]; //'imagem' é o 'name' do input
 
+		//Valida se o arquivo foi enviado
+		if($arquivoImg['size'] <= 0) {
+			echo "O campo arquivo não foi enviado!"; 
+			exit;
+		}
+
+		//Captura o nome e a extensão do arquivo
+		$arquivoNome = explode('.', $arquivoImg['name']);
+		$arquivoExtensao = $arquivoNome[1];
+
+		//A partir da extensão, o ideal é gerar um nome único para o arquivo a fim de encontrá-lo depois
+		//Exemplo: pode-se concatenar um identificador único do tipo UUID
+		$uuid = vsprintf( '%s%s-%s-%s-%s-%s%s%s', str_split(bin2hex(random_bytes(16)), 4) );
+		$nomeArquivoSalvar = "imagem_" . $uuid . "." . $arquivoExtensao;
+
+		//Salva o arquivo no diretório defindo em $PATH_ARQUIVOS
+		if (move_uploaded_file($arquivoImg["tmp_name"], PATH_ARQUIVOS . "/" . $nomeArquivoSalvar)) { 
+			echo "Arquivo enviado com sucesso!"; 
+			echo "<br><br>";
+		}else{
+			echo "não salvou";
+			exit;
+		}
+		
         //Cria objeto Produto 
         $produto = new Produto();
         $produto->setNome($nome);
