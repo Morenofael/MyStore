@@ -16,7 +16,7 @@ require_once(__DIR__ . "/../include/menu.php");
     <div class="row" style="margin-top: 10px;">
         
         <div class="col-6">
-            <form id="frmProduto" method="POST" 
+            <form id="frmProduto" method="POST" enctype='multipart/form-data'
                 action="<?= BASEURL ?>/controller/ProdutoController.php?action=save" >
                 <div class="form-group">
                     <label for="txtNome">Nome:</label>
@@ -50,6 +50,12 @@ require_once(__DIR__ . "/../include/menu.php");
                     <option value="i">Infantil</option>
                     </select>
                 </div>
+                
+                <div class="form-group">
+					<label for="uplImagem">Selecione o arquivo:</label>
+					<input type="file" name="imagem" id="uplImagem" 
+					accept="image/*" multiple />
+				</div>
 
                 <input type="hidden" id="hddId" name="id" 
                     value="<?= $dados['id']; ?>" />
