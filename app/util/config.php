@@ -26,6 +26,9 @@ define('LOGOUT_PAGE', BASEURL . '/controller/LoginController.php?action=logout')
 //Página home do sistema
 define('HOME_PAGE', BASEURL . '/controller/HomeController.php?action=home');
 
+//Diretório para salvar imagens
+define('PATH_ARQUIVOS', BASEURL . '/view/img/upl_img');
+
 //Sessão do usuário
 define('SESSAO_USUARIO_ID', "usuarioLogadoId");
 define('SESSAO_USUARIO_NOME', "usuarioLogadoNome");
