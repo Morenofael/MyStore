@@ -5,6 +5,9 @@
 .no-decoration{
     list-style-type: none;
 }
+.no-decoration > li{
+    margin: 24px;
+}
 .icon{
     width: 2rem;
     height: auto;
