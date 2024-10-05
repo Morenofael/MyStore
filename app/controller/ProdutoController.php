@@ -66,19 +66,14 @@ class ProdutoController extends Controller {
 		$arquivoExtensao = $arquivoNome[1];
 
 		//A partir da extensão, o ideal é gerar um nome único para o arquivo a fim de encontrá-lo depois
-		//Exemplo: pode-se concatenar um identificador único do tipo UUID
-		$uuid = vsprintf( '%s%s-%s-%s-%s-%s%s%s', str_split(bin2hex(random_bytes(16)), 4) );
-		$nomeArquivoSalvar = "imagem_" . $uuid . "." . $arquivoExtensao;
+		$nomeArquivoSalvar = "imagem_" . uniqid('', true) . "." . $arquivoExtensao;
+    if(move_uploaded_file($arquivoImg["tmp_name"], PATH_ARQUIVOS . $nomeArquivoSalvar)){
+        echo "deu certo!";
+    }else{
+        echo "O arquivo não pôde ser salvo, e retornou o erro " . $_FILES["imagem"]["erro"];
+        exit;
+    }
 
-		//Salva o arquivo no diretório defindo em $PATH_ARQUIVOS
-		if (move_uploaded_file($arquivoImg["tmp_name"], PATH_ARQUIVOS . "/" . $nomeArquivoSalvar)) { 
-			echo "Arquivo enviado com sucesso!"; 
-			echo "<br><br>";
-		}else{
-			echo "não salvou";
-			exit;
-		}
-		
         //Cria objeto Produto 
         $produto = new Produto();
         $produto->setNome($nome);
