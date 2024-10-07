@@ -6,6 +6,7 @@ require_once(__DIR__ . "/../model/Produto.php");
 require_once(__DIR__ . "/../service/ProdutoService.php");
 require_once(__DIR__ . "/../dao/BrechoDAO.php");
 require_once(__DIR__ . "/../dao/UsuarioDAO.php");
+require_once(__DIR__ . "/../service/ArquivoService.php");
 
 class ProdutoController extends Controller {
 
@@ -13,6 +14,7 @@ class ProdutoController extends Controller {
     private ProdutoService $produtoService;
     private BrechoDAO $brechoDao;
     private UsuarioDAO $usuarioDao;
+    private ArquivoService $arquivoService;
 
     //Método construtor do controller - será executado a cada requisição a está classe
     public function __construct() {
@@ -23,6 +25,7 @@ class ProdutoController extends Controller {
         $this->produtoService = new ProdutoService();
         $this->brechoDao = new BrechoDAO();
         $this->usuarioDao = new UsuarioDAO();
+        $this->arquivoService = new ArquivoService();
 
         $this->handleAction();
     }
@@ -54,25 +57,7 @@ class ProdutoController extends Controller {
         $brecho = $this->brechoDao->findByIdUsuario($_SESSION[SESSAO_USUARIO_ID]);
 		
 		$arquivoImg = $_FILES["imagem"]; //'imagem' é o 'name' do input
-
-		//Valida se o arquivo foi enviado
-		if($arquivoImg['size'] <= 0) {
-			echo "O campo arquivo não foi enviado!"; 
-			exit;
-		}
-
-		//Captura o nome e a extensão do arquivo
-		$arquivoNome = explode('.', $arquivoImg['name']);
-		$arquivoExtensao = $arquivoNome[1];
-
-		//A partir da extensão, o ideal é gerar um nome único para o arquivo a fim de encontrá-lo depois
-		$nomeArquivoSalvar = "imagem_" . uniqid('', true) . "." . $arquivoExtensao;
-    if(move_uploaded_file($arquivoImg["tmp_name"], PATH_ARQUIVOS . $nomeArquivoSalvar)){
-        echo "deu certo!";
-    }else{
-        echo "O arquivo não pôde ser salvo, e retornou o erro " . $_FILES["imagem"]["erro"];
-        exit;
-    }
+		$this->arquivoService->salvarImagemProduto($arquivoImg);
 
         //Cria objeto Produto 
         $produto = new Produto();
