@@ -53,7 +53,7 @@ require_once(__DIR__ . "/../include/menu.php");
                 
                 <div class="form-group">
 					<label for="uplImagem">Selecione o arquivo:</label>
-					<input type="file" name="imagem" id="uplImagem" 
+					<input type="file" name="imagem[]" id="uplImagem" 
 					accept="image/*" multiple />
 				</div>
 
