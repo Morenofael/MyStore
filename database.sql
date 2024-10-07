@@ -50,8 +50,9 @@ CREATE TABLE produtos(
 ALTER TABLE produtos ADD CONSTRAINT fk_brecho_produto FOREIGN KEY (id_brecho) REFERENCES brechos (id);
 
 CREATE TABLE imagens(
-	id VARCHAR(256) NOT NULL,
-	id_produto INT,
+	id INT AUTO_INCREMENT NOT NULL,
+	id_produto INT NOT NULL,
+	arquivo VARCHAR(256) NOT NULL,
 	constraint pk_imagens primary key (id)
 );
 ALTER TABLE imagens ADD CONSTRAINT fk_produto_imagem FOREIGN KEY (id_produto) REFERENCES produtos (id);
