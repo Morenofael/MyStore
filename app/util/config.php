@@ -7,8 +7,8 @@
 //Banco de dados: conexão MySQL
 define('DB_HOST', 'localhost');
 define('DB_NAME', 'mystore');
-define('DB_USER', 'mystore');
-define('DB_PASSWORD', 'admin');
+define('DB_USER', 'root');
+define('DB_PASSWORD', 'bancodedados');
 
 //Caminho para adionar imagens, scripts e chamar páginas no sistema
 //Deve ter o nome da pasta do projeto no servidor APACHE
@@ -27,13 +27,9 @@ define('LOGOUT_PAGE', BASEURL . '/controller/LoginController.php?action=logout')
 define('HOME_PAGE', BASEURL . '/controller/HomeController.php?action=home');
 
 //Diretório para salvar imagens
-define('PATH_ARQUIVOS', '../view/img/upl_img');
+define('PATH_ARQUIVOS', '../view/img/upl_img/');
 
 //Sessão do usuário
 define('SESSAO_USUARIO_ID', "usuarioLogadoId");
 define('SESSAO_USUARIO_NOME', "usuarioLogadoNome");
 define('SESSAO_USUARIO_PAPEL', "usuarioLogadoPapel");
-
-
-
-

@@ -56,9 +56,6 @@ class ProdutoController extends Controller {
         $genero = trim($_POST['genero']) ? trim($_POST['genero']) : NULL;
         $brecho = $this->brechoDao->findByIdUsuario($_SESSION[SESSAO_USUARIO_ID]);
 		
-		$arquivoImg = $_FILES["imagem"]; //'imagem' é o 'name' do input
-		$this->arquivoService->salvarImagemProduto($arquivoImg);
-
         //Cria objeto Produto 
         $produto = new Produto();
         $produto->setNome($nome);
@@ -74,8 +71,9 @@ class ProdutoController extends Controller {
                 
                 if($dados["id"] == 0){  //Inserindo
                     $this->produtoDao->insert($produto);
+                    $arquivoImg = $_FILES["imagem"]; //'imagem' é o 'name' do input
+		            $this->arquivoService->salvarImagemProduto($arquivoImg, $produto->getIdBrecho());
                     header("location: ./BrechoController.php?action=display&id=" . $produto->getIdBrecho());
-
                 }
                 else { //Alterando
                     $produto->setId($dados["id"]);

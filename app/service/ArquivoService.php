@@ -1,6 +1,14 @@
 <?php
+require_once(__DIR__ . "/../dao/ImagemDAO.php");
 class ArquivoService{
-    public function salvarImagemProduto($arquivo){
+
+    private ImagemDAO $imagemDao;
+
+    public function __construct(){
+        $this->imagemDao = new ImagemDAO();
+    }
+//FAZER SALVAR SÒ UM
+    public function salvarImagemProduto($arquivo, $brechoId){
         $totalImagens = count($arquivo["name"]);
         for($i = 0; $i < $totalImagens; $i++){
             if($arquivo['size'][$i] <= 0) {
