@@ -97,18 +97,28 @@ class ProdutoDAO {
         $stm->bindValue("id", $id);
         $stm->execute();
     }
-/*
-    public function count() {
+
+    public function getLastProdutoFromBrecho($brechoId) {
         $conn = Connection::getConn();
 
-        $sql = "SELECT COUNT(*) total FROM usuarios";
+        $sql = "SELECT * FROM produtos WHERE id_brecho = :id_brecho " .
+           "ORDER BY ID DESC LIMIT 1 ";
         $stm = $conn->prepare($sql);
+        $stm->bindValue("id_brecho", $brechoId);
         $stm->execute();
         $result = $stm->fetchAll();
 
-        return $result[0]["total"];
+        $produtos = $this->mapProdutos($result);
+        
+        if(count($produtos) == 1)
+            return $produtos[0];
+        elseif(count($produtos) == 0)
+            return null;
+
+        die("ProdutoDAO.findById()" . 
+            " - Erro: mais de um produto encontrado.");
     }
-*/
+
     //Método para converter um registro da base de dados em um objeto Usuario
     private function mapProdutos($result) {
         $produtos = array();
