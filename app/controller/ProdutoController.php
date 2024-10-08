@@ -72,7 +72,10 @@ class ProdutoController extends Controller {
                 if($dados["id"] == 0){  //Inserindo
                     $this->produtoDao->insert($produto);
                     $arquivoImg = $_FILES["imagem"]; //'imagem' é o 'name' do input
-		            $this->arquivoService->salvarImagemProduto($arquivoImg, $produto->getIdBrecho());
+                    $totalArquivos = count($arquivoImg['name']);
+                    for($i = 0; $i < $totalArquivos; $i++){
+                        $this->arquivoService->salvarImagemProduto($arquivoImg, $i);
+                    }
                     header("location: ./BrechoController.php?action=display&id=" . $produto->getIdBrecho());
                 }
                 else { //Alterando
