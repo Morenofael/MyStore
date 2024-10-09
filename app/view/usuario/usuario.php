@@ -1,6 +1,6 @@
 <?php
-#Nome do arquivo: brecho/brecho.php
-#Objetivo: interface para vizualização de brechós
+#Nome do arquivo: usuario/usuario.php
+#Objetivo: interface para vizualização de usuarios; 
 
 require_once(__DIR__ . "/../include/header.php");
 require_once(__DIR__ . "/../include/menu.php");
@@ -27,9 +27,12 @@ $usuario = $dados["usuario"];
         <div class="col-12">
         <a class="btn btn-secondary"
                 href="<?= BASEURL ?>/../">Voltar</a>
+        <?php if($usuario->getId() == $_SESSION[SESSAO_USUARIO_ID]): ?>
         <a class="btn btn-info"
-
                 href="<?= BASEURL ?>/controller/EnderecoController.php?action=create">Adicionar endereço</a>
+        <a class="btn btn-info"
+                href="<?= BASEURL ?>/controller/UsuarioController.php?action=insertAlterPfp">Adicionar/alterar foto de perfil</a>
+        <?php endif; ?>
         </div>
     </div>
 </div>

@@ -77,7 +77,7 @@ class ProdutoController extends Controller {
                     $arquivoImg = $_FILES["imagem"]; //'imagem' é o 'name' do input
                     $totalArquivos = count($arquivoImg['name']);
                     for($i = 0; $i < $totalArquivos; $i++){
-                        $arquivoNome = $this->arquivoService->salvarImagemProduto($arquivoImg, $i);
+                        $arquivoNome = $this->arquivoService->salvarImagem($arquivoImg, $i);
                         $imagem = new Imagem();
                         $imagem->setIdProduto($this->produtoDao->getLastProdutoFromBrecho($brecho->getId())->getId()); 
                         $imagem->setArquivoNome($arquivoNome);

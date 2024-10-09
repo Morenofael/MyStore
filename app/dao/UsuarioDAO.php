@@ -20,10 +20,6 @@ class UsuarioDAO {
     }
 
 
-    public function test(){
-        echo "teste";
-        exit;
-    }
     //Método para buscar um usuário por seu ID
     public function findById(int $id) {
         $conn = Connection::getConn();
@@ -132,6 +128,18 @@ class UsuarioDAO {
         $stm->bindValue("data_nascimento", $usuario->getDataNascimento());
         $stm->bindValue("nivel_acesso", $usuario->getNivelAcesso());
         $stm->bindValue("situacao", $usuario->getSituacao());
+        $stm->execute();
+    }
+
+    public function editPfP(String $pfp){
+        $conn = Connection::getConn();
+
+        $sql = "UPDATE usuarios SET foto_perfil = :pfp " .
+            "WHERE id = :id";
+
+        $stm = $conn->prepare($sql);
+        $stm->bindValue("pfp", $pfp);
+        $stm->bindValue("id", $_SESSION[SESSAO_USUARIO_ID]);
         $stm->execute();
     }
 

@@ -3,6 +3,7 @@
 require_once(__DIR__ . "/Controller.php");
 require_once(__DIR__ . "/../dao/UsuarioDAO.php");
 require_once(__DIR__ . "/../service/UsuarioService.php");
+require_once(__DIR__ . "/../service/ArquivoService.php");
 require_once(__DIR__ . "/../model/Usuario.php");
 require_once(__DIR__ . "/../model/enum/UsuarioPapel.php");
 
@@ -10,14 +11,16 @@ class UsuarioController extends Controller {
 
     private UsuarioDAO $usuarioDao;
     private UsuarioService $usuarioService;
+    private ArquivoService $arquivoService;
 
     //Método construtor do controller - será executado a cada requisição a está classe
     public function __construct() {
-        //if(! $this->usuarioLogado())
-        //    exit;
+        if(! $this->usuarioLogado())
+            exit;
 
         $this->usuarioDao = new UsuarioDAO();
         $this->usuarioService = new UsuarioService();
+        $this->arquivoService = new ArquivoService();
 
         $this->handleAction();
     }
@@ -25,7 +28,7 @@ class UsuarioController extends Controller {
     protected function display(){
         //DAR id depois do edit
         if(! $this->usuarioLogado())
-        exit;
+            exit;
         $id = $_GET['id'];
         $dados["usuario"] = $this->usuarioDao->findById($id);
         $this->loadView("usuario/usuario.php", $dados);
@@ -96,7 +99,17 @@ class UsuarioController extends Controller {
         $msgsErro = implode("<br>", $erros);
         $this->loadView("usuario/form.php", $dados, $msgsErro);
     }
-
+    
+    public function insertAlterPfP(){
+        $dados = [];
+        $arquivoImg = $_FILES["imagem"];
+        if($arquivoImg){
+            $arquivoNome = $this->arquivoService->salvarImagem($arquivoImg, 0);
+            $this->usuarioDao->editPfP($arquivoNome);
+            header("location: ./UsuarioController.php?action=display&id=" . $_SESSION[SESSAO_USUARIO_ID]);
+        }
+        $this->loadView("usuario/foto-perfil-form.php", $dados);
+    }
     //Método create
     protected function create() {
         //echo "Chamou o método create!";
