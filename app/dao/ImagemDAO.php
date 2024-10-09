@@ -1,13 +1,13 @@
 <?php
 
 include_once(__DIR__ . "/../connection/Connection.php");
-include_once(__DIR__ . "/../model/Endereco.php");
+include_once(__DIR__ . "/../model/Imagem.php");
 
 class ImagemDAO{
     public function insert(Imagem $imagem){
         $conn = Connection::getConn();
 
-        $sql = "INSERT INTO imagens (id_produto, arquivo_nome)" . 
+        $sql = "INSERT INTO imagens (id_produto, arquivo)" . 
         "VALUES (:id_produto, :arquivo_nome)";
 
         $stm = $conn->prepare($sql);

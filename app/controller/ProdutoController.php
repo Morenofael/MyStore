@@ -6,6 +6,7 @@ require_once(__DIR__ . "/../model/Produto.php");
 require_once(__DIR__ . "/../service/ProdutoService.php");
 require_once(__DIR__ . "/../dao/BrechoDAO.php");
 require_once(__DIR__ . "/../dao/UsuarioDAO.php");
+require_once(__DIR__ . "/../dao/ImagemDAO.php");
 require_once(__DIR__ . "/../service/ArquivoService.php");
 
 class ProdutoController extends Controller {
@@ -14,6 +15,7 @@ class ProdutoController extends Controller {
     private ProdutoService $produtoService;
     private BrechoDAO $brechoDao;
     private UsuarioDAO $usuarioDao;
+    private ImagemDAO $imagemDao;
     private ArquivoService $arquivoService;
 
     //Método construtor do controller - será executado a cada requisição a está classe
@@ -25,6 +27,7 @@ class ProdutoController extends Controller {
         $this->produtoService = new ProdutoService();
         $this->brechoDao = new BrechoDAO();
         $this->usuarioDao = new UsuarioDAO();
+        $this->imagemDao = new ImagemDAO();
         $this->arquivoService = new ArquivoService();
 
         $this->handleAction();
@@ -74,7 +77,11 @@ class ProdutoController extends Controller {
                     $arquivoImg = $_FILES["imagem"]; //'imagem' é o 'name' do input
                     $totalArquivos = count($arquivoImg['name']);
                     for($i = 0; $i < $totalArquivos; $i++){
-                        $this->arquivoService->salvarImagemProduto($arquivoImg, $i);
+                        $arquivoNome = $this->arquivoService->salvarImagemProduto($arquivoImg, $i);
+                        $imagem = new Imagem();
+                        $imagem->setIdProduto($this->produtoDao->getLastProdutoFromBrecho($brecho->getId())->getId()); 
+                        $imagem->setArquivoNome($arquivoNome);
+                        $this->imagemDao->insert($imagem);
                     }
                     header("location: ./BrechoController.php?action=display&id=" . $produto->getIdBrecho());
                 }
