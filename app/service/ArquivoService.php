@@ -1,8 +1,7 @@
 <?php
 class ArquivoService{
 
-//FAZER SALVAR SÒ UM
-public function salvarImagemProduto($arquivo, $i){
+public function salvarImagem($arquivo, $i){
     if($arquivo['size'][$i] <= 0) {
 			  echo "O campo arquivo não foi enviado!";
 			  exit;
