@@ -11,6 +11,7 @@ CREATE TABLE usuarios(
 	data_nascimento DATE,
 	nivel_acesso TINYINT(1) NOT NULL,/*0 é usuário, 1 é administrador*/
 	situacao TINYINT(1),/*0 é inativo, 1 é ativo*/
+	foto_perfil VARCHAR(256),
 	constraint pk_usuario primary key (id)
 );
 
