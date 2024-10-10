@@ -7,8 +7,8 @@
 //Banco de dados: conexão MySQL
 define('DB_HOST', 'localhost');
 define('DB_NAME', 'mystore');
-define('DB_USER', 'root');
-define('DB_PASSWORD', 'bancodedados');
+define('DB_USER', 'mystore');
+define('DB_PASSWORD', 'admin');
 
 //Caminho para adionar imagens, scripts e chamar páginas no sistema
 //Deve ter o nome da pasta do projeto no servidor APACHE
