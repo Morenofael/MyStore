@@ -15,8 +15,8 @@ class UsuarioController extends Controller {
 
     //Método construtor do controller - será executado a cada requisição a está classe
     public function __construct() {
-        if(! $this->usuarioLogado())
-            exit;
+        //if(! $this->usuarioLogado())
+        //    exit;
 
         $this->usuarioDao = new UsuarioDAO();
         $this->usuarioService = new UsuarioService();
@@ -101,6 +101,8 @@ class UsuarioController extends Controller {
     }
     
     public function insertAlterPfP(){
+        if(! $this->usuarioLogado())
+            exit;
         $dados = [];
         $arquivoImg = $_FILES["imagem"];
         if($arquivoImg){
@@ -113,7 +115,6 @@ class UsuarioController extends Controller {
     //Método create
     protected function create() {
         //echo "Chamou o método create!";
-
         
         $dados["id"] = 0;
         $dados["papeis"] = UsuarioPapel::getAllAsArray(); 
