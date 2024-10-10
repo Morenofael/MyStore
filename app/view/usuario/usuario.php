@@ -12,6 +12,9 @@ $usuario = $dados["usuario"];
 <div class="container">
 
     <div class="row" style="margin-top: 10px;">
+        <div class="col-6">
+            <img src="<?= PATH_ARQUIVOS . $usuario->getFotoPerfil()?>" alt="Foto de perfil" class="img-fluid">
+        </div>
 
         <div class="col-6">
            <h4>Nome: <?= $usuario->getNome()?></h4>
