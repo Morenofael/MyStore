@@ -16,6 +16,7 @@ class Usuario implements JsonSerializable {
     private ?string $data_nascimento;
     private ?int $nivelAcesso;
     private ?int $situacao;
+    private ?string $fotoPerfil;
 
     public function jsonSerialize(): array {
         return array("id" => $this->id,
@@ -148,4 +149,24 @@ class Usuario implements JsonSerializable {
 
         return $this;
     }
+     
+     /**
+      * Get fotoPerfil.
+      *
+      * @return fotoPerfil.
+      */
+     public function getFotoPerfil()
+     {
+         return $this->fotoPerfil;
+     }
+     
+     /**
+      * Set fotoPerfil.
+      *
+      * @param fotoPerfil the value to set.
+      */
+     public function setFotoPerfil($fotoPerfil)
+     {
+         $this->fotoPerfil = $fotoPerfil;
+     }
 }

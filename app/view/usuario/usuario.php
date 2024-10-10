@@ -6,6 +6,7 @@ require_once(__DIR__ . "/../include/header.php");
 require_once(__DIR__ . "/../include/menu.php");
 $usuario = $dados["usuario"];
 ?>
+    <link rel="stylesheet" href="<?=BASEURL?>/public/css/usuario.css" media="all">
 <h3 class="text-center">
     USUÁRIO
 </h3>
@@ -13,7 +14,7 @@ $usuario = $dados["usuario"];
 
     <div class="row" style="margin-top: 10px;">
         <div class="col-6">
-            <img src="<?= PATH_ARQUIVOS . $usuario->getFotoPerfil()?>" alt="Foto de perfil" class="img-fluid">
+            <img src="<?= PATH_ARQUIVOS . $usuario->getFotoPerfil()?>" alt="Foto de perfil" class="img-fluid foto-perfil">
         </div>
 
         <div class="col-6">
