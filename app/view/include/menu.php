@@ -16,7 +16,7 @@ if(isset($_SESSION[SESSAO_USUARIO_NOME]))
                 <a class="nav-link" href="<?= HOME_PAGE ?>">Home</a>
             </li>
             <li class="nav-item active">
-            <a class="nav-link" href="<?=BASEURL?>/controller/ProdutoController.php?action=list&g=m">Masculino</a>
+            <a class="nav-link" href="<?=BASEURL?>/controller/ProdutoController.php?action=listByGenero&g=m">Masculino</a>
             </li>
             <li class="nav-item active">
                 <a class="nav-link" href="#">Feminino</a>
