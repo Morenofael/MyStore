@@ -41,6 +41,18 @@ class ProdutoController extends Controller {
         return $produtos;
     }
     
+    protected function listByGenero(){
+        if($_GET["g"]){
+            $genero = $_GET["g"];
+        }else{
+            echo "Gênero não encontrado";
+            exit;
+        }
+
+        $dados["lista"] = $this->produtoDao->listByGenero($genero);
+        $this->loadView("produto/list.php", $dados);
+    }
+
     protected function display(){
         //DAR id depois do edit
         $id = $_GET['id'];

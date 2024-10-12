@@ -19,6 +19,18 @@ class ProdutoDAO {
         return $this->mapProdutos($result);
     }
 
+    public function listByGenero($genero) {
+        $conn = Connection::getConn();
+
+        $sql = "SELECT * FROM produtos p WHERE genero = :genero";
+        $stm = $conn->prepare($sql);   
+        $stm->bindValue("genero", $genero); 
+        $stm->execute();
+        $result = $stm->fetchAll();
+        
+        return $this->mapProdutos($result);
+    }
+
     public function listByBrecho(int $idBrecho){
         $conn = Connection::getConn();
 
