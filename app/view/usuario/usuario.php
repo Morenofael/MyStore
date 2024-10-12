@@ -35,6 +35,8 @@ $usuario = $dados["usuario"];
         <a class="btn btn-info"
                 href="<?= BASEURL ?>/controller/EnderecoController.php?action=create">Adicionar endereço</a>
         <a class="btn btn-info"
+                href="<?= BASEURL ?>/controller/EnderecoController.php?action=list">Meus endereços</a>
+        <a class="btn btn-info"
                 href="<?= BASEURL ?>/controller/UsuarioController.php?action=insertAlterPfp">Adicionar/alterar foto de perfil</a>
         <?php endif; ?>
         </div>

@@ -3,11 +3,12 @@
 require_once(__DIR__ . "/Controller.php");
 require_once(__DIR__ . "/../dao/EnderecoDAO.php");
 require_once(__DIR__ . "/../model/Endereco.php");
-//require_once(__DIR__ . "/../service/BrechoService.php");
+require_once(__DIR__ . "/../service/EnderecoService.php");
 
 class EnderecoController extends Controller {
 
     private EnderecoDAO $enderecoDao;
+    private EnderecoService $enderecoService;
 
     //Método construtor do controller - será executado a cada requisição a está classe
     public function __construct() {
@@ -15,19 +16,19 @@ class EnderecoController extends Controller {
             exit;
 
         $this->enderecoDao = new EnderecoDAO();
+        $this->enderecoService = new EnderecoService();
 
         $this->handleAction();
     }
     
-    /*protected function list(string $msgErro = "", string $msgSucesso = "") {
-        if(! $this->usuarioLogado() || $_SESSION[SESSAO_USUARIO_PAPEL] != 1)
-            header("location: HomeController.php?action=home");
-        $usuarios = $this->usuarioDao->list();
+    protected function list() {
+        $enderecos = $this->enderecoDao->listFromUsuario($_SESSION[SESSAO_USUARIO_ID]);
         //print_r($usuarios);
-        $dados["lista"] = $usuarios;
+        $dados["lista"] = $enderecos;
 
-        $this->loadView("usuario/list.php", $dados, $msgErro, $msgSucesso);
+        $this->loadView("endereco/list.php", $dados);
     }
+    /*
     protected function display(){
         //DAR id depois do edit
         $id = $_GET['id'];
@@ -38,46 +39,46 @@ class EnderecoController extends Controller {
     protected function save() {
             //Captura os dados do formulário
         $dados["id"] = isset($_POST['id']) ? $_POST['id'] : 0;
-        $nome = trim($_POST['nome']) ? trim($_POST['nome']) : NULL;
-        $descricao = trim($_POST['descricao']) ? trim($_POST['descricao']) : NULL;
-        $id_usuario = $_SESSION[SESSAO_USUARIO_ID];
+        $cep = trim($_POST['cep']) ? trim($_POST['cep']) : NULL;
+        $numero = trim($_POST['numero']) ? trim($_POST['numero']) : NULL;
+        $idUsuario = $_SESSION[SESSAO_USUARIO_ID];
 
-        //Cria objeto Usuario
-        $brecho = new Brecho();
-        $brecho->setNome($nome);
-        $brecho->setDescricao($descricao);
-        $brecho->setId_usuario($id_usuario);
+        //Cria objeto Endereco 
+        $endereco = new Endereco();
+        $endereco->setCep($cep);
+        $endereco->setNumero($numero);
+        $endereco->setIdUsuario($idUsuario);
         //Validar os dados
-        $erros = $this->brechoService->validarDados($brecho);
+        $erros = $this->enderecoService->validarDados($endereco);
         if(empty($erros)) {
             //Persiste o objeto
             try {
                 
                 if($dados["id"] == 0){  //Inserindo
-                    $this->brechoDao->insert($brecho);
+                    $this->enderecoDao->insert($endereco);
                     header("location: ./HomeController.php?action=home");
 
                 }
                 else { //Alterando
-                    $brecho->setId($dados["id"]);
-                    $this->brechoDao->update($brecho);
-                    header("location: ./BrechoController.php?action=display&id=" . $brecho->getId());
+                    $endereco->setId($dados["id"]);
+                    $this->enderecoDao->update($endereco);
+                    header("location: ./HomeController.php?action=home");
                 }
 
                 header("location: ./HomeController.php?action=home");
             } catch (PDOException $e) {
-                //print_r($e);
-                array_push($erros, "[Erro ao salvar o brechó na base de dados.]");                
+                print_r($e);
+                array_push($erros, "[Erro ao salvar o endereco na base de dados.]");                
             }
         }
 
         //Se há erros, volta para o formulário
         
         //Carregar os valores recebidos por POST de volta para o formulário
-        $dados["brecho"] = $brecho;
+        $dados["endereco"] = $endereco;
         
         $msgsErro = implode("<br>", $erros);
-        $this->loadView("brecho/form.php", $dados, $msgsErro);
+        $this->loadView("endereco/form.php", $dados, $msgsErro);
      }
 
     //Método create
@@ -89,17 +90,16 @@ class EnderecoController extends Controller {
 
     //Método edit
     protected function edit() {
-        $brecho = $this->findBrechoById();
-        if(! $brecho){
-            echo "Brechó não encontrado";
-        }elseif($brecho->getId_usuario() == $_SESSION[SESSAO_USUARIO_ID]) {
+        $endereco = $this->findEnderecoById();
+        if(! $endereco){
+            echo "Endereco não encontrado";
+        }elseif($endereco->getIdUsuario() == $_SESSION[SESSAO_USUARIO_ID]) {
             
             //Setar os dados
-            $dados["id"] = $brecho->getId();
-            $dados["nome"] = $brecho->getNome();
-            $dados["descricao"] = $brecho->getDescricao();
+            $dados["id"] = $endereco->getId();
+            $dados["endereco"] = $endereco;
 
-            $this->loadView("brecho/form.php", $dados);
+            $this->loadView("endereco/form.php", $dados);
         }else{
             echo "405 Forbidden";
             exit;
@@ -107,18 +107,21 @@ class EnderecoController extends Controller {
     }
 
     //Método para excluir
-    protected function delete() {/*
-        $usuario = $this->findUsuarioById();
-        if($usuario) {
-            //Excluir
-            $this->usuarioDao->deleteById($usuario->getId());
-            $this->list("", "Usuário excluído com sucesso!");
+    protected function delete() {
+        $endereco = $this->findEnderecoById();
+        if($endereco) {
+            if($endereco->getIdUsuario() == $_SESSION[SESSAO_USUARIO_ID]){
+                $this->enderecoDao->deleteById($endereco->getId());
+                $this->list("", "Usuário excluído com sucesso!");
+            }else{
+                echo "405 forbidden";
+            }
         } else {
             //Mensagem q não encontrou o usuário
-            $this->list("Usuário não encontrado!");
+            $this->list("Endereco não encontrado!");
 
         }               
-     */}
+     }
 
     protected function listJson() {/*
         $listaUsuarios = $this->usuarioDao->list();
@@ -136,13 +139,13 @@ class EnderecoController extends Controller {
         return $usuario;
      */}
 
-     private function findBrechoById() {
+     private function findEnderecoById() {
         $id = 0;
         if(isset($_GET['id']))
             $id = $_GET['id'];
 
-        $brecho = $this->brechoDao->findById($id);
-        return $brecho;
+        $endereco = $this->enderecoDao->findById($id);
+        return $endereco;
     }
 
 }

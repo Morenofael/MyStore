@@ -5,70 +5,32 @@
 require_once(__DIR__ . "/../include/header.php");
 require_once(__DIR__ . "/../include/menu.php");
 ?>
+    <link rel="stylesheet" href="<?=BASEURL?>/public/css/form.css" media="all">
+
+<section class="main">
 <h3 class="text-center">
     <?php if($dados['id'] == 0) echo "Inserir"; else echo "Alterar"; ?>
    Endereco 
 </h3>
-<div class="container">
 
     <div class="row" style="margin-top: 10px;">
 
-        <div class="col-6">
+        <div class="form-container">
             <form id="frmUsuario" method="POST"
                 action="<?= BASEURL ?>/controller/EnderecoController.php?action=save" >
-                <div class="form-group">
-                    <label for="txtRua">Rua:</label>
-                    <input class="form-control" type="text" id="txtRua" name="rua"
-                        maxlength="70" placeholder="Informe o rua"
-                        value="<?php echo (isset($dados["endereco"]) ? $dados["endereco"]->getRua() : ''); ?>" />
+                <div class="input-wrapper">
+                    <label for="txtCep">CEP:</label>
+                    <input type="text" id="txtCep" name="cep"
+                        maxlength="8" placeholder="Informe o cep"
+                        value="<?php echo (isset($dados["endereco"]) ? $dados["endereco"]->getCep() : ''); ?>" />
                 </div>
-                <div class="form-group">
+                <div class="input-wrapper">
                     <label for="txtNumero">Numero:</label>
-                    <input class="form-control" type="text" id="txtNumero" name="numero"
-                        maxlength="5" placeholder="Informe o número"
+                    <input type="text" id="txtNumero" name="numero"
+                        maxlength="6" placeholder="Informe o número"
                         value="<?php echo (isset($dados["endereco"]) ? $dados["endereco"]->getNumero() : ''); ?>" />
                 </div>
-                <div class="form-group">
-                    <label for="txtBairro">Bairro:</label>
-                    <input class="form-control" type="text" id="txtBairro" name="bairro"
-                        maxlength="65" placeholder="Informe o bairro"
-                        value="<?php echo (isset($dados["endereco"]) ? $dados["endereco"]->getBairro() : ''); ?>" />
-                </div>
-                <div class="form-group">
-                    <label for="selPais">País:</label>
-                    <select name="pais" class="form-control" id="selPais">
-        <option value="">Selecione</option>
-        <?php foreach($paises as $pais): ?>
-                        <option value="<?= $pais->getCod(); ?>"
-                            <?php 
-                                if($endereco && $endereco->getPais() && 
-                                    $endereco->getPais() == $pais["cod"])
-                                    echo 'selected';
-                            ?>
-                        >
-                            <?= $pais["nome"]; ?>
-                        </option>
-                    <?php endforeach; ?>
-    </select> 
-                </div>
-                <div class="form-group">
-                    <label for="selEstado">Estado:</label>
-                    <select name="estado" class="form-control" id="selEstado">
-        <option value="">Selecione</option>
-        <?php foreach($estados as $estado): ?>
-                        <option value="<?= $estado->getCod(); ?>"
-                            <?php 
-                                if($endereco && $endereco->getEstado() && 
-                                    $endereco->getEstado() == $estado["cod"])
-                                    echo 'selected';
-                            ?>
-                        >
-                            <?= $estado["nome"]; ?>
-                        </option>
-                    <?php endforeach; ?>
-    </select> 
-                </div>
-
+                
                 <input type="hidden" id="hddId" name="id"
                     value="<?= $dados['id']; ?>" />
 
@@ -76,7 +38,7 @@ require_once(__DIR__ . "/../include/menu.php");
                 <button type="reset" class="btn btn-danger">Limpar</button>
             </form>
         </div>
-
+</section>
         <div class="col-6">
             <?php require_once(__DIR__ . "/../include/msg.php"); ?>
         </div>

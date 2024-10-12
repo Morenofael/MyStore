@@ -5,23 +5,13 @@
 class Endereco implements JsonSerializable {
 
     private ?int $id;
-    private ?string $rua;
-    private ?string $numero;
-    private ?string $bairro;
-    private ?string $cidade;
-    private ?string $estado;
-    private ?string $pais;
     private ?string $cep;
+    private ?string $numero;
     private ?int $idUsuario;
 
     public function jsonSerialize(): array {
         return array("id" => $this->id,
-                     "rua" => $this->rua,
                      "numero" => $this->numero,
-                     "bairro" => $this->bairro,
-                     "cidade" => $this->cidade,
-                     "estado" => $this->estado,
-                     "pais" => $this->pais,
                      "cep" => $this->cep,
                      "idUsuario" => $this->idUsuario);
     }
@@ -47,25 +37,6 @@ class Endereco implements JsonSerializable {
         $this->id = $id;
     }
      
-     /**
-      * Get rua.
-      *
-      * @return rua.
-      */
-     public function getRua()
-     {
-         return $this->rua;
-     }
-     
-     /**
-      * Set rua.
-      *
-      * @param rua the value to set.
-      */
-     public function setRua($rua)
-     {
-         $this->rua = $rua;
-     }
      
      /**
       * Get numero.
@@ -85,86 +56,6 @@ class Endereco implements JsonSerializable {
      public function setNumero($numero)
      {
          $this->numero = $numero;
-     }
-     
-     /**
-      * Get bairro.
-      *
-      * @return bairro.
-      */
-     public function getBairro()
-     {
-         return $this->bairro;
-     }
-     
-     /**
-      * Set bairro.
-      *
-      * @param bairro the value to set.
-      */
-     public function setBairro($bairro)
-     {
-         $this->bairro = $bairro;
-     }
-     
-     /**
-      * Get cidade.
-      *
-      * @return cidade.
-      */
-     public function getCidade()
-     {
-         return $this->cidade;
-     }
-     
-     /**
-      * Set cidade.
-      *
-      * @param cidade the value to set.
-      */
-     public function setCidade($cidade)
-     {
-         $this->cidade = $cidade;
-     }
-     
-     /**
-      * Get estado.
-      *
-      * @return estado.
-      */
-     public function getEstado()
-     {
-         return $this->estado;
-     }
-     
-     /**
-      * Set estado.
-      *
-      * @param estado the value to set.
-      */
-     public function setEstado($estado)
-     {
-         $this->estado = $estado;
-     }
-     
-     /**
-      * Get pais.
-      *
-      * @return pais.
-      */
-     public function getPais()
-     {
-         return $this->pais;
-     }
-     
-     /**
-      * Set pais.
-      *
-      * @param pais the value to set.
-      */
-     public function setPais($pais)
-     {
-         $this->pais = $pais;
      }
      
      /**
