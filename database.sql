@@ -27,17 +27,12 @@ ALTER TABLE brechos ADD CONSTRAINT fk_usuario_brecho FOREIGN KEY (id_usuario) RE
 
 CREATE TABLE enderecos(
 	id INT AUTO_INCREMENT NOT NULL,
-	rua VARCHAR(45) NOT NULL,
-	numero VARCHAR(45) NOT NULL,
-	bairro VARCHAR(256),
-	cidade VARCHAR(256)NOT NULL,
-	estado VARCHAR(2) NOT NULL,
-	país VARCHAR(3) NOT NULL,
-	CEP VARCHAR(8),
+	cep VARCHAR(8) NOT NULL,
+	numero VARCHAR(8) NOT NULL,
 	id_usuario INT,
 	constraint pk_endereco primary key (id)
 );
-ALTER TABLE enderecos ADD CONSTRAINT fk_usuario_endereco FOREIGN KEY (id_usuario) REFERENCES usuarios (id);
+ALTER TABLE enderecos ADD CONSTRAINT fk_usuario_endereco FOREIGN KEY (id_usuario) REFERENCES usuarios (id) ON DELETE CASCADE;
 
 CREATE TABLE produtos(
 	id INT AUTO_INCREMENT NOT NULL,
