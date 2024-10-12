@@ -52,10 +52,16 @@ require_once(__DIR__ . "/../include/menu.php");
                 </div>
                 
                 <div class="input-wrapper">
-					<label for="uplImagem">Selecione o arquivo:</label>
-					<input type="file" name="imagem[]" id="uplImagem" 
-					accept="image/*" multiple />
-				</div>
+					          <label for="uplImagem">Selecione o arquivo:</label>
+					          <input type="file" name="imagem[]" id="uplImagem" 
+					          accept="image/*" multiple />
+                </div>
+
+                <div class="input-wrapper">
+                    <label for="txtTags">Escreva as palavras-chave do produto, separada por espaços</label>
+                    <input type="text" name="tags" id="txtTags" placeholder="Insira as palavras-chave"
+                        value="<?php echo (isset($dados["produto"]) ? $dados["produto"]->getTags() : ''); ?>"/>
+                </div>
 
                 <input type="hidden" id="hddId" name="id" 
                     value="<?= $dados['id']; ?>" />

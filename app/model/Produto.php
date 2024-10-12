@@ -10,6 +10,7 @@ class Produto implements JsonSerializable {
     private ?string $descricao;
     private ?float $preco;
     private ?string $genero;
+    private ?string $tags;
 
     public function jsonSerialize(): array {
         return array("id" => $this->id,
@@ -17,7 +18,8 @@ class Produto implements JsonSerializable {
                      "nome" => $this->nome,
                      "descricao" => $this->descricao,
                      "preco" => $this->preco,
-                     "genero" => $this->genero);
+                     "genero" => $this->genero,
+                     "tags" => $this->tags);
     }
 
     public function getId(): ?int
@@ -122,5 +124,25 @@ class Produto implements JsonSerializable {
      public function setGenero($genero)
      {
          $this->genero = $genero;
+     }
+     
+     /**
+      * Get tags.
+      *
+      * @return tags.
+      */
+     public function getTags()
+     {
+         return $this->tags;
+     }
+     
+     /**
+      * Set tags.
+      *
+      * @param tags the value to set.
+      */
+     public function setTags($tags)
+     {
+         $this->tags = $tags;
      }
 }
