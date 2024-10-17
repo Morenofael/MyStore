@@ -22,7 +22,7 @@ require_once(__DIR__ . "/../include/menu.php");
                 <tbody>
                     <?php foreach($dados['lista'] as $p): ?>
                         <tr>
-                            <td><?= $p->getNome(); ?></td>
+                            <td><a href="<?=BASEURL?>/controller/ProdutoController.php?action=display&id=<?=$p->getId()?>"><?= $p->getNome(); ?></a></td>
                             <td><?= $p->getDescricao(); ?></td>
                             <td><?= $p->getPreco(); ?></td>
                     <?php endforeach; ?>
