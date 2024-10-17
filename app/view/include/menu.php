@@ -19,10 +19,13 @@ if(isset($_SESSION[SESSAO_USUARIO_NOME]))
             <a class="nav-link" href="<?=BASEURL?>/controller/ProdutoController.php?action=listByGenero&g=m">Masculino</a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="#">Feminino</a>
+                <a class="nav-link" href="<?=BASEURL?>/controller/ProdutoController.php?action=listByGenero&g=f">Feminino</a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="#">Infantil</a>
+                <a class="nav-link" href="<?=BASEURL?>/controller/ProdutoController.php?action=listByGenero&g=u">Unissex</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="<?=BASEURL?>/controller/ProdutoController.php?action=listByGenero&g=i">Infantil</a>
             </li>
             <li class="nav-item active">
                 <a class="nav-link" href="#">Ofertas</a>
