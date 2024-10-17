@@ -9,7 +9,7 @@ require_once(__DIR__ . "/../include/menu.php");
 <div class="main">
     <div class="sidebar">
         <ul class="no-decoration">
-            <li id="sidebar-untogler" onclick="untogleSidebar()"><img src="<?=BASEURL?>/view/img/svg/home.svg" alt="Fechar" class="icon">Home</li>
+            <li id="sidebar-untogler" onclick="untogleSidebar()"><img src="<?=BASEURL?>/view/img/svg/x.svg" alt="Fechar" class="icon">Fechar</li>
             <li><img src="<?=BASEURL?>/view/img/svg/home.svg" alt="Home" class="icon"><a href="<?= HOME_PAGE ?>">Home</a></li>
             <li><img src="<?=BASEURL?>/view/img/svg/bussola.svg" alt="Bússola" class="icon"><a href="">Explorar</a></li>
             <li><img src="<?=BASEURL?>/view/img/svg/coracao.svg" alt="Coração" class="icon"><a href="">Curtido</a></li>
