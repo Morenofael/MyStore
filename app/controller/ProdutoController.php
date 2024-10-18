@@ -59,6 +59,7 @@ class ProdutoController extends Controller {
         $dados["produto"] = $this->produtoDao->findById($id);
         $dados["generoString"] = $this->produtoService->generoCharToString($dados["produto"]->getGenero());
         $dados["vendedor"] = $this->usuarioDao->findByIdBrecho($dados["produto"]->getIdBrecho());
+        $dados["imagens"] = $this->imagemDao->listByProduto($id);
         $this->loadView("produto/produto.php", $dados);
     }
 

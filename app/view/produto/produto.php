@@ -6,14 +6,15 @@ require_once(__DIR__ . "/../include/header.php");
 require_once(__DIR__ . "/../include/menu.php");
 $produto = $dados["produto"];
 $vendedor = $dados["vendedor"];
+print_r($dados['imagens']);
 ?>
 <link rel="stylesheet" href="<?=BASEURL?>/public/css/produto.css" media="all">
 <h3 class="text-center">
     <?= $produto->getNome()?>
 </h3>
 <div class="container">
-
         <div class="esquerda">
+            <img src="" alt="">
            <h4><?= $produto->getDescricao()?></h4>
            <h4>R$<?= $produto->getPreco()?></h4> 
            <h4>Gênero:<?= $dados["generoString"]?></h4> 

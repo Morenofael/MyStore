@@ -15,4 +15,30 @@ class ImagemDAO{
         $stm->bindValue("arquivo_nome", $imagem->getArquivoNome());
         $stm->execute();
     }
+
+    public function listByProduto($idProduto){
+        $conn = Connection::getConn();
+
+        $sql = "SELECT * FROM imagens WHERE id_produto = :id_produto ";
+        $stm = $conn->prepare($sql);
+        $stm->bindValue("id_produto", $idProduto);
+        $stm->execute();
+        $result = $stm->fetchAll();
+
+        return $this->mapImagens($result);
+    }
+
+    private function mapImagens($result) {
+        $imagens = array();
+        foreach ($result as $reg) {
+            $imagem = new Imagem();
+            $imagem->setId($reg['id']);
+            $imagem->setIdProduto($reg['id_produto']);
+            $imagem->setArquivoNome($reg['arquivo']);
+            
+            array_push($imagens, $imagem);
+        }
+
+        return $imagens;
+    }
 }
