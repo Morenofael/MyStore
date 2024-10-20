@@ -25,6 +25,26 @@ class UsuarioController extends Controller {
         $this->handleAction();
     }
 
+    public function findById(int $id) {
+        $conn = Connection::getConn();
+
+        $sql = "SELECT * FROM usuarios u" .
+               " WHERE u.id = ?";
+        $stm = $conn->prepare($sql);    
+        $stm->execute([$id]);
+        $result = $stm->fetchAll();
+
+        $usuarios = $this->mapUsuarios($result);
+
+        if(count($brechos) == 1)
+            return $brechos[0];
+        elseif(count($brechos) == 0)
+            return null;
+
+        die("BrechoDAO.findById()" . 
+            " - Erro: mais de um brechó encontrado.");
+    }
+
     protected function display(){
         //DAR id depois do edit
         if(! $this->usuarioLogado())

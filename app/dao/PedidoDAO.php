@@ -28,6 +28,26 @@ class PedidoDAO{
         die("PedidoDAO.findById()" . 
             " - Erro: mais de um pedido encontrado.");
     }
+
+    public function findLastPedidoFromUser(int $idUsuario){
+        $conn = Connection::getConn();
+
+        $sql = "SELECT * FROM pedidos WHERE id_comprador = ? " .
+            " LIMIT 1";
+        $stm = $conn->prepare($sql);
+        $stm->execute([$idUsuario]);
+        $result = $stm->fetchAll();
+       
+        $pedidos = $this->mapPedidos($result);
+
+        if(count($pedidos) == 1)
+            return $pedidos[0];
+        elseif(count($pedidos) == 0)
+            return null;
+
+        die("PedidoDAO.findById()" . 
+            " - Erro: mais de um pedido encontrado.");
+    }
    
     //Método para inserir um Usuario
     public function insert(Pedido $pedido) {
