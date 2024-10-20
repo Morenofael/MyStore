@@ -6,21 +6,22 @@ require_once(__DIR__ . "/../include/header.php");
 require_once(__DIR__ . "/../include/menu.php");
 $produto = $dados["produto"];
 $vendedor = $dados["vendedor"];
-print_r($dados['imagens']);
+$imagens = $dados["imagens"];
 ?>
 <link rel="stylesheet" href="<?=BASEURL?>/public/css/produto.css" media="all">
 <h3 class="text-center">
     <?= $produto->getNome()?>
 </h3>
-<div class="container">
+<section class="main">
         <div class="esquerda">
-            <img src="" alt="">
+            <img src="<?=BASEURL?>/view/img/upl_img/<?=$imagens[0]->getArquivoNome()?>" alt="">
            <h4><?= $produto->getDescricao()?></h4>
            <h4>R$<?= $produto->getPreco()?></h4> 
            <h4>Gênero:<?= $dados["generoString"]?></h4> 
         </div>
         <div class="direita">
             <h3><?=$produto->getNome()?></h3>
+            <div id="metodos-pagamento">Pagar com PIX</div>
         </div>
 
     <div class="row" style="margin-top: 30px;">
@@ -36,8 +37,8 @@ print_r($dados['imagens']);
         
         </div>
     </div>
-</div>
-
+<script src="https://sandbox.paypal.com/sdk/js?client-id=AdQwWu0Net7CXmel1lYfBt_NrLPgUIByTnNgCQvXzyQDWQwatYdA2BYPiZpc92d2uHq80DvZAd-2fpil"></script>
+</section>
 <?php
 require_once(__DIR__ . "/../include/footer.php");
 ?>

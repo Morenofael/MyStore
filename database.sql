@@ -9,6 +9,7 @@ CREATE TABLE usuarios(
 	cpf VARCHAR(11),
 	telefone VARCHAR(13),
 	data_nascimento DATE,
+	chave_pix VARCHAR(99),
 	nivel_acesso TINYINT(1) NOT NULL,/*0 é usuário, 1 é administrador*/
 	situacao TINYINT(1),/*0 é inativo, 1 é ativo*/
 	foto_perfil VARCHAR(256),
