@@ -2,15 +2,14 @@
 #Nome do arquivo: Pedido.php
 #Objetivo: classe Model para Pedido 
 
-require_once(__DIR__ . "/Usuario.php");
-
-class Produto implements JsonSerializable {
+class Pedido implements JsonSerializable {
 
     private ?int $id;
     private ?string $data;
     private ?string $status;
-    private ?Usuario $vendedor;
-    private ?Usuario $comprador;
+    private ?int $idVendedor;
+    private ?int $idComprador;
+    private ?int $idProduto;
     private ?string $caminhoComprovante;
     private ?float $preco;
 
@@ -18,13 +17,12 @@ class Produto implements JsonSerializable {
         return array("id" => $this->id,
                      "data" => $this->data,
                      "status" => $this->status,
-                     "vendedor" => $this->vendedor,
-                     "comprador" => $this->comprador,
+                     "idVendedor" => $this->idVendedor,
+                     "idComprador" => $this->idComprador,
                      "caminhoComprovante" => $this->caminhoComprovante,
                      "preco" => $this->preco);
     }
-    
-    
+
     /**
      * Get id.
      *
@@ -90,9 +88,9 @@ class Produto implements JsonSerializable {
      *
      * @return vendedor.
      */
-    public function getVendedor()
+    public function getIdVendedor()
     {
-        return $this->vendedor;
+        return $this->idVendedor;
     }
     
     /**
@@ -100,9 +98,9 @@ class Produto implements JsonSerializable {
      *
      * @param vendedor the value to set.
      */
-    public function setVendedor($vendedor)
+    public function setIdVendedor($idVendedor)
     {
-        $this->vendedor = $vendedor;
+        $this->idVendedor= $idVendedor;
     }
     
     /**
@@ -110,9 +108,9 @@ class Produto implements JsonSerializable {
      *
      * @return comprador.
      */
-    public function getComprador()
+    public function getIdComprador()
     {
-        return $this->comprador;
+        return $this->idComprador;
     }
     
     /**
@@ -120,9 +118,9 @@ class Produto implements JsonSerializable {
      *
      * @param comprador the value to set.
      */
-    public function setComprador($comprador)
+    public function setIdComprador($idComprador)
     {
-        $this->comprador = $comprador;
+        $this->idComprador = $idComprador;
     }
      
      /**
@@ -163,5 +161,25 @@ class Produto implements JsonSerializable {
     public function setPreco($preco)
     {
         $this->preco = $preco;
+    }
+    
+    /**
+     * Get idProduto.
+     *
+     * @return idProduto.
+     */
+    public function getIdProduto()
+    {
+        return $this->idProduto;
+    }
+    
+    /**
+     * Set idProduto.
+     *
+     * @param idProduto the value to set.
+     */
+    public function setIdProduto($idProduto)
+    {
+        $this->idProduto = $idProduto;
     }
 }

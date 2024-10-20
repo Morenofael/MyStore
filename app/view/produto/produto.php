@@ -21,7 +21,9 @@ $imagens = $dados["imagens"];
         </div>
         <div class="direita">
             <h3><?=$produto->getNome()?></h3>
-            <div id="metodos-pagamento">Pagar com PIX</div>
+            <div id="metodos-pagamento">
+                <a href="<?=BASEURL?>/controller/PedidoController.php?action=save&id=<?=$produto->getId()?>">Reservar Produto</a>
+            </div>
         </div>
 
     <div class="row" style="margin-top: 30px;">

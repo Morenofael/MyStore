@@ -58,15 +58,17 @@ ALTER TABLE imagens ADD CONSTRAINT fk_produto_imagem FOREIGN KEY (id_produto) RE
 CREATE TABLE pedidos(
 	id INT AUTO_INCREMENT NOT NULL,
 	data DATE,
-	status ENUM("I", "VV", "SE", "FE"),/*Se o produto foi para o correio, se chegou, etc...*/
-	id_comprador INT,
-	id_vendedor INT,
+	status VARCHAR(45),/*Se o produto foi para o correio, se chegou, etc...*/
+	id_comprador INT NOT NULL,
+	id_vendedor INT NOT NULL,
+	id_produto INT NOT NULL,
 	caminhoComprovante VARCHAR(256),
 	valor_total DOUBLE(7,2),
 	constraint pk_pedido primary key (id)
 );
-ALTER TABLE pedidos ADD CONSTRAINT fk_comprador FOREIGN KEY (id_comprador) REFERENCES usuarios (id);
-ALTER TABLE pedidos ADD CONSTRAINT fk_vendedor FOREIGN KEY (id_vendedor) REFERENCES usuarios (id);
+ALTER TABLE pedidos ADD CONSTRAINT fk_comprador_pedido FOREIGN KEY (id_comprador) REFERENCES usuarios (id);
+ALTER TABLE pedidos ADD CONSTRAINT fk_vendedor_pedido FOREIGN KEY (id_vendedor) REFERENCES usuarios (id);
+ALTER TABLE pedidos ADD CONSTRAINT fk_produto_pedido FOREIGN KEY (id_produto) REFERENCES produtos (id);
 
 CREATE TABLE pedidos_produtos(
 	id INT AUTO_INCREMENT NOT NULL,
