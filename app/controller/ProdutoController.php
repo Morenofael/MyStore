@@ -88,7 +88,13 @@ class ProdutoController extends Controller {
             try {
                 
                 if($dados["id"] == 0){  //Inserindo
-                    $this->produtoDao->insert($produto);
+                    if($_FILES["imagem"]['error'][0] != 4){
+                        $this->produtoDao->insert($produto);
+                    }else{
+                        echo "Pelo menos uma imagem deve ser inserida.";
+                        exit;
+                    }
+                        
                     $arquivoImg = $_FILES["imagem"]; //'imagem' é o 'name' do input
                     $totalArquivos = count($arquivoImg['name']);
                     for($i = 0; $i < $totalArquivos; $i++){
