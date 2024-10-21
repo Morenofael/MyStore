@@ -9,7 +9,6 @@ CREATE TABLE usuarios(
 	cpf VARCHAR(11),
 	telefone VARCHAR(13),
 	data_nascimento DATE,
-	chave_pix VARCHAR(99),
 	nivel_acesso TINYINT(1) NOT NULL,/*0 é usuário, 1 é administrador*/
 	situacao TINYINT(1),/*0 é inativo, 1 é ativo*/
 	foto_perfil VARCHAR(256),
@@ -22,6 +21,7 @@ CREATE TABLE brechos(
 	nome VARCHAR(256) NOT NULL,
 	descricao TEXT,
 	data_criacao DATE,
+	chave_pix VARCHAR(32),
 	constraint pk_brecho primary key (id)
 );
 ALTER TABLE brechos ADD CONSTRAINT fk_usuario_brecho FOREIGN KEY (id_usuario) REFERENCES usuarios (id);
