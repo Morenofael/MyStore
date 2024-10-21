@@ -5,7 +5,9 @@
 require_once(__DIR__ . "/../include/header.php");
 require_once(__DIR__ . "/../include/menu.php");
 $pedido = $dados["pedido"];
-echo "foi";
+echo "<pre>";
+print_r($pedido);
+echo "</pre>";
 exit;
 ?>
 <link rel="stylesheet" href="<?=BASEURL?>/public/css/produto.css" media="all">
@@ -39,7 +41,6 @@ exit;
         
         </div>
     </div>
-<script src="https://sandbox.paypal.com/sdk/js?client-id=AdQwWu0Net7CXmel1lYfBt_NrLPgUIByTnNgCQvXzyQDWQwatYdA2BYPiZpc92d2uHq80DvZAd-2fpil"></script>
 </section>
 <?php
 require_once(__DIR__ . "/../include/footer.php");

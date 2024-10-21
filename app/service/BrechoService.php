@@ -26,6 +26,9 @@ class BrechoService {
         
         if(! $brecho->getDescricao())
             array_push($erros, "O campo [Descrição] é obrigatório");
+
+        if(! $brecho->getChavePix())
+            array_push($erros, "O campo [Chave pix] é obrigatório");
         
         return $erros;
         

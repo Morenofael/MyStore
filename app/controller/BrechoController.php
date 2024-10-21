@@ -46,12 +46,14 @@ class BrechoController extends Controller {
         $dados["id"] = isset($_POST['id']) ? $_POST['id'] : 0;
         $nome = trim($_POST['nome']) ? trim($_POST['nome']) : NULL;
         $descricao = trim($_POST['descricao']) ? trim($_POST['descricao']) : NULL;
+        $chavePix = trim($_POST['chavePix']) ? trim($_POST['chavePix']) : NULL;
         $id_usuario = $_SESSION[SESSAO_USUARIO_ID];
 
         //Cria objeto Usuario
         $brecho = new Brecho();
         $brecho->setNome($nome);
         $brecho->setDescricao($descricao);
+        $brecho->setChavePix($chavePix);
         $brecho->setId_usuario($id_usuario);
         //Validar os dados
         $erros = $this->brechoService->validarDados($brecho);

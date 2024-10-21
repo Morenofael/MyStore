@@ -3,6 +3,7 @@
 
 require_once(__DIR__ . "/../include/header.php");
 require_once(__DIR__ . "/../include/menu.php");
+$produtos = null;
 ?>
 <link rel="stylesheet" href="<?= BASEURL ?>/public/css/home.css">
 <span id="sidebar-togler" onclick="togleSidebar()">☰</span>
@@ -30,6 +31,10 @@ require_once(__DIR__ . "/../include/menu.php");
                     }
                 ?>
             </ul>
+
+            <div id="main-produto">
+                <img src="<?=BASEURL?>/view/img/upl_img/" alt="">
+            </div>
 
             <a href="#" class="btn btn-info" 
             onclick="usuarios();">Chamada AJAX</a>

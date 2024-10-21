@@ -19,12 +19,13 @@ class BrechoDAO{
     public function insert(Brecho $brecho) {
         $conn = Connection::getConn();
 
-        $sql = "INSERT INTO brechos (nome, descricao, data_criacao, id_usuario)" .
-               " VALUES (:nome, :descricao, CURRENT_DATE, :id_usuario)";
+        $sql = "INSERT INTO brechos (nome, descricao, chave_pix, data_criacao, id_usuario)" .
+               " VALUES (:nome, :descricao, :chave_pix, CURRENT_DATE, :id_usuario)";
         
         $stm = $conn->prepare($sql);
         $stm->bindValue("nome", $brecho->getNome());
         $stm->bindValue("descricao", $brecho->getDescricao());
+        $stm->bindValue("chave_pix", $brecho->getChavePix());
         //$stm->bindValue("data_criacao", $brecho->getDataCriacao());
         $stm->bindValue("id_usuario", $brecho->getId_usuario());
         $stm->execute();
@@ -33,12 +34,13 @@ class BrechoDAO{
     public function update(Brecho $brecho) {
         $conn = Connection::getConn();
 
-        $sql = "UPDATE brechos SET nome = :nome, descricao = :descricao" . 
+        $sql = "UPDATE brechos SET nome = :nome, descricao = :descricao, chave_pix = :chave_pix" . 
                " WHERE id = :id";
         
         $stm = $conn->prepare($sql);
         $stm->bindValue("nome", $brecho->getNome());
         $stm->bindValue("descricao", $brecho->getDescricao());
+        $stm->bindValue("chave_pix", $brecho->getChavePix());
         $stm->bindValue("id", $brecho->getId());
         $stm->execute();
     }
@@ -93,6 +95,7 @@ class BrechoDAO{
             $brecho->setId($reg['id']);
             $brecho->setNome($reg['nome']);
             $brecho->setDescricao($reg['descricao']);
+            $brecho->setChavePix($reg['chave_pix']);
             $brecho->setDataCriacao($reg['data_criacao']);
             $brecho->setId_usuario($reg['id_usuario']);
             
@@ -105,7 +108,6 @@ class BrechoDAO{
             $usuario->setDataNascimento($reg['data_nascimento']);
             $usuario->setSituacao($reg['situacao']);
             $usuario->setFotoPerfil($reg['foto_perfil']);
-            $usuario->setChavePix($reg['chave_pix']);
 
             $brecho->setUsuario($usuario);
             array_push($brechos, $brecho);

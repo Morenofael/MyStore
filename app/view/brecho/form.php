@@ -30,7 +30,12 @@ require_once(__DIR__ . "/../include/menu.php");
                         maxlength="1000" placeholder="Informe a descrição" rows="15"
                         ><?php echo (isset($dados["descricao"]) ? $dados["descricao"] : ''); ?></textarea>
                 </div>
-
+                <div class="input-wrapper">
+                    <label for="txtChavePix">Pix:</label>
+                    <input type="text" id="txtChavePix" name="chavePix"
+                        maxlength="32" placeholder="Informe a chave pix" 
+                        ><?php echo (isset($dados["chavePix"]) ? $dados["chavePix"] : ''); ?></input>
+                </div>
 
                 <input type="hidden" id="hddId" name="id"
                     value="<?= $dados['id']; ?>" />

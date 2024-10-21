@@ -9,6 +9,7 @@ class Brecho implements JsonSerializable {
     private ?int $id;
     private ?string $nome;
     private ?string $descricao;
+    private ?string $chavePix;
     private ?string $dataCriacao;
     private ?int $id_usuario;
     private ?Usuario $usuario;
@@ -21,6 +22,7 @@ class Brecho implements JsonSerializable {
         return array("id" => $this->id,
                      "nome" => $this->nome,
                      "descricao" => $this->descricao,
+                     "chavePix" => $this->chavePix,
                      "dataCriacao" => $this->dataCriacao,
                      "usuario" => $this->usuario,
                      "id_usuario" => $this->id_usuario);
@@ -71,7 +73,25 @@ class Brecho implements JsonSerializable {
      {
          $this->descricao = $descricao;
      }
-     
+    
+     /**
+     * Get the value of chavePix
+     */
+    public function getChavePix()
+    {
+        return $this->chavePix;
+    }
+
+    /**
+     * Set the value of chavePix
+     */
+    public function setChavePix(?string $chavePix)
+    {
+        $this->chavePix = $chavePix;
+
+        return $this;
+    }
+
      /**
       * Get dataCriacao.
       *
