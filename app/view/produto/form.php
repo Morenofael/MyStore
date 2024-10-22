@@ -54,7 +54,7 @@ require_once(__DIR__ . "/../include/menu.php");
                 <div class="input-wrapper">
 					          <label for="uplImagem">Selecione o arquivo:</label>
 					          <input type="file" name="imagem[]" id="uplImagem" 
-					          accept="image/*" multiple />
+					          accept="image/*" required multiple />
                 </div>
 
                 <div class="input-wrapper">

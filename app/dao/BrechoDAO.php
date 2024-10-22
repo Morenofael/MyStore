@@ -8,7 +8,10 @@ class BrechoDAO{
     public function list() {
         $conn = Connection::getConn();
 
-        $sql = "SELECT * FROM brechos";
+        $sql = "SELECT b.*, " .
+                " u.nome AS nome_usuario , u.email AS email, u.cpf AS cpf, u.telefone AS telefone, u.data_nascimento AS data_nascimento, u.situacao AS situacao, u.foto_perfil AS foto_perfil " .
+                " FROM brechos b " . 
+                " JOIN usuarios u ON (u.id = b.id_usuario) "; 
         $stm = $conn->prepare($sql);
         $stm->execute();
         $result = $stm->fetchAll();
@@ -69,7 +72,7 @@ class BrechoDAO{
         $conn = Connection::getConn();
 
         $sql = "SELECT b.*, " .
-                " u.nome AS nome_usuario , u.email AS email, u.cpf AS cpf, u.telefone AS telefone, u.data_nascimento AS data_nascimento, u.situacao AS situacao, u.foto_perfil AS foto_perfil, u.chave_pix AS chave_pix " .
+                " u.nome AS nome_usuario , u.email AS email, u.cpf AS cpf, u.telefone AS telefone, u.data_nascimento AS data_nascimento, u.situacao AS situacao, u.foto_perfil AS foto_perfil " .
                 " FROM brechos b " . 
                 " JOIN usuarios u ON (u.id = b.id_usuario) " . 
                 " WHERE b.id = ?";
@@ -91,6 +94,11 @@ class BrechoDAO{
     private function mapBrechos($result) {
         $brechos = array();
         foreach ($result as $reg) {
+            /*echo "<pre>";
+            print_r($reg);
+            echo "</pre>";
+            exit;
+             */
             $brecho = new Brecho();
             $brecho->setId($reg['id']);
             $brecho->setNome($reg['nome']);
