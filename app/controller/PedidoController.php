@@ -39,9 +39,9 @@ class PedidoController extends Controller {
         $brecho = $this->brechoDao->findById($produto->getIdBrecho());
         //Cria objeto Pedido 
         $pedido = new Pedido();
-        $pedido->setIdVendedor($brecho->getUsuario()->getId());
-        $pedido->setIdComprador($_SESSION[SESSAO_USUARIO_ID]);
-        $pedido->setIdProduto($produto->getId());
+        $pedido->setVendedor($brecho->getUsuario());
+        $pedido->setComprador($this->usuarioDao->findById($_SESSION[SESSAO_USUARIO_ID]));
+        $pedido->setProduto($produto);
         $pedido->setPreco($produto->getPreco());
         
         $this->pedidoDao->insert($pedido);
