@@ -25,6 +25,20 @@
     display: none;
 }
 
+#main-produto{
+    display: grid;
+    grid-template-columns: 500px 500px;
+}
+#main-produto > img{
+    width: 100%;
+    height: auto;
+    min-height: 200px;
+    max-height: 250px;
+}
+.main-produto-info-wrapper{
+    display: flex;
+    flex-direction: column;
+}
 @media only screen and (max-width: 600px) {
 	.sidebar{
         display: none;

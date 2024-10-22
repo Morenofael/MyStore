@@ -3,6 +3,8 @@
 
 require_once __DIR__ . "/../include/header.php";
 require_once __DIR__ . "/../include/menu.php";
+$produtos = $dados["produtos"];
+$imagens = $dados["imagens"];
 ?>
 <link rel="stylesheet" href="<?= BASEURL ?>/public/css/home.css">
 <span id="sidebar-togler" onclick="togleSidebar()">☰</span>
@@ -21,35 +23,27 @@ require_once __DIR__ . "/../include/menu.php";
             <li><img src="<?= BASEURL ?>/view/img/svg/engrenagem.svg" alt="Engrenagem" class="icon"><a href="">Configurações</a></li>
         </ul>
     </div>
-    <div class="row mt-3 justify-content-center">
+
+    <div class="main-content">
         <div class="col-3 text-center">
-            <span class="fonte-grande">Brechos: </span>
-
-            <ul>
-                <?php foreach ($dados["listaBrechos"] as $b) {
-                    echo "<li>" .
-                        "<a href='" .
-                        BASEURL .
-                        "/controller/BrechoController.php?action=display&id=" .
-                        $b->getId() .
-                        "'>" .
-                        $b->getNome() .
-                        "</a>" .
-                        "</li>";
-                } ?>
-            </ul>
-
-            <div id="main-produto">
-                <img src="<?= BASEURL ?>/view/img/upl_img/" alt="">
-            </div>
-
-            <a href="#" class="btn btn-info"
-            onclick="usuarios();">Chamada AJAX</a>
             <a href="<?= BASEURL ?>/controller/BrechoController.php?action=create" class="btn btn-success"
             >Criar brecho</a>
         </div>
 
+        <div id="main-produto"> 
+            <img src="<?=BASEURL?>/view/img/upl_img/<?=$imagens[0][0]->getArquivoNome()?>" alt="">
+            <div class="main-produto-info-wrapper">
+                <h4><?=$produtos[0]->getNome()?></h4>        
+                <span><?=$produtos[0]->getDescricao()?></span> 
+                <span>Preço: R$<?=$produtos[0]->getPreco()?></span>
+                <div class="flex">
+                    <span><img class="icon" src="<?=BASEURL?>/view/img/svg/coracao.svg" alt="coração">Curtir</span>
+                    <span>Curtir</span>
+                </div>
+            </div>
+         </div>
     </div>
+
 </div>
 <script src="<?= BASEURL ?>/public/js/home.js"></script>
 
