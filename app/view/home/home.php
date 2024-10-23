@@ -31,14 +31,14 @@ $imagens = $dados["imagens"];
         </div>
 
         <div id="main-produto"> 
-            <img src="<?=BASEURL?>/view/img/upl_img/<?=$imagens[0][0]->getArquivoNome()?>" alt="">
+            <a href="<?=BASEURL?>/controller/ProdutoController.php?action=display&id=<?=$produtos[0]->getId()?>"><img src="<?=BASEURL?>/view/img/upl_img/<?=$imagens[0][0]->getArquivoNome()?>" alt=""></a>
             <div class="main-produto-info-wrapper">
-                <h4><?=$produtos[0]->getNome()?></h4>        
+                <a href="<?=BASEURL?>/controller/ProdutoController.php?action=display&id=<?=$produtos[0]->getId()?>"><h4><?=$produtos[0]->getNome()?></h4></a>
                 <span><?=$produtos[0]->getDescricao()?></span> 
-                <span>Preço: R$<?=$produtos[0]->getPreco()?></span>
-                <div class="flex">
+                <h5>Preço: R$<?=$produtos[0]->getPreco()?></h5>
+                <div class="flex botoes-produto-wrapper">
                     <span><img class="icon" src="<?=BASEURL?>/view/img/svg/coracao.svg" alt="coração">Curtir</span>
-                    <span>Curtir</span>
+                    <span>Comprar</span>
                 </div>
             </div>
          </div>
