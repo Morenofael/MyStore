@@ -18,6 +18,10 @@
 .fonte-grande {
     font-size: 18px;
 }
+.flex{
+    display: flex;
+    flex-wrap: wrap;
+}
 #sidebar-togler{
     display: none;
 }
@@ -50,6 +54,17 @@
     border-radius: 10px;
 }
 
+.sec-produtos a div{
+    width: 250px;
+    text-decoration: none;
+    color: black;
+ }
+.sec-produto-img{
+    width: 100%;
+    height: auto;
+    min-height: 10px;
+    max-height: 100px;
+}
 @media only screen and (max-width: 600px) {
 	.sidebar{
         display: none;

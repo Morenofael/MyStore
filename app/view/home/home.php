@@ -42,6 +42,32 @@ $imagens = array_reverse($dados["imagens"]);
                 </div>
             </div>
          </div>
+
+        <div class="sec-produtos flex">
+            <a href="<?=BASEURL?>/controller/ProdutoController.php?action=display&id=<?=$produtos[1]->getId()?>">
+                <div>
+                     <img src="<?=BASEURL?>/view/img/upl_img/<?=$imagens[1][0]->getArquivoNome()?>" alt="" class="sec-produto-img">
+                    <h5><?=$produtos[1]->getNome()?></h5>
+                    <span>Preço: R$<?=$produtos[1]->getPreco()?></span>
+                </div>
+            </a>
+
+            <a href="<?=BASEURL?>/controller/ProdutoController.php?action=display&id=<?=$produtos[1]->getId()?>">
+                <div>
+                     <img src="<?=BASEURL?>/view/img/upl_img/<?=$imagens[1][0]->getArquivoNome()?>" alt="" class="sec-produto-img">
+                    <h5><?=$produtos[1]->getNome()?></h5>
+                    <span>Preço: R$<?=$produtos[1]->getPreco()?></span>
+                </div>
+            </a>
+
+            <a href="<?=BASEURL?>/controller/ProdutoController.php?action=display&id=<?=$produtos[1]->getId()?>">
+                <div>
+                     <img src="<?=BASEURL?>/view/img/upl_img/<?=$imagens[1][0]->getArquivoNome()?>" alt="" class="sec-produto-img">
+                    <h5><?=$produtos[1]->getNome()?></h5>
+                    <span>Preço: R$<?=$produtos[1]->getPreco()?></span>
+                </div>
+            </a>
+        </div>
     </div>
 
 </div>
