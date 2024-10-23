@@ -3,8 +3,8 @@
 
 require_once __DIR__ . "/../include/header.php";
 require_once __DIR__ . "/../include/menu.php";
-$produtos = $dados["produtos"];
-$imagens = $dados["imagens"];
+$produtos = array_reverse($dados["produtos"]);
+$imagens = array_reverse($dados["imagens"]);
 ?>
 <link rel="stylesheet" href="<?= BASEURL ?>/public/css/home.css">
 <span id="sidebar-togler" onclick="togleSidebar()">☰</span>
@@ -38,7 +38,7 @@ $imagens = $dados["imagens"];
                 <h5>Preço: R$<?=$produtos[0]->getPreco()?></h5>
                 <div class="flex botoes-produto-wrapper">
                     <span><img class="icon" src="<?=BASEURL?>/view/img/svg/coracao.svg" alt="coração">Curtir</span>
-                    <span>Comprar</span>
+                    <a href="<?=BASEURL?>/controller/ProdutoController.php?action=display&id=<?=$produtos[0]->getId()?>"><span>Comprar</span>
                 </div>
             </div>
          </div>
