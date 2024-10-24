@@ -31,8 +31,9 @@
 
 #main-produto{
     display: grid;
+    gap: 20px;
     width: 1000px;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 2fr;
 }
 #main-produto > a > img{
     width: 100%;
@@ -48,7 +49,10 @@
 #main-produto a{
     color: black;
 }
-.botoes-produto-wrapper > span, .botoes-produto-wrapper > a{
+.botoes-produto-wrapper{
+    gap:5px;
+}
+.botoes-produto-wrapper > *{
     border: 2px solid black;
     padding: 6px;
     border-radius: 10px;
