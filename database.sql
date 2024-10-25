@@ -55,6 +55,15 @@ CREATE TABLE imagens(
 );
 ALTER TABLE imagens ADD CONSTRAINT fk_produto_imagem FOREIGN KEY (id_produto) REFERENCES produtos (id) ON DELETE CASCADE;
 
+CREATE TABLE curtidas(
+	id INT AUTO_INCREMENT NOT NULL,
+	id_produto INT NOT NULL,
+	id_usuario INT NOT NULL,
+	constraint pk_curtidas primary key (id)
+);
+ALTER TABLE curtidas ADD CONSTRAINT fk_produto_curtida FOREIGN KEY (id_produto) REFERENCES produtos (id) ON DELETE CASCADE;
+ALTER TABLE curtidas ADD CONSTRAINT fk_usuario_curtida FOREIGN KEY (id_usuario) REFERENCES usuarios (id) ON DELETE CASCADE;
+
 CREATE TABLE pedidos(
 	id INT AUTO_INCREMENT NOT NULL,
 	data DATE,
