@@ -33,7 +33,7 @@ class CurtidaController extends Controller {
     }*/
 
     protected function save(){
-        $idProduto = $_GET['id'];
+        $idProduto = $_POST['idProduto'];
         $produto = $this->produtoDao->findById($idProduto);
 
         //Cria objeto Curtida
@@ -67,14 +67,14 @@ class CurtidaController extends Controller {
         return $curtida;
     }
 
-    protected function listJson() {/*
-        $listaUsuarios = $this->usuarioDao->list();
-        $json = json_encode($listaUsuarios);
+    protected function listJsonFromUsuario() {
+        $listaCurtidas = $this->curtidaDao->listFromUsuario();
+        $json = json_encode($listaCurtidas);
         echo $json;
-     */}
+    }
 
 }
 
 
 #Criar objeto da classe para assim executar o construtor
-new BrechoController();
+new CurtidaController();

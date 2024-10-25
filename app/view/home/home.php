@@ -17,9 +17,7 @@ $imagens = array_reverse($dados["imagens"]);
             <li><img src="<?= BASEURL ?>/view/img/svg/coracao.svg" alt="Coração" class="icon"><a href="">Curtido</a></li>
             <li><img src="<?= BASEURL ?>/view/img/svg/carrinho.svg" alt="Carrinho" class="icon"><a href="">Meus pedidos</a></li>
             <li><img src="<?= BASEURL ?>/view/img/svg/porquinho.svg" alt="Cofre de porquinho" class="icon"><a href="<?= BASEURL ?>/controller/BrechoController.php?action=create">Vendendo</a></li>
-            <li><img src="<?= BASEURL ?>/view/img/svg/perfil.svg" alt="Perfil" class="icon"><a href="<?= BASEURL ?>/controller/UsuarioController.php?action=display&id=<?= $_SESSION[
-    SESSAO_USUARIO_ID
-] ?>">Perfil</a></li>
+            <li><img src="<?= BASEURL ?>/view/img/svg/perfil.svg" alt="Perfil" class="icon"><a href="<?= BASEURL ?>/controller/UsuarioController.php?action=display&id=<?= $_SESSION[SESSAO_USUARIO_ID] ?>">Perfil</a></li>
             <li><img src="<?= BASEURL ?>/view/img/svg/engrenagem.svg" alt="Engrenagem" class="icon"><a href="">Configurações</a></li>
         </ul>
     </div>
@@ -37,7 +35,7 @@ $imagens = array_reverse($dados["imagens"]);
                 <span><?=$produtos[0]->getDescricao()?></span> 
                 <h5>Preço: R$<?=$produtos[0]->getPreco()?></h5>
                 <div class="flex botoes-produto-wrapper">
-                    <span><img class="icon" src="<?=BASEURL?>/view/img/svg/coracao.svg" alt="coração">Curtir</span>
+                    <button onclick="curtir(this)" data-idProduto="<?=$produtos[0]->getId()?>"><img class="icon" src="<?=BASEURL?>/view/img/svg/coracao.svg" alt="coração" >Curtir</button>
                     <a href="<?=BASEURL?>/controller/ProdutoController.php?action=display&id=<?=$produtos[0]->getId()?>"><span>Comprar</span>
                 </div>
             </div>
@@ -72,6 +70,7 @@ $imagens = array_reverse($dados["imagens"]);
 
 </div>
 <script src="<?= BASEURL ?>/public/js/home.js"></script>
+<script src="<?= BASEURL ?>/public/js/curtida.js"></script>
 
 <?php require_once __DIR__ . "/../include/footer.php";
 ?>
