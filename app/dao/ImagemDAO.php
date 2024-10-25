@@ -1,7 +1,7 @@
 <?php
 
-include_once __DIR__ . "/../connection/Connection.php";
-include_once __DIR__ . "/../model/Imagem.php";
+include_once (__DIR__ . "/../connection/Connection.php");
+include_once (__DIR__ . "/../model/Imagem.php");
 
 class ImagemDAO
 {

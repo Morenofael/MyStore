@@ -1,11 +1,11 @@
 <?php 
-#Nome do arquivo: Pedido.php
-#Objetivo: classe Model para Pedido 
+#Nome do arquivo: Curtida.php
+#Objetivo: classe Model para Curtida 
 
 require_once(__DIR__ . "/Curtida.php");
 require_once(__DIR__ . "/Produto.php");
 
-class Pedido implements JsonSerializable {
+class Curtida implements JsonSerializable {
 
     private ?int $id;
     private ?int $idUsuario;
