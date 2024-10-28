@@ -22,15 +22,12 @@ class CurtidaController extends Controller {
         $this->handleAction();
     }
     
-    /*protected function list(string $msgErro = "", string $msgSucesso = "") {
-        if(! $this->usuarioLogado() || $_SESSION[SESSAO_USUARIO_PAPEL] != 1)
-            header("location: HomeController.php?action=home");
-        $usuarios = $this->usuarioDao->list();
-        //print_r($usuarios);
-        $dados["lista"] = $usuarios;
+    protected function list(string $msgErro = "", string $msgSucesso = "") {
+        $curtidas = $this->curtidaDao->listFromUsuario();
+        $dados["lista"] = $curtidas;
 
-        $this->loadView("usuario/list.php", $dados, $msgErro, $msgSucesso);
-    }*/
+        $this->loadView("curtida/list.php", $dados, $msgErro, $msgSucesso);
+    }
 
     protected function save(){
         $idProduto = $_POST['idProduto'];
@@ -51,10 +48,11 @@ class CurtidaController extends Controller {
 
     //Método para excluir
     protected function delete() {
-        $curtida = $this->findCurtidaById();
-        if($curtida) {
+        $idProduto = $_POST['idProduto'];
+
+        if($idProduto) {
             //Excluir
-            $this->curtidaDao->deleteById($curtida->getId());
+            $this->curtidaDao->deleteByProduto($idProduto);
         }     
      }
 

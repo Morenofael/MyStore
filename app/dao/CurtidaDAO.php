@@ -32,7 +32,6 @@ class CurtidaDAO{
         $curtidas = $this->mapCurtidas($result);
 
         return $curtidas;
-
     }
 
     public function findById(int $id) {
@@ -65,6 +64,17 @@ class CurtidaDAO{
         
         $stm = $conn->prepare($sql);
         $stm->bindValue("id", $id);
+        $stm->execute();
+    }
+
+    public function deleteByProduto(int $idProduto){
+        $conn = Connection::getConn();
+
+        $sql = "DELETE FROM curtidas WHERE id_produto = :idProduto AND id_usuario = :idUsuario";
+        
+        $stm = $conn->prepare($sql);
+        $stm->bindValue("idProduto", $idProduto);
+        $stm->bindValue("idUsuario", $_SESSION[SESSAO_USUARIO_ID]);
         $stm->execute();
     }
 

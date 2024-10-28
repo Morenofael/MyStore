@@ -53,6 +53,10 @@ class ProdutoController extends Controller {
         $this->loadView("produto/list.php", $dados);
     }
 
+    protected function listCurtidas(){
+
+    }
+
     protected function display(){
         //DAR id depois do edit
         $id = $_GET['id'];

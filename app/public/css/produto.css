@@ -3,6 +3,16 @@
 	display: grid;
 	grid-template-columns: 40% 60%;
 }
+.icon{
+	width: 2rem;
+	height: auto;
+}
+.botoes-produto-wrapper > *{
+	color: black;	
+    border: 2px solid black;
+    padding: 6px;
+    border-radius: 10px;
+}
 img{
 	width: 300px;
 	height: 300px;

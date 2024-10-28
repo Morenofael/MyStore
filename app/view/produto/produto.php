@@ -13,19 +13,22 @@ $imagens = $dados["imagens"];
     <?= $produto->getNome()?>
 </h3>
 <section class="main">
-        <div class="esquerda">
-            <img src="<?=BASEURL?>/view/img/upl_img/<?=$imagens[0]->getArquivoNome()?>" alt="">
-           <h4><?= $produto->getDescricao()?></h4>
-           <h4>R$<?= $produto->getPreco()?></h4> 
-           <h4>Gênero:<?= $dados["generoString"]?></h4> 
+    <div class="esquerda">
+        <img src="<?=BASEURL?>/view/img/upl_img/<?=$imagens[0]->getArquivoNome()?>" alt="">
+        <h4><?= $produto->getDescricao()?></h4>
+        <h4>R$<?= $produto->getPreco()?></h4> 
+        <h4>Gênero:<?= $dados["generoString"]?></h4> 
+    </div>
+    <div class="direita">
+        <h3><?=$produto->getNome()?></h3>
+        <div id="metodos-pagamento">
+            <a href="<?=BASEURL?>/controller/PedidoController.php?action=save&id=<?=$produto->getId()?>">Reservar Produto</a>
         </div>
-        <div class="direita">
-            <h3><?=$produto->getNome()?></h3>
-            <div id="metodos-pagamento">
-                <a href="<?=BASEURL?>/controller/PedidoController.php?action=save&id=<?=$produto->getId()?>">Reservar Produto</a>
-            </div>
-        </div>
-
+    </div>
+    <div class="flex botoes-produto-wrapper">
+        <button onclick="curtir(this)" data-idProduto="<?=$produto->getId()?>"><img class="icon" src="<?=BASEURL?>/view/img/svg/coracao.svg" alt="coração"><span>Curtir</span></button>
+        <a href="<?=BASEURL?>/controller/ProdutoController.php?action=display&id=<?=$produto->getId()?>"><span>Comprar</span>
+    </div>
     <div class="row" style="margin-top: 30px;">
         <div class="col-12">
         <a class="btn btn-secondary"
@@ -39,7 +42,7 @@ $imagens = $dados["imagens"];
         
         </div>
     </div>
-<script src="https://sandbox.paypal.com/sdk/js?client-id=AdQwWu0Net7CXmel1lYfBt_NrLPgUIByTnNgCQvXzyQDWQwatYdA2BYPiZpc92d2uHq80DvZAd-2fpil"></script>
+<script src="<?= BASEURL ?>/public/js/curtida.js"></script>
 </section>
 <?php
 require_once(__DIR__ . "/../include/footer.php");
