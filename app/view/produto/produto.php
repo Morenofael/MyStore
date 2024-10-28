@@ -42,6 +42,7 @@ $imagens = $dados["imagens"];
         
         </div>
     </div>
+<input id="ipnBaseUrl" type="hidden" value="<?= BASEURL ?>">
 <script src="<?= BASEURL ?>/public/js/curtida.js"></script>
 </section>
 <?php
