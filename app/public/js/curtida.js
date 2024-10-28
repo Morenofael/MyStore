@@ -33,3 +33,4 @@ function checkButtonCurtir(button){
     
     xhttp.send();
 }
+checkButtonCurtir(document.querySelector("button"));
