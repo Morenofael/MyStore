@@ -9,7 +9,7 @@ function curtir(button) {
     xhttp.onload = function() {
         var json = xhttp.responseText;
         if(json == "")
-            alert("1");
+            checkButtonCurtir(button); 
     }
 
     xhttp.send("idProduto=" + encodeURIComponent(idProduto));
@@ -23,7 +23,12 @@ function checkButtonCurtir(button){
     xhttp.onload = function() {
         var json = xhttp.responseText;
         curtidas = JSON.parse(json);
-        console.log(curtidas.some(c => c.produto.id == idProduto));
+        if(curtidas.some(c => c.produto.id == idProduto)){
+            botaoImagem = document.querySelector("button>img");
+            botaoImagem.src = "http://localhost:8080/app/view/img/svg/coracao-preenchido.svg";
+            botaoTexto = document.querySelector("button>span");
+            botaoTexto.innerText = "Descurtir";
+        }
     }
     
     xhttp.send();
