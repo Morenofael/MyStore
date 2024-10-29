@@ -6,38 +6,40 @@ $nome = "(Sessão expirada)";
 if(isset($_SESSION[SESSAO_USUARIO_NOME]))
     $nome = $_SESSION[SESSAO_USUARIO_NOME];
 ?>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <span class="nav-link">MySports</span>
+<link rel="stylesheet" href="<?=BASEURL?>/public/css/menu.css" media="all">
+<nav class="">
+    <div class="" id="conteudoNavbarSuportado">
+        <ul class="nav-list nav-preto">
+            <li class="menu-logo-wrapper">
+                <img src="<?=BASEURL?>/view/img/logo.png" alt="sacola de compras com uma bola de basquete desenhada" id="menu-logo">
+                <span class="">MySports</span>
             </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="<?= HOME_PAGE ?>">Home</a>
+            <li class="">
+                <a class="" href="<?= HOME_PAGE ?>">Home</a>
             </li>
-            <li class="nav-item active">
-            <a class="nav-link" href="<?=BASEURL?>/controller/ProdutoController.php?action=listByGenero&g=m">Masculino</a>
+            <li class="">
+            <a class="" href="<?=BASEURL?>/controller/ProdutoController.php?action=listByGenero&g=m">Masculino</a>
             </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="<?=BASEURL?>/controller/ProdutoController.php?action=listByGenero&g=f">Feminino</a>
+            <li class="">
+                <a class="" href="<?=BASEURL?>/controller/ProdutoController.php?action=listByGenero&g=f">Feminino</a>
             </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="<?=BASEURL?>/controller/ProdutoController.php?action=listByGenero&g=u">Unissex</a>
+            <li class="">
+                <a class="" href="<?=BASEURL?>/controller/ProdutoController.php?action=listByGenero&g=u">Unissex</a>
             </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="<?=BASEURL?>/controller/ProdutoController.php?action=listByGenero&g=i">Infantil</a>
+            <li class="">
+                <a class="" href="<?=BASEURL?>/controller/ProdutoController.php?action=listByGenero&g=i">Infantil</a>
             </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="#">Ofertas</a>
+            <li class="">
+                <a class="" href="#">Ofertas</a>
             </li>
 
         </ul>
 
-        <ul class="navbar-nav mr-left">
-            <li class="nav-item active m-2">
+        <ul class="nav-list">
+            <li class="">
                 <a class="" href="<?= LOGOUT_PAGE ?>">Sair</a>
             </li>
-            <li class="nav-item active m-2">
+            <li class="">
                 <?php if($_SESSION[SESSAO_USUARIO_ID]):?>
                 <a href="<?=BASEURL?>/controller/UsuarioController.php?action=display&id=<?=$_SESSION[SESSAO_USUARIO_ID]?>"><?= $nome?></a>
                 <?php endif;?>
