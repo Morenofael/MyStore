@@ -4,32 +4,23 @@
 
 require_once(__DIR__ . "/../include/header.php");
 require_once(__DIR__ . "/../include/menu.php");
+$imagens = $dados["imagens"];
 ?>
-
+<link rel="stylesheet" href="<?=BASEURL?>/public/css/lista-produtos.css" media="all">
 <h3 class="text-center">Produtos</h3>
 
-<div class="container">
-    <div class="row" style="margin-top: 10px;">
-        <div class="col-12">
-            <table id="tabProdutos" class='table table-striped table-bordered'>
-                <thead>
-                    <tr>
-                        <th>Nome</th>
-                        <th>Descrição</th>
-                        <th>Preço</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach($dados['lista'] as $p): ?>
-                        <tr>
-                            <td><a href="<?=BASEURL?>/controller/ProdutoController.php?action=display&id=<?=$p->getId()?>"><?= $p->getNome(); ?></a></td>
-                            <td><?= $p->getDescricao(); ?></td>
-                            <td><?= $p->getPreco(); ?></td>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
-        </div>
-    </div>
+<div class="lista-produtos flex">
+    <?php $i = 0?>
+    <?php foreach($dados['lista'] as $p): ?>
+        <a href="<?=BASEURL?>/controller/ProdutoController.php?action=display&id=<?=$p->getId()?>">
+            <div>
+                <img src="<?=BASEURL?>/view/img/upl_img/<?=$imagens[$i][0]->getArquivoNome()?>" alt="" class="lista-produto-img">
+                <h5><?=$p->getNome()?></h5>
+                <span>Preço: R$<?=$p->getPreco()?></span>
+            </div>
+        </a>
+    <?php $i++?>
+    <?php endforeach; ?>
 </div>
 
 <?php  

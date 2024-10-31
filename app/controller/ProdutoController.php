@@ -50,6 +50,10 @@ class ProdutoController extends Controller {
         }
 
         $dados["lista"] = $this->produtoDao->listByGenero($genero);
+        $dados["imagens"] = Array();
+        foreach($dados["lista"] as $p){
+            array_push($dados["imagens"], $this->imagemDao->findOneImageFromProduto($p->getId()));
+        } 
         $this->loadView("produto/list.php", $dados);
     }
 
