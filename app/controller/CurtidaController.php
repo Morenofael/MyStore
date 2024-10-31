@@ -29,8 +29,8 @@ class CurtidaController extends Controller {
         $curtidas = $this->curtidaDao->listFromUsuario();
         $dados["lista"] = $curtidas;
         $dados["imagens"] = Array();
-        foreach($dados["lista"] as $p){
-            array_push($dados["imagens"], $this->imagemDao->findOneImageFromProduto($p->getId()));
+        foreach($dados["lista"] as $c){
+            array_push($dados["imagens"], $this->imagemDao->findOneImageFromProduto($c->getProduto()->getId()));
         } 
 
         $this->loadView("curtida/list.php", $dados, $msgErro, $msgSucesso);

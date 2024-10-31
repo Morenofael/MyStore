@@ -44,6 +44,9 @@ if(isset($_SESSION[SESSAO_USUARIO_NOME]))
                 <a href="<?=BASEURL?>/controller/UsuarioController.php?action=display&id=<?=$_SESSION[SESSAO_USUARIO_ID]?>"><?= $nome?></a>
                 <?php endif;?>
             </li>
+            <li class="">
+                <a href="<?=BASEURL?>/controller/BrechoController.php?action=create">Meu Brecho</a>
+            </li>
         </ul>
     </div>
 </nav>

@@ -23,11 +23,6 @@ $imagens = array_reverse($dados["imagens"]);
     </div>
 
     <div class="main-content">
-        <div class="col-3 text-center">
-            <a href="<?= BASEURL ?>/controller/BrechoController.php?action=create" class="btn btn-success"
-            >Criar brecho</a>
-        </div>
-
         <div id="main-produto"> 
             <a href="<?=BASEURL?>/controller/ProdutoController.php?action=display&id=<?=$produtos[0]->getId()?>"><img src="<?=BASEURL?>/view/img/upl_img/<?=$imagens[0][0]->getArquivoNome()?>" alt=""></a>
             <div class="main-produto-info-wrapper">
