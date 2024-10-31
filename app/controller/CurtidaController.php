@@ -3,12 +3,14 @@
 require_once(__DIR__ . "/Controller.php");
 require_once(__DIR__ . "/../dao/CurtidaDAO.php");
 require_once(__DIR__ . "/../dao/ProdutoDAO.php");
+require_once(__DIR__ . "/../dao/ImagemDAO.php");
 require_once(__DIR__ . "/../model/Curtida.php");
 
 class CurtidaController extends Controller {
 
     private CurtidaDAO $curtidaDao;
     private ProdutoDAO $produtoDao;
+    private ImagemDAO $imagemDao;
 
     //Método construtor do controller - será executado a cada requisição a está classe
     public function __construct() {
@@ -17,6 +19,7 @@ class CurtidaController extends Controller {
 
         $this->curtidaDao = new CurtidaDAO();
         $this->produtoDao = new ProdutoDAO();
+        $this->imagemDao = new ImagemDAO();
         //$this->usuarioService = new UsuarioService();
 
         $this->handleAction();
@@ -25,6 +28,10 @@ class CurtidaController extends Controller {
     protected function list(string $msgErro = "", string $msgSucesso = "") {
         $curtidas = $this->curtidaDao->listFromUsuario();
         $dados["lista"] = $curtidas;
+        $dados["imagens"] = Array();
+        foreach($dados["lista"] as $p){
+            array_push($dados["imagens"], $this->imagemDao->findOneImageFromProduto($p->getId()));
+        } 
 
         $this->loadView("curtida/list.php", $dados, $msgErro, $msgSucesso);
     }
