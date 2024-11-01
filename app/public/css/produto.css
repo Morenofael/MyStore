@@ -1,7 +1,7 @@
 .main{
 	padding: 32px;
 	display: grid;
-	grid-template-columns: 40% 60%;
+	grid-template-columns: 30% 70%;
 }
 .icon{
 	width: 2rem;
@@ -13,8 +13,12 @@
     padding: 6px;
     border-radius: 10px;
 }
-img{
-	width: 300px;
-	height: 300px;
+#main-img{
+	width: 500px;
+	height: 500px;
 	object-fit: fill;
+}
+.sec-img{
+	width: 200px;
+	height: 200px;
 }
