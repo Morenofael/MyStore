@@ -9,9 +9,6 @@ $vendedor = $dados["vendedor"];
 $imagens = $dados["imagens"];
 ?>
 <link rel="stylesheet" href="<?=BASEURL?>/public/css/produto.css" media="all">
-<h3 class="text-center">
-    <?= $produto->getNome()?>
-</h3>
 <section class="main">
     <div class="esquerda">
         <img src="<?=BASEURL?>/view/img/upl_img/<?=$imagens[0]->getArquivoNome()?>" id="main-img">
@@ -26,17 +23,17 @@ $imagens = $dados["imagens"];
             <a href="<?=BASEURL?>/controller/ProdutoController.php?action=display&id=<?=$produto->getId()?>"><span>Comprar</span></a>
         </div>
         <div class="sec-imagens-wrapper">
-            <button><-</button>
+            <span class="muda-index mouse-pointer" onclick="mudarIndex(-1)"><-</span>
             <?php foreach($imagens as $i):?>
-                <img src="<?=BASEURL?>/view/img/upl_img/<?=$i->getArquivoNome()?>" class="sec-img">
+                <img src="<?=BASEURL?>/view/img/upl_img/<?=$i->getArquivoNome()?>" onclick="mudarMainImagem(<?= array_search($i, $imagens)?>)" class="sec-img mouse-pointer">
             <?php endforeach;?>
+            <span class="muda-index mouse-pointer" onclick="mudarIndex(1)">-></span>
         </div>
     </div>
     
 </div>
 
-<input id="ipnBaseUrl" type="hidden" value="<?= BASEURL ?>">
-<script src="<?= BASEURL ?>/public/js/curtida.js"></script>
+
 </section>
 <div class="row" style="margin-top: 30px;">
     <div class="col-12">
@@ -50,6 +47,10 @@ $imagens = $dados["imagens"];
     <?php endif;?>
     </div>     
 </div>
+<input id="ipnBaseUrl" type="hidden" value="<?= BASEURL ?>">
+<input id="numImg" type="hidden" value="<?= count($imagens) ?>">
+<script src="<?= BASEURL ?>/public/js/curtida.js"></script>
+<script src="<?= BASEURL ?>/public/js/produto.js"></script>
 <?php
 require_once(__DIR__ . "/../include/footer.php");
 ?>
