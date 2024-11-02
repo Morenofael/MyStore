@@ -67,7 +67,7 @@ ALTER TABLE curtidas ADD CONSTRAINT fk_usuario_curtida FOREIGN KEY (id_usuario) 
 CREATE TABLE pedidos(
 	id INT AUTO_INCREMENT NOT NULL,
 	data DATE,
-	status VARCHAR(45),/*Se o produto foi para o correio, se chegou, etc...*/
+	status ENUM('NV', 'P', 'ENV', 'ENT') DEFAULT 'NV',/*Não visto, sendo preparado, enviado, entregue*/
 	id_comprador INT NOT NULL,
 	id_vendedor INT NOT NULL,
 	id_produto INT NOT NULL,
