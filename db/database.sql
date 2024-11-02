@@ -43,6 +43,7 @@ CREATE TABLE produtos(
 	descricao TEXT NOT NULL,
 	genero VARCHAR(10) NOT NULL,
 	tags VARCHAR(1024),
+	disponivel TINYINT NOT NULL DEFAULT 1,
 	constraint pk_produto primary key (id)
 );
 ALTER TABLE produtos ADD CONSTRAINT fk_brecho_produto FOREIGN KEY (id_brecho) REFERENCES brechos (id);
