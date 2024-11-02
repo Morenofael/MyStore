@@ -37,7 +37,7 @@ class ProdutoController extends Controller {
         if(! $this->usuarioLogado())
             header("location: HomeController.php?action=home");
         
-        $dados["lista"] = $this->produtoDao->list();
+        $dados["lista"] = $this->produtoDao->listDisp();
         $dados["imagens"] = Array();
         foreach($dados["lista"] as $p){
             array_push($dados["imagens"], $this->imagemDao->findOneImageFromProduto($p->getId()));

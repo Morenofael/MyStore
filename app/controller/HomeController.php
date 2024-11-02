@@ -28,7 +28,7 @@ class HomeController extends Controller {
 
     protected function home() {
         $listaBrecho = $this->brechoDao->list();    
-        $produtos = $this->produtoDao->list();
+        $produtos = $this->produtoDao->listDisp();
         $imagens = Array();
         $dados["listaBrechos"] = $listaBrecho;
         $dados["produtos"] = $produtos;

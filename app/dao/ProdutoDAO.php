@@ -19,10 +19,21 @@ class ProdutoDAO {
         return $this->mapProdutos($result);
     }
 
+    public function listDisp() {
+        $conn = Connection::getConn();
+
+        $sql = "SELECT * FROM produtos p WHERE disponivel = 1";
+        $stm = $conn->prepare($sql);    
+        $stm->execute();
+        $result = $stm->fetchAll();
+        
+        return $this->mapProdutos($result);
+    }
+
     public function listByGenero($genero) {
         $conn = Connection::getConn();
 
-        $sql = "SELECT * FROM produtos p WHERE genero = :genero";
+        $sql = "SELECT * FROM produtos p WHERE genero = :genero AND disponivel = 1";
         $stm = $conn->prepare($sql);
         $stm->bindValue("genero", $genero); 
         $stm->execute();
@@ -97,6 +108,17 @@ class ProdutoDAO {
         $stm->bindValue("preco", $produto->getPreco());
         $stm->bindValue("genero", $produto->getGenero());
         $stm->bindValue("tags", $produto->getTags());
+        $stm->bindValue("id", $produto->getId());
+        $stm->execute();
+    }
+    
+    public function updateDisp(Produto $produto, int $disp){
+        $conn = Connection::getConn();
+        $sql = "UPDATE produtos SET disponivel = :disp " .
+            " WHERE id = :id";
+            
+        $stm = $conn->prepare($sql);
+        $stm->bindValue("disp", $disp);
         $stm->bindValue("id", $produto->getId());
         $stm->execute();
     }

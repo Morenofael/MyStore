@@ -25,7 +25,7 @@ class CurtidaDAO{
                 " p.id_brecho AS id_brecho_produto , p.nome AS nome_produto, p.descricao AS descricao_produto, p.preco AS preco_produto, p.genero AS genero_produto, p.tags AS tags_produto " .
                 " FROM curtidas c " .
                 " JOIN produtos p ON (p.id = c.id_produto)" .
-                "WHERE c.id_usuario = ? ";
+                "WHERE c.id_usuario = ? AND disponivel = 1";
         $stm = $conn->prepare($sql);
         $stm->execute([$_SESSION[SESSAO_USUARIO_ID]]);
         $result = $stm->fetchAll();

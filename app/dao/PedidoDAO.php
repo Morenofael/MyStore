@@ -59,8 +59,8 @@ class PedidoDAO{
     public function insert(Pedido $pedido) {
         $conn = Connection::getConn();
 
-        $sql = "INSERT INTO pedidos (data, status, id_vendedor, id_comprador, id_produto, valor_total)" .
-               " VALUES (CURRENT_DATE, 'NÃO VISTO', :id_vendedor, :id_comprador, :id_produto, :preco)";
+        $sql = "INSERT INTO pedidos (data, id_vendedor, id_comprador, id_produto, valor_total)" .
+               " VALUES (CURRENT_DATE, :id_vendedor, :id_comprador, :id_produto, :preco)";
         
         $stm = $conn->prepare($sql);
         $stm->bindValue("id_vendedor", $pedido->getVendedor()->getId());
@@ -122,7 +122,7 @@ class PedidoDAO{
 
             $pedido->setProduto($produto);
             $pedido->setCaminhoComprovante($reg["caminho_comprovante"]);
-            $pedido->setPreco($reg["preco"]); 
+            $pedido->setPreco($reg["valor_total"]); 
             
             array_push($pedidos, $pedido);
         }

@@ -20,7 +20,7 @@ $imagens = $dados["imagens"];
         <h4>R$<?= $produto->getPreco()?></h4> 
         <div class="flex botoes-produto-wrapper">
             <button onclick="curtir(this)" data-idProduto="<?=$produto->getId()?>"><img class="icon" src="<?=BASEURL?>/view/img/svg/coracao.svg" alt="coração"><span>Curtir</span></button>
-            <a href="<?=BASEURL?>/controller/ProdutoController.php?action=display&id=<?=$produto->getId()?>"><span>Comprar</span></a>
+            <a href="<?=BASEURL?>/controller/PedidoController.php?action=save&id=<?=$produto->getId()?>">Comprar</a>
         </div>
         <div class="sec-imagens-wrapper">
             <span class="muda-index mouse-pointer" onclick="mudarIndex(-1)"><-</span>
