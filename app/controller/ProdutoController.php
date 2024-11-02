@@ -36,9 +36,13 @@ class ProdutoController extends Controller {
     protected function list(string $msgErro = "", string $msgSucesso = "") {
         if(! $this->usuarioLogado())
             header("location: HomeController.php?action=home");
-        $produtos = $this->produtoDao->list();
-        //print_r($usuarios);
-        return $produtos;
+        
+        $dados["lista"] = $this->produtoDao->list();
+        $dados["imagens"] = Array();
+        foreach($dados["lista"] as $p){
+            array_push($dados["imagens"], $this->imagemDao->findOneImageFromProduto($p->getId()));
+        } 
+        $this->loadView("produto/list.php", $dados);
     }
     
     protected function listByGenero(){
