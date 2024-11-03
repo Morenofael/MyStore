@@ -18,10 +18,12 @@ $imagens = $dados["imagens"];
     <div class="direita">
         <h3><?=$produto->getNome()?></h3>
         <h4>R$<?= $produto->getPreco()?></h4> 
+        <?php if($vendedor->getId() != $_SESSION[SESSAO_USUARIO_ID]) : ?>
         <div class="flex botoes-produto-wrapper">
             <button onclick="curtir(this)" data-idProduto="<?=$produto->getId()?>"><img class="icon" src="<?=BASEURL?>/view/img/svg/coracao.svg" alt="coração"><span>Curtir</span></button>
             <a href="<?=BASEURL?>/controller/PedidoController.php?action=save&id=<?=$produto->getId()?>">Comprar</a>
         </div>
+        <?php endif; ?>
         <div class="sec-imagens-wrapper">
             <span class="muda-index mouse-pointer" onclick="mudarIndex(-1)"><-</span>
             <?php foreach($imagens as $i):?>

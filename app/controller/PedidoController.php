@@ -43,7 +43,6 @@ class PedidoController extends Controller {
     protected function save() {
         $idProduto = $_GET['id'];
         $produto = $this->produtoDao->findById($idProduto);
-        $this->produtoDao->updateDisp($produto, 0); //Torna produto indisponível
         $brecho = $this->brechoDao->findById($produto->getIdBrecho());
         //Cria objeto Pedido 
         $pedido = new Pedido();
@@ -51,11 +50,17 @@ class PedidoController extends Controller {
         $pedido->setComprador($this->usuarioDao->findById($_SESSION[SESSAO_USUARIO_ID]));
         $pedido->setProduto($produto);
         $pedido->setPreco($produto->getPreco());
-        
-        $this->pedidoDao->insert($pedido);
-        $pedidoId = $this->pedidoDao->findLastPedidoFromUser($_SESSION[SESSAO_USUARIO_ID])->getId(); 
-        header("location: ./PedidoController.php?action=display&id=" . $pedidoId);
+
+        if($pedido->getComprador()->getId() == $pedido->getVendedor()->getId()){
+            echo "Você não pode comprar seu próprio produto.";
+            exit;
+        }else{
+            $this->produtoDao->updateDisp($produto, 0); //Torna produto indisponível
+            $this->pedidoDao->insert($pedido);
+            $pedidoId = $this->pedidoDao->findLastPedidoFromUser($_SESSION[SESSAO_USUARIO_ID])->getId(); 
+            header("location: ./PedidoController.php?action=display&id=" . $pedidoId);
         }
+    }
 }
 
 
