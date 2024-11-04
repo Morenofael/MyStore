@@ -4,6 +4,7 @@
 
 require_once(__DIR__ . "/Usuario.php");
 require_once(__DIR__ . "/Produto.php");
+require_once(__DIR__ . "/Endereco.php");
 
 class Pedido implements JsonSerializable {
 
@@ -13,6 +14,7 @@ class Pedido implements JsonSerializable {
     private ?Usuario $vendedor;
     private ?Usuario $comprador;
     private ?Produto $produto;
+    private ?Endereco $enderecoEntrega;
     private ?string $caminhoComprovante;
     private ?float $preco;
 
@@ -23,6 +25,7 @@ class Pedido implements JsonSerializable {
                      "Vendedor" => $this->vendedor,
                      "comprador" => $this->comprador,
                      "produto" => $this->produto,
+                     "endereco" => $this->enderecoEntrega,
                      "caminhoComprovante" => $this->caminhoComprovante,
                      "preco" => $this->preco);
     }
@@ -185,5 +188,32 @@ class Pedido implements JsonSerializable {
     public function setProduto($produto)
     {
         $this->produto = $produto;
+    }
+    
+    
+    public function getPrecoReais(): string
+    {
+        if($this->preco)    
+            return "R$" . number_format($this->preco, 2, ",", ".");
+
+        return "";
+    }
+
+    /**
+     * Get the value of enderecoEntrega
+     */
+    public function getEnderecoEntrega(): ?Endereco
+    {
+        return $this->enderecoEntrega;
+    }
+
+    /**
+     * Set the value of enderecoEntrega
+     */
+    public function setEnderecoEntrega(?Endereco $enderecoEntrega): self
+    {
+        $this->enderecoEntrega = $enderecoEntrega;
+
+        return $this;
     }
 }

@@ -5,7 +5,9 @@ require_once(__DIR__ . "/../dao/PedidoDAO.php");
 require_once(__DIR__ . "/../dao/ProdutoDAO.php");
 require_once(__DIR__ . "/../dao/UsuarioDAO.php");
 require_once(__DIR__ . "/../dao/BrechoDAO.php");
+require_once(__DIR__ . "/../dao/ImagemDAO.php");
 require_once(__DIR__ . "/../model/Pedido.php");
+require_once(__DIR__ . "/../service/ProdutoService.php");
 
 class PedidoController extends Controller {
 
@@ -13,6 +15,8 @@ class PedidoController extends Controller {
     private ProdutoDAO $produtoDao;
     private UsuarioDAO $usuarioDao;
     private BrechoDAO $brechoDao;
+    private ImagemDAO $imagemDao;
+    private ProdutoService $prodService;
 
     //Método construtor do controller - será executado a cada requisição a está classe
     public function __construct() {
@@ -23,6 +27,8 @@ class PedidoController extends Controller {
         $this->produtoDao = new ProdutoDAO();
         $this->usuarioDao = new UsuarioDAO();
         $this->brechoDao = new BrechoDAO();
+        $this->imagemDao = new ImagemDAO();
+        $this->prodService = new ProdutoService();
 
         $this->handleAction();
     }
@@ -37,6 +43,8 @@ class PedidoController extends Controller {
     protected function display(){
         $id = $_GET['id'];
         $dados["pedido"] = $this->pedidoDao->findById($id);
+        $dados["imagem"] = $this->imagemDao->findOneImageFromProduto($dados["pedido"]->getProduto()->getId());
+        $dados["generoString"] = $this->prodService->generoCharToString($dados["pedido"]->getProduto()->getGenero());
         $this->loadView("pedido/pedido.php", $dados);
 }
 

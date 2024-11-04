@@ -29,6 +29,11 @@ ALTER TABLE brechos ADD CONSTRAINT fk_usuario_brecho FOREIGN KEY (id_usuario) RE
 CREATE TABLE enderecos(
 	id INT AUTO_INCREMENT NOT NULL,
 	cep VARCHAR(8) NOT NULL,
+	logradouro VARCHAR(256),
+	complemento VARCHAR(256),
+	bairro VARCHAR(256),
+	municipio VARCHAR(32),
+	uf VARCHAR(2),
 	numero VARCHAR(8) NOT NULL,
 	id_usuario INT,
 	constraint pk_endereco primary key (id)
@@ -72,23 +77,14 @@ CREATE TABLE pedidos(
 	id_comprador INT NOT NULL,
 	id_vendedor INT NOT NULL,
 	id_produto INT NOT NULL,
-	caminhoComprovante VARCHAR(256),
+	caminho_comprovante VARCHAR(256),
+	id_endereco INT,
 	valor_total DOUBLE(7,2),
 	constraint pk_pedido primary key (id)
 );
 ALTER TABLE pedidos ADD CONSTRAINT fk_comprador_pedido FOREIGN KEY (id_comprador) REFERENCES usuarios (id);
 ALTER TABLE pedidos ADD CONSTRAINT fk_vendedor_pedido FOREIGN KEY (id_vendedor) REFERENCES usuarios (id);
 ALTER TABLE pedidos ADD CONSTRAINT fk_produto_pedido FOREIGN KEY (id_produto) REFERENCES produtos (id);
-
-CREATE TABLE pedidos_produtos(
-	id INT AUTO_INCREMENT NOT NULL,
-	id_pedido INT,
-	id_produto INT,
-	valor DOUBLE(7,2),
-	constraint pk_pedido_produto primary key (id)
-);
-ALTER TABLE pedidos_produtos ADD CONSTRAINT fk_pedido FOREIGN KEY (id_pedido) REFERENCES pedidos (id);
-ALTER TABLE pedidos_produtos ADD CONSTRAINT fk_produto FOREIGN KEY (id_produto) REFERENCES produtos (id);
 
 CREATE TABLE avaliacoes_produtos(
 	id INT AUTO_INCREMENT NOT NULL,

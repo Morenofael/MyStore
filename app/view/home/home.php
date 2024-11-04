@@ -34,7 +34,7 @@ $imagens = array_reverse($dados["imagens"]);
             <div class="main-produto-info-wrapper">
                 <a href="<?=BASEURL?>/controller/ProdutoController.php?action=display&id=<?=$produtos[0]->getId()?>"><h4><?=$produtos[0]->getNome()?></h4></a>
                 <span><?=$produtos[0]->getDescricao()?></span> 
-                <h5>Preço: R$<?=$produtos[0]->getPreco()?></h5>
+                <h5>Preço: <?=$produtos[0]->getPrecoReais()?></h5>
                 <div class="flex botoes-produto-wrapper">
                     <button onclick="curtir(this)" data-idProduto="<?=$produtos[0]->getId()?>"><img class="icon" src="<?=BASEURL?>/view/img/svg/coracao.svg" alt="coração"><span>Curtir</span></button>
                     <a href="<?=BASEURL?>/controller/ProdutoController.php?action=display&id=<?=$produtos[0]->getId()?>"><span>Comprar</span>
@@ -47,7 +47,7 @@ $imagens = array_reverse($dados["imagens"]);
                 <div>
                      <img src="<?=BASEURL?>/view/img/upl_img/<?=$imagens[1][0]->getArquivoNome()?>" alt="" class="sec-produto-img">
                     <h5><?=$produtos[1]->getNome()?></h5>
-                    <span>Preço: R$<?=$produtos[1]->getPreco()?></span>
+                    <span>Preço: <?=$produtos[1]->getPreco()?></span>
                 </div>
             </a>
 
@@ -55,7 +55,7 @@ $imagens = array_reverse($dados["imagens"]);
                 <div>
                      <img src="<?=BASEURL?>/view/img/upl_img/<?=$imagens[2][0]->getArquivoNome()?>" alt="" class="sec-produto-img">
                     <h5><?=$produtos[2]->getNome()?></h5>
-                    <span>Preço: R$<?=$produtos[2]->getPreco()?></span>
+                    <span>Preço: <?=$produtos[2]->getPreco()?></span>
                 </div>
             </a>
 
@@ -63,7 +63,7 @@ $imagens = array_reverse($dados["imagens"]);
                 <div>
                      <img src="<?=BASEURL?>/view/img/upl_img/<?=$imagens[3][0]->getArquivoNome()?>" alt="" class="sec-produto-img">
                     <h5><?=$produtos[3]->getNome()?></h5>
-                    <span>Preço: R$<?=$produtos[3]->getPreco()?></span>
+                    <span>Preço: <?=$produtos[3]->getPreco()?></span>
                 </div>
             </a>
         </div>

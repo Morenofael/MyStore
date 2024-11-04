@@ -16,7 +16,7 @@ class PedidoDAO{
         $sql = "SELECT p.*, " .
                 " uv.nome AS nome_vendedor , uv.email AS email_vendedor, uv.cpf AS cpf_vendedor, uv.telefone AS telefone_vendedor, uv.data_nascimento AS data_nascimento_vendedor, uv.situacao AS situacao_vendedor, uv.foto_perfil AS foto_perfil_vendedor,  " .
                 " uc.nome AS nome_comprador , uc.email AS email_comprador, uc.cpf AS cpf_comprador, uc.telefone AS telefone_comprador, uc.data_nascimento AS data_nascimento_comprador, uc.situacao AS situacao_comprador, uc.foto_perfil AS foto_perfil_comprador,  " .
-                " prod.id_brecho AS id_brecho_produto , prod.nome AS nome_produto, prod.descricao AS descricao_produto, prod.preco AS preco_produto " .
+                " prod.id_brecho AS id_brecho_produto , prod.nome AS nome_produto, prod.descricao AS descricao_produto, prod.preco AS preco_produto, prod.genero AS genero_produto " .
                 " FROM pedidos p " .
                 " JOIN usuarios uv ON (uv.id = p.id_vendedor) JOIN usuarios uc ON (uc.id = p.id_comprador) JOIN produtos prod ON (prod.id = p.id_produto)" . 
                " WHERE p.id = ?";
@@ -73,7 +73,6 @@ class PedidoDAO{
             " - Erro: mais de um pedido encontrado.");
     }
    
-    //Método para inserir um Usuario
     public function insert(Pedido $pedido) {
         $conn = Connection::getConn();
 
@@ -87,6 +86,19 @@ class PedidoDAO{
         $stm->bindValue("preco", $pedido->getPreco());
         $stm->execute();
     }
+    
+    public function updateCaminhoComprovante($caminhoComprovante, $idPedido) {
+        $conn = Connection::getConn();
+
+        $sql = "UPDATE pedidos SET caminho_comprovante = :caminho_comprovante " .
+               " WHERE id = :id";
+        
+        $stm = $conn->prepare($sql);
+        $stm->bindValue("caminho_comprovante", $caminhoComprovante);
+        $stm->bindValue("id", $idPedido);
+        $stm->execute();
+    }
+    
 
     //Método para excluir um Usuario pelo seu ID
     public function deleteById(int $id) {
@@ -137,6 +149,7 @@ class PedidoDAO{
             $produto->setNome($reg['nome_produto']);
             $produto->setDescricao($reg['descricao_produto']);
             $produto->setPreco($reg['preco_produto']);
+            $produto->setGenero($reg['genero_produto']);
 
             $pedido->setProduto($produto);
             $pedido->setCaminhoComprovante($reg["caminho_comprovante"]);

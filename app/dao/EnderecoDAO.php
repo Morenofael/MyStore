@@ -19,12 +19,17 @@ class EnderecoDAO{
     public function insert(Endereco $endereco) {
         $conn = Connection::getConn();
 
-        $sql = "INSERT INTO enderecos(numero, cep, id_usuario)" .
-               " VALUES (:numero, :cep, :id_usuario)";
+        $sql = "INSERT INTO enderecos(numero, cep, logradouro, complemento, bairro, municipio, uf, id_usuario)" .
+               " VALUES (:numero, :cep, :logradouro, :complemento, :bairro, :municipio, :uf, :id_usuario)";
         
         $stm = $conn->prepare($sql);
         $stm->bindValue("numero", $endereco->getNumero());
         $stm->bindValue("cep", $endereco->getCep());
+        $stm->bindValue("logradouro", $endereco->getLogradouro());
+        $stm->bindValue("complemento", $endereco->getComplemento());
+        $stm->bindValue("bairro", $endereco->getBairro());
+        $stm->bindValue("municipio", $endereco->getMunicipio());
+        $stm->bindValue("uf", $endereco->getUf());
         $stm->bindValue("id_usuario", $endereco->getIdUsuario());
         $stm->execute();
     }
@@ -32,12 +37,18 @@ class EnderecoDAO{
     public function update(Endereco $endereco) {
         $conn = Connection::getConn();
 
-        $sql = "UPDATE enderecos SET cep = :cep, numero = :numero" . 
+        $sql = "UPDATE enderecos SET numero = :numero, cep = :cep, logradouro = :logradouro, complemento = :complemento, bairro = :bairro, municipio = :municipio, uf = :uf, id_usuario = :id_usuario " .
                " WHERE id = :id";
         
         $stm = $conn->prepare($sql);
+        $$stm->bindValue("numero", $endereco->getNumero());
         $stm->bindValue("cep", $endereco->getCep());
-        $stm->bindValue("numero", $endereco->getNumero());
+        $stm->bindValue("logradouro", $endereco->getLogradouro());
+        $stm->bindValue("complemento", $endereco->getComplemento());
+        $stm->bindValue("bairro", $endereco->getBairro());
+        $stm->bindValue("municipio", $endereco->getMunicipio());
+        $stm->bindValue("uf", $endereco->getUf());
+        $stm->bindValue("id_usuario", $endereco->getIdUsuario());
         $stm->bindValue("id", $endereco->getId());
         $stm->execute();
     }
@@ -51,27 +62,21 @@ class EnderecoDAO{
         $stm->bindValue("id", $id);
         $stm->execute();
     }
-/*
+
     public function findByIdUsuario(int $id) {
         $conn = Connection::getConn();
 
-        $sql = "SELECT * FROM brechos b" .
-               " WHERE b.id_usuario = ?";
+        $sql = "SELECT * FROM enderecos e" .
+               " WHERE e.id_usuario = ?";
         $stm = $conn->prepare($sql);    
         $stm->execute([$id]);
         $result = $stm->fetchAll();
 
-        $brechos = $this->mapBrechos($result);
+        $enderecos = $this->mapEnderecos($result);
 
-        if(count($brechos) == 1)
-            return $brechos[0];
-        elseif(count($brechos) == 0)
-            return null;
-
-        die("BrechoDAO.findById()" . 
-            " - Erro: mais de um brechó encontrado.");
+        return $enderecos;
     }
- */    
+    
     public function findById(int $id) {
         $conn = Connection::getConn();
 
@@ -99,6 +104,11 @@ class EnderecoDAO{
             $endereco->setId($reg['id']);
             $endereco->setCep($reg['cep']);
             $endereco->setNumero($reg['numero']);
+            $endereco->setLogradouro($reg['logradouro']);
+            $endereco->setComplemento($reg['complemento']);
+            $endereco->setBairro($reg['bairro']);
+            $endereco->setMunicipio($reg['municipio']);
+            $endereco->setUf($reg['uf']);
             $endereco->setIdUsuario($reg['id_usuario']);
             array_push($enderecos, $endereco);
         }

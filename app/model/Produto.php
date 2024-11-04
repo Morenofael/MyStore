@@ -96,6 +96,14 @@ class Produto implements JsonSerializable {
         return $this->preco;
     }
 
+    public function getPrecoReais(): string
+    {
+        if($this->preco)    
+            return "R$" . number_format($this->preco, 2, ",", ".");
+
+        return "";
+    }
+
     /**
      * Set the value of preco
      */

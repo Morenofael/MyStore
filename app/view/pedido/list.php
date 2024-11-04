@@ -24,7 +24,7 @@ require_once(__DIR__ . "/../include/menu.php");
                         <tr>
                             <td><a href="<?=BASEURL?>/controller/PedidoController.php?action=display&id=<?=$p->getId()?>"><?= $p->getProduto()->getNome(); ?></a></td>
                             <td><?= $p->getProduto()->getDescricao(); ?></td>
-                            <td><?= $p->getPreco(); ?></td>
+                            <td><?= $p->getPrecoReais(); ?></td>
                     <?php endforeach; ?>
                 </tbody>
             </table>
