@@ -39,14 +39,24 @@ class EnderecoController extends Controller {
     protected function save() {
             //Captura os dados do formulário
         $dados["id"] = isset($_POST['id']) ? $_POST['id'] : 0;
-        $cep = trim($_POST['cep']) ? trim($_POST['cep']) : NULL;
         $numero = trim($_POST['numero']) ? trim($_POST['numero']) : NULL;
+        $cep = trim($_POST['cep']) ? trim($_POST['cep']) : NULL;
+        $logradouro = trim($_POST['logradouro']) ? trim($_POST['logradouro']) : NULL;
+        $complemento = trim($_POST['complemento']) ? trim($_POST['complemento']) : NULL;
+        $bairro = trim($_POST['bairro']) ? trim($_POST['bairro']) : NULL;
+        $municipio = trim($_POST['municipio']) ? trim($_POST['municipio']) : NULL;
+        $uf = trim($_POST['uf']) ? trim($_POST['uf']) : NULL;
         $idUsuario = $_SESSION[SESSAO_USUARIO_ID];
 
         //Cria objeto Endereco 
         $endereco = new Endereco();
         $endereco->setCep($cep);
         $endereco->setNumero($numero);
+        $endereco->setLogradouro($logradouro);
+        $endereco->setComplemento($complemento);
+        $endereco->setBairro($bairro);
+        $endereco->setMunicipio($municipio);
+        $endereco->setUf($uf);
         $endereco->setIdUsuario($idUsuario);
         //Validar os dados
         $erros = $this->enderecoService->validarDados($endereco);
