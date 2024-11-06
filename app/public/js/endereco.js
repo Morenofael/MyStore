@@ -1,4 +1,10 @@
-let inputCep = document.getElementById("txtCep");
+const inputCep = document.getElementById("txtCep");
+const inputLogradouro = document.getElementById("txtLogradouro");
+const inputComplemento= document.getElementById("txtComplemento");
+const inputBairro= document.getElementById("txtBairro");
+const inputMunicipio = document.getElementById("txtMunicipio");
+const inputUf = document.getElementById("txtUf");
+const inputNumero = document.getElementById("txtNumero");
 inputCep.addEventListener("input", ()=>checkCepLength());
 function checkCepLength(){
     if(inputCep.value.length == 8){
@@ -12,37 +18,15 @@ function getDadosEndereco(){
         "https://viacep.com.br/ws/" + cep + "/json/");
     xhttp.onload = function(){
         var json = xhttp.responseText;
-        endereco = JSON.parse(json);
-        console.log(endereco);
+        var endereco = JSON.parse(json);
+        populateInputs(endereco);
     }
-}
-function populateInputs(json){
-    console.log(json);
-}
-
-function checkButtonCurtir(button){
-    var idProduto = button.getAttribute('data-idProduto');
-    var xhttp = new XMLHttpRequest();
-    xhttp.open("GET",
-        BASE_URL + "/controller/CurtidaController.php?action=listJsonFromUsuario");
-
-    xhttp.onload = function() {
-        var json = xhttp.responseText;
-        curtidas = JSON.parse(json);
-        if(curtidas.some(c => c.produto.id == idProduto)){
-            button.setAttribute('onclick','descurtir(this)');
-            botaoImagem = document.querySelector("button>img");
-            botaoImagem.src = "http://localhost:8080/app/view/img/svg/coracao-preenchido.svg";
-            botaoTexto = document.querySelector("button>span");
-            botaoTexto.innerText = "Descurtir";
-        }else{
-            button.setAttribute('onclick','curtir(this)');
-            botaoImagem = document.querySelector("button>img");
-            botaoImagem.src = "http://localhost:8080/app/view/img/svg/coracao.svg";
-            botaoTexto = document.querySelector("button>span");
-            botaoTexto.innerText = "Curtir";
-        }
-    }
-    
     xhttp.send();
+}
+function populateInputs(endereco){
+    inputLogradouro.value = endereco.logradouro ? endereco.logradouro : "";
+    inputComplemento.value = endereco.complemento ? endereco.complemento : "";
+    inputBairro.value = endereco.bairro ? endereco.bairro : "";
+    inputMunicipio.value = endereco.localidade ? endereco.localidade : "";
+    inputUf.value = endereco.uf ? endereco.uf : "";
 }
