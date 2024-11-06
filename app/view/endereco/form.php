@@ -27,31 +27,31 @@ require_once(__DIR__ . "/../include/menu.php");
                 <div class="input-wrapper">
                     <label for="txtLogradouro">Logradouro:</label>
                     <input type="text" id="txtLogradouro" name="logradouro"
-                        maxlength="8" placeholder="Informe o logradouro"
+                        maxlength="64" placeholder="Informe o logradouro"
                         value="<?php echo (isset($dados["endereco"]) ? $dados["endereco"]->getLogradouro() : ''); ?>" />
                 </div>
                <div class="input-wrapper">
                     <label for="txtComplemento">Complemento:</label>
                     <input type="text" id="txtComplemento" name="complemento"
-                        maxlength="8" placeholder="Informe o complemento"
+                        maxlength="64" placeholder="Informe o complemento"
                         value="<?php echo (isset($dados["endereco"]) ? $dados["endereco"]->getComplemento() : ''); ?>" />
                 </div>
                 <div class="input-wrapper">
                     <label for="txtBairro">Bairro:</label>
                     <input type="text" id="txtBairro" name="bairro"
-                        maxlength="8" placeholder="Informe o bairro"
+                        maxlength="64" placeholder="Informe o bairro"
                         value="<?php echo (isset($dados["endereco"]) ? $dados["endereco"]->getBairro() : ''); ?>" />
                 </div>
                 <div class="input-wrapper">
                     <label for="txtCep">Município:</label>
                     <input type="text" id="txtMunicipio" name="municipio"
-                        maxlength="8" placeholder="Informe o municipio"
+                        maxlength="32" placeholder="Informe o municipio"
                         value="<?php echo (isset($dados["endereco"]) ? $dados["endereco"]->getMunicipio() : ''); ?>" />
                 </div>
                 <div class="input-wrapper">
                     <label for="txtCep">UF:</label>
                     <input type="text" id="txtUf" name="uf"
-                        maxlength="8" placeholder="Informe a Unidade Federativa"
+                        maxlength="2" placeholder="Informe a Unidade Federativa"
                         value="<?php echo (isset($dados["endereco"]) ? $dados["endereco"]->getUf() : ''); ?>" />
                 </div>
                 <div class="input-wrapper">
@@ -81,7 +81,7 @@ require_once(__DIR__ . "/../include/menu.php");
         </div>
     </div>
 </div>
-
+<script src="<?=BASEURL?>/public/js/endereco.js"></script>
 <?php
 require_once(__DIR__ . "/../include/footer.php");
 ?>
