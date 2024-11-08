@@ -6,6 +6,7 @@ include_once(__DIR__ . "/../connection/Connection.php");
 include_once(__DIR__ . "/../model/Pedido.php");
 include_once(__DIR__ . "/../model/Usuario.php");
 include_once(__DIR__ . "/../model/Produto.php");
+include_once(__DIR__ . "/../model/Endereco.php");
 
 class PedidoDAO{
 
@@ -18,9 +19,9 @@ class PedidoDAO{
                 " uc.nome AS nome_comprador , uc.email AS email_comprador, uc.cpf AS cpf_comprador, uc.telefone AS telefone_comprador, uc.data_nascimento AS data_nascimento_comprador, uc.situacao AS situacao_comprador, uc.foto_perfil AS foto_perfil_comprador,  " .
                 " prod.id_brecho AS id_brecho_produto , prod.nome AS nome_produto, prod.descricao AS descricao_produto, prod.preco AS preco_produto, prod.genero AS genero_produto " .
                 " FROM pedidos p " .
-                " JOIN usuarios uv ON (uv.id = p.id_vendedor) JOIN usuarios uc ON (uc.id = p.id_comprador) JOIN produtos prod ON (prod.id = p.id_produto)" . 
+                " JOIN usuarios uv ON (uv.id = p.id_vendedor) JOIN usuarios uc ON (uc.id = p.id_comprador) JOIN produtos prod ON (prod.id = p.id_produto) " . 
                " WHERE p.id = ?";
-        $stm = $conn->prepare($sql);    
+        $stm = $conn->prepare($sql);
         $stm->execute([$id]);
         $result = $stm->fetchAll();
 
@@ -43,7 +44,7 @@ class PedidoDAO{
                 " uc.nome AS nome_comprador , uc.email AS email_comprador, uc.cpf AS cpf_comprador, uc.telefone AS telefone_comprador, uc.data_nascimento AS data_nascimento_comprador, uc.situacao AS situacao_comprador, uc.foto_perfil AS foto_perfil_comprador,  " .
                 " prod.id_brecho AS id_brecho_produto , prod.nome AS nome_produto, prod.descricao AS descricao_produto, prod.preco AS preco_produto " .
                 " FROM pedidos p " .
-                " JOIN usuarios uv ON (uv.id = p.id_vendedor) JOIN usuarios uc ON (uc.id = p.id_comprador) JOIN produtos prod ON (prod.id = p.id_produto)" . 
+                " JOIN usuarios uv ON (uv.id = p.id_vendedor) JOIN usuarios uc ON (uc.id = p.id_comprador) JOIN produtos prod ON (prod.id = p.id_produto) " . 
                " WHERE p.id_comprador = ?";
         $stm = $conn->prepare($sql);
         $stm->execute([$_SESSION[SESSAO_USUARIO_ID]]);
@@ -98,7 +99,17 @@ class PedidoDAO{
         $stm->bindValue("id", $idPedido);
         $stm->execute();
     }
-    
+    public function updateIdEndereco($idEndereco, $idPedido){
+        $conn = Connection::getConn();
+
+        $sql = "UPDATE pedidos SET id_endereco = :id_endereco" .
+               " WHERE id = :id";
+        
+        $stm = $conn->prepare($sql);
+        $stm->bindValue("id_endereco", $idEndereco);
+        $stm->bindValue("id", $idPedido);
+        $stm->execute();
+    } 
 
     //Método para excluir um Usuario pelo seu ID
     public function deleteById(int $id) {
@@ -152,6 +163,9 @@ class PedidoDAO{
             $produto->setGenero($reg['genero_produto']);
 
             $pedido->setProduto($produto);
+            
+            $pedido->setidEnderecoEntrega($reg['id_endereco']);
+             
             $pedido->setCaminhoComprovante($reg["caminho_comprovante"]);
             $pedido->setPreco($reg["valor_total"]); 
             

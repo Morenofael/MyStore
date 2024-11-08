@@ -14,7 +14,7 @@ class Pedido implements JsonSerializable {
     private ?Usuario $vendedor;
     private ?Usuario $comprador;
     private ?Produto $produto;
-    private ?Endereco $enderecoEntrega;
+    private ?int $idEnderecoEntrega;
     private ?string $caminhoComprovante;
     private ?float $preco;
 
@@ -22,10 +22,10 @@ class Pedido implements JsonSerializable {
         return array("id" => $this->id,
                      "data" => $this->data,
                      "status" => $this->status,
-                     "Vendedor" => $this->vendedor,
+                     "vendedor" => $this->vendedor,
                      "comprador" => $this->comprador,
                      "produto" => $this->produto,
-                     "endereco" => $this->enderecoEntrega,
+                     "idEnderecoEntrega" => $this->idEnderecoEntrega,
                      "caminhoComprovante" => $this->caminhoComprovante,
                      "preco" => $this->preco);
     }
@@ -200,20 +200,22 @@ class Pedido implements JsonSerializable {
     }
 
     /**
-     * Get the value of enderecoEntrega
+     * Get idEnderecoEntrega.
+     *
+     * @return idEnderecoEntrega.
      */
-    public function getEnderecoEntrega(): ?Endereco
+    public function getIdEnderecoEntrega()
     {
-        return $this->enderecoEntrega;
+        return $this->idEnderecoEntrega;
     }
-
+    
     /**
-     * Set the value of enderecoEntrega
+     * Set idEnderecoEntrega.
+     *
+     * @param idEnderecoEntrega the value to set.
      */
-    public function setEnderecoEntrega(?Endereco $enderecoEntrega): self
+    public function setIdEnderecoEntrega($idEnderecoEntrega)
     {
-        $this->enderecoEntrega = $enderecoEntrega;
-
-        return $this;
+        $this->idEnderecoEntrega = $idEnderecoEntrega;
     }
 }

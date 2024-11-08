@@ -85,6 +85,7 @@ CREATE TABLE pedidos(
 ALTER TABLE pedidos ADD CONSTRAINT fk_comprador_pedido FOREIGN KEY (id_comprador) REFERENCES usuarios (id);
 ALTER TABLE pedidos ADD CONSTRAINT fk_vendedor_pedido FOREIGN KEY (id_vendedor) REFERENCES usuarios (id);
 ALTER TABLE pedidos ADD CONSTRAINT fk_produto_pedido FOREIGN KEY (id_produto) REFERENCES produtos (id);
+ALTER TABLE pedidos ADD CONSTRAINT fk_endereco_pedido FOREIGN KEY (id_endereco) REFERENCES enderecos (id);
 
 CREATE TABLE avaliacoes_produtos(
 	id INT AUTO_INCREMENT NOT NULL,

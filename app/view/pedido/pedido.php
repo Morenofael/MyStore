@@ -16,30 +16,30 @@ echo "</pre>";
             <img src="<?=BASEURL?>/view/img/upl_img/<?=$imagens[0]->getArquivoNome()?>" alt="">
             <h3><?=$pedido->getProduto()->getNome()?></h3>
             <h4><?= $pedido->getProduto()->getDescricao()?></h4>
-           <h4>R$<?= $pedido->getProduto()->getPreco()?></h4> 
-           <h4>Gênero:<?= $dados["generoString"]?></h4> 
+            <h4><?= $pedido->getProduto()->getPrecoReais()?></h4> 
+            <h4>Gênero:<?= $dados["generoString"]?></h4> 
         </div>
         <div class="direita">
             <div id="comprovante-container">
+                <label for="selEndereco">Slecione o endereço de entrega:</label>
+                <select id="selEndereco" name="endereco">
+                    <option value="">Selecione</option>
+                    <?php foreach($dados["enderecosComprador"] as $en): ?>
+                    <option value="<?=$en->getId()?>"><?=$en->getCep() . ", " . $en->getLogradouro() . ", " . $en->getNumero()?></option>
+                    <?php endforeach; ?>
+                </select>
+                <button onclick="salvarEndereco()">salvar</button>
+               <br>
+        
                 <label for="fileComprovante">Insira o comprovante PIX:</label>
                 <input type="file" id="fileComprovante">
             </div>
         </div>
-
-    <div class="row" style="margin-top: 30px;">
-        <div class="col-12">
-        <a class="btn btn-secondary"
-                href="<?= BASEURL ?>/../">Voltar</a>
-        <?php if($vendedor->getId() == $_SESSION[SESSAO_USUARIO_ID]):?>
-        <a class="btn btn-success"
-                href="<?= BASEURL ?>/controller/ProdutoController.php?action=edit&id=<?=$produto->getId()?>">Editar</a>
-        <a class="btn btn-danger" onclick="confirm('deseja excluir?')"
-                href="<?= BASEURL ?>/controller/ProdutoController.php?action=delete&id=<?=$produto->getId()?>">Excluir</a>
-        <?php endif;?>
-        
-        </div>
     </div>
 </section>
+<input type="hidden" value="<?=$pedido->getId()?>" id="pedidoId">
+<input type="hidden" value="<?=BASEURL?>" id="ipnBaseUrl">
+<script src="<?=BASEURL?>/public/js/pedido.js"></script>
 <?php
 require_once(__DIR__ . "/../include/footer.php");
 ?>

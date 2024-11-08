@@ -6,6 +6,7 @@ require_once(__DIR__ . "/../dao/ProdutoDAO.php");
 require_once(__DIR__ . "/../dao/UsuarioDAO.php");
 require_once(__DIR__ . "/../dao/BrechoDAO.php");
 require_once(__DIR__ . "/../dao/ImagemDAO.php");
+require_once(__DIR__ . "/../dao/EnderecoDAO.php");
 require_once(__DIR__ . "/../model/Pedido.php");
 require_once(__DIR__ . "/../service/ProdutoService.php");
 
@@ -16,6 +17,7 @@ class PedidoController extends Controller {
     private UsuarioDAO $usuarioDao;
     private BrechoDAO $brechoDao;
     private ImagemDAO $imagemDao;
+    private EnderecoDAO $enderecoDao;
     private ProdutoService $prodService;
 
     //Método construtor do controller - será executado a cada requisição a está classe
@@ -28,6 +30,7 @@ class PedidoController extends Controller {
         $this->usuarioDao = new UsuarioDAO();
         $this->brechoDao = new BrechoDAO();
         $this->imagemDao = new ImagemDAO();
+        $this->enderecoDao = new EnderecoDAO();
         $this->prodService = new ProdutoService();
 
         $this->handleAction();
@@ -45,6 +48,7 @@ class PedidoController extends Controller {
         $dados["pedido"] = $this->pedidoDao->findById($id);
         $dados["imagem"] = $this->imagemDao->findOneImageFromProduto($dados["pedido"]->getProduto()->getId());
         $dados["generoString"] = $this->prodService->generoCharToString($dados["pedido"]->getProduto()->getGenero());
+        $dados["enderecosComprador"] = $this->enderecoDao->findByIdUsuario($dados["pedido"]->getComprador()->getId());
         $this->loadView("pedido/pedido.php", $dados);
 }
 
@@ -68,6 +72,14 @@ class PedidoController extends Controller {
             $pedidoId = $this->pedidoDao->findLastPedidoFromUser($_SESSION[SESSAO_USUARIO_ID])->getId(); 
             header("location: ./PedidoController.php?action=display&id=" . $pedidoId);
         }
+    }
+
+    protected function updateIdEndereco(){
+        $idEndereco = $_POST['idEndereco'];
+        $idPedido = $_POST['idPedido'];
+        $idPedido = $_POST['idPedido'];
+       //TODO add validacao
+        $this->pedidoDao->updateIdEndereco($idEndereco, $idPedido); 
     }
 }
 
