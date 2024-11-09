@@ -20,16 +20,18 @@ function salvarEndereco() {
         if(json == "")
             verificarCampos();
     }
+    xhttp.send("idEndereco=" + encodeURIComponent(idEnderecoEntrega) +  "&idPedido=" + encodeURIComponent(idPedido));
+
 }
 
 function salvarComprovante() {
     let file = fileComprovante.files[0]; 
     let caminhoComprovante = file.name;
-        
+    console.log(file.name);        
     var xhttp = new XMLHttpRequest();
     xhttp.open("POST",
                 BASE_URL + "/controller/PedidoController.php?action=updateCaminhoComprovante");
-    xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhttp.setRequestHeader("Content-Type", "multipart/form-data");
 
     xhttp.onload = function() {
         var json = xhttp.responseText;
@@ -38,7 +40,7 @@ function salvarComprovante() {
     }
 
 
-    xhttp.send("file=" + encodeURIComponent(file));
+    xhttp.send("file=" + encodeURIComponent(file) + "&idPedido=" + encodeURIComponent(idPedido));
 }
 
 function verificarCampos(){

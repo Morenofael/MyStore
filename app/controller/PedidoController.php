@@ -8,7 +8,9 @@ require_once(__DIR__ . "/../dao/BrechoDAO.php");
 require_once(__DIR__ . "/../dao/ImagemDAO.php");
 require_once(__DIR__ . "/../dao/EnderecoDAO.php");
 require_once(__DIR__ . "/../model/Pedido.php");
+require_once(__DIR__ . "/../model/Imagem.php");
 require_once(__DIR__ . "/../service/ProdutoService.php");
+require_once(__DIR__ . "/../service/ArquivoService.php");
 
 class PedidoController extends Controller {
 
@@ -19,6 +21,7 @@ class PedidoController extends Controller {
     private ImagemDAO $imagemDao;
     private EnderecoDAO $enderecoDao;
     private ProdutoService $prodService;
+    private ArquivoService $arquivoService;
 
     //Método construtor do controller - será executado a cada requisição a está classe
     public function __construct() {
@@ -32,6 +35,8 @@ class PedidoController extends Controller {
         $this->imagemDao = new ImagemDAO();
         $this->enderecoDao = new EnderecoDAO();
         $this->prodService = new ProdutoService();
+        $this->arquivoService = new ArquivoService();
+
 
         $this->handleAction();
     }
@@ -82,14 +87,17 @@ class PedidoController extends Controller {
         if($pedido->getComprador()->getId() == $_SESSION[SESSAO_USUARIO_ID])
         $this->pedidoDao->updateIdEndereco($idEndereco, $idPedido); 
     }
-    
+ 
     protected function updateCaminhoComprovante(){
-        $idEndereco = $_POST['idEndereco'];
+        $file = $_POST['file'];
         $idPedido = $_POST['idPedido'];
         $pedido = $this->pedidoDao->findById($idPedido);
+        
+        $arquivoNome = $this->arquivoService->salvarImagem($file, 0);
+        
         //TODO add validacao
         if($pedido->getComprador()->getId() == $_SESSION[SESSAO_USUARIO_ID])
-        $this->pedidoDao->updateIdEndereco($idEndereco, $idPedido); 
+        $this->pedidoDao->updateCaminhoComprovante($$arquivoNome, $idPedido); 
     }
 }
 
