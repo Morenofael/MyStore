@@ -1,8 +1,12 @@
 const BASE_URL = document.getElementById('ipnBaseUrl').value;
 const selEndereco = document.getElementById('selEndereco');
+const btnSalvarEndereco = document.getElementById('btnSalvarEndereco');
+const btnSalvarComprovante = document.getElementById('btnSalvarComprovante');
 const idPedido = document.getElementById('pedidoId').value;
+let idEnderecoEntrega = document.getElementById('idEnderecoEntrega').value;
+let caminhoComprovante = document.getElementById('caminhoComprovante').value;
 function salvarEndereco() {
-    let idEndereco = selEndereco.value; 
+    idEnderecoEntrega = selEndereco.value; 
     
     var xhttp = new XMLHttpRequest();
     xhttp.open("POST",
@@ -11,10 +15,16 @@ function salvarEndereco() {
 
     xhttp.onload = function() {
         var json = xhttp.responseText;
-        if(json == "")
-            console.log("lol");
+        verificarCampos();
     }
 
-    xhttp.send("idEndereco=" + encodeURIComponent(idEndereco) +  "&idPedido=" + encodeURIComponent(idPedido));
+    xhttp.send("idEndereco=" + encodeURIComponent(idEnderecoEntrega) +  "&idPedido=" + encodeURIComponent(idPedido));
 }
 
+function verificarCampos(){
+    if(idEnderecoEntrega){
+        selEndereco.setAttribute("disabled", "disabled");
+        btnSalvarEndereco.setAttribute("disabled", "disabled");
+    }
+}
+verificarCampos();

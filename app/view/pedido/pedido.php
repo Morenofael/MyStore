@@ -25,19 +25,27 @@ echo "</pre>";
                 <select id="selEndereco" name="endereco">
                     <option value="">Selecione</option>
                     <?php foreach($dados["enderecosComprador"] as $en): ?>
-                    <option value="<?=$en->getId()?>"><?=$en->getCep() . ", " . $en->getLogradouro() . ", " . $en->getNumero()?></option>
+                    <option value="<?=$en->getId()?>"
+                        <?php if($pedido && $pedido->getIdEnderecoEntrega() && $pedido->getIdEnderecoEntrega() == $en->getId()):
+                        ?>
+                        selected
+                        <?php endif; ?> 
+                        ><?=$en->getCep() . ", " . $en->getLogradouro() . ", " . $en->getNumero()?></option>
                     <?php endforeach; ?>
                 </select>
-                <button onclick="salvarEndereco()">salvar</button>
+                <button onclick="if(confirm('Tem certeza que deseja salver este endereço?'))salvarEndereco()" id="btnSalvarEndereco">salvar</button>
                <br>
         
                 <label for="fileComprovante">Insira o comprovante PIX:</label>
                 <input type="file" id="fileComprovante">
+                <button onclick="if(confirm('Tem certeza que deseja salver este comprovante?'))salvarComprovante()" id="btnSalvarComprovante">salvar</button>
             </div>
         </div>
     </div>
 </section>
 <input type="hidden" value="<?=$pedido->getId()?>" id="pedidoId">
+<input type="hidden" value="<?=$pedido->getIdEnderecoEntrega()?>" id="idEnderecoEntrega">
+<input type="hidden" value="<?=$pedido->getCaminhoComprovante()?>" id="caminhoComprovante">
 <input type="hidden" value="<?=BASEURL?>" id="ipnBaseUrl">
 <script src="<?=BASEURL?>/public/js/pedido.js"></script>
 <?php
