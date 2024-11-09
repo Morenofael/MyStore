@@ -15,7 +15,8 @@ function salvarEndereco() {
 
     xhttp.onload = function() {
         var json = xhttp.responseText;
-        verificarCampos();
+        if(json == "")
+            verificarCampos();
     }
 
     xhttp.send("idEndereco=" + encodeURIComponent(idEnderecoEntrega) +  "&idPedido=" + encodeURIComponent(idPedido));
