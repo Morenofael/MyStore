@@ -77,8 +77,18 @@ class PedidoController extends Controller {
     protected function updateIdEndereco(){
         $idEndereco = $_POST['idEndereco'];
         $idPedido = $_POST['idPedido'];
+        $pedido = $this->pedidoDao->findById($idPedido);
+        //TODO add validacao
+        if($pedido->getComprador()->getId() == $_SESSION[SESSAO_USUARIO_ID])
+        $this->pedidoDao->updateIdEndereco($idEndereco, $idPedido); 
+    }
+    
+    protected function updateCaminhoComprovante(){
+        $idEndereco = $_POST['idEndereco'];
         $idPedido = $_POST['idPedido'];
-       //TODO add validacao
+        $pedido = $this->pedidoDao->findById($idPedido);
+        //TODO add validacao
+        if($pedido->getComprador()->getId() == $_SESSION[SESSAO_USUARIO_ID])
         $this->pedidoDao->updateIdEndereco($idEndereco, $idPedido); 
     }
 }
