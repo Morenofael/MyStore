@@ -89,9 +89,9 @@ class PedidoController extends Controller {
     }
  
     protected function updateCaminhoComprovante(){
-        $file = $_POST['file'];
+        $file = $_FILES['file'];
         $idPedido = $_POST['idPedido'];
-        $pedido = $this->pedidoDao->findById($idPedido);
+        $pedido = $this->pedidoDao->findById(13);
         
         $arquivoNome = $this->arquivoService->salvarImagem($file, 0);
         
