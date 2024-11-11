@@ -22,26 +22,27 @@ function salvarEndereco() {
     } 
     xhttp.send("idEndereco=" + encodeURIComponent(idEnderecoEntrega) +  "&idPedido=" + encodeURIComponent(idPedido));
 }
-function salvarComprovante() {
-    let file = fileComprovante.files;
-    if(file){
-        let caminhoComprovante = file.name;
 
+function salvarComprovante() {
+    let files = fileComprovante.files;
+    if(files.length>0){
+        let file = files[0];
+        //caminhoComprovante = file.name;
+        
         var formData = new FormData();
-        formData.append("file", file);
+        formData.append("file[]", file);
         formData.append("idPedido", idPedido);
         
         var xhttp = new XMLHttpRequest();
         xhttp.open("POST",
-                BASE_URL + "/controller/PedidoController.php?action=updateCaminhoComprovante");
-        xhttp.setRequestHeader("Content-Type", "multipart/form-data");
+            BASE_URL + "/controller/PedidoController.php?action=updateCaminhoComprovante", true);
         xhttp.onload = function() {
             var json = xhttp.responseText;
             if(json == "")
-            verificarCampos();
-    }
+                verificarCampos();
+        }
 
-         xhttp.send(formData);
+        xhttp.send(formData);
 
     }else{
         alert("Selecione um arquivo");

@@ -91,16 +91,18 @@ class PedidoController extends Controller {
     protected function updateCaminhoComprovante(){
         $file = $_FILES['file'];
         $idPedido = $_POST['idPedido'];
-        $pedido = $this->pedidoDao->findById(13);
-        
-        $arquivoNome = $this->arquivoService->salvarImagem($file, 0);
-        
-        //TODO add validacao
-        if($pedido->getComprador()->getId() == $_SESSION[SESSAO_USUARIO_ID])
-        $this->pedidoDao->updateCaminhoComprovante($$arquivoNome, $idPedido); 
+        error_log(print_r($file, TRUE)); 
+
+        $pedido = $this->pedidoDao->findById($idPedido);
+ 
+        if($file && $pedido->getComprador()->getId() == $_SESSION[SESSAO_USUARIO_ID]){
+            $arquivoNome = $this->arquivoService->salvarImagem($file, 0);
+            $this->pedidoDao->updateCaminhoComprovante($arquivoNome, $idPedido);
+            header("location: ./UsuarioController.php?action=display&id=" . $_SESSION[SESSAO_USUARIO_ID]);
+        }
+         
     }
 }
-
 
 #Criar objeto da classe para assim executar o construtor
 new PedidoController();

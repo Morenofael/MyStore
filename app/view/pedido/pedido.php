@@ -37,7 +37,7 @@ echo "</pre>";
                <br>
         
                 <label for="fileComprovante">Insira o comprovante PIX:</label>
-                <input name="file" type="file" id="fileComprovante" >
+                <input name="file[]" type="file" id="fileComprovante" >
                 <button onclick="if(confirm('Tem certeza que deseja salver este comprovante?'))salvarComprovante()" id="btnSalvarComprovante">salvar</button>
 <textarea id="upload_file" name="" cols="30" rows="10"></textarea>
             </div>
