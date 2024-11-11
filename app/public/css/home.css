@@ -104,6 +104,12 @@
     color: black;
 }
 @media only screen and (max-width: 600px) {
+    .nav-list{
+        padding: 0;
+    }
+    .menu-logo-wrapper > span{
+        display: none;
+    }
     .sidebar{
         display: none;
     }

@@ -5,6 +5,7 @@ nav{
 #conteudoNavbarSuportado{
 	display: flex;
 	justify-content: space-between;
+	flex-wrap: wrap;
 }
 #menu-logo{
 	height: 50px;
