@@ -27,8 +27,7 @@ function salvarComprovante() {
     let files = fileComprovante.files;
     if(files.length>0){
         let file = files[0];
-        //caminhoComprovante = file.name;
-        
+        caminhoComprovante = file.name;
         var formData = new FormData();
         formData.append("file[]", file);
         formData.append("idPedido", idPedido);
@@ -37,9 +36,7 @@ function salvarComprovante() {
         xhttp.open("POST",
             BASE_URL + "/controller/PedidoController.php?action=updateCaminhoComprovante", true);
         xhttp.onload = function() {
-            var json = xhttp.responseText;
-            if(json == "")
-                verificarCampos();
+            verificarCampos();
         }
 
         xhttp.send(formData);

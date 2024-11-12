@@ -91,7 +91,6 @@ class PedidoController extends Controller {
     protected function updateCaminhoComprovante(){
         $file = $_FILES['file'];
         $idPedido = $_POST['idPedido'];
-        error_log(print_r($file, TRUE)); 
 
         $pedido = $this->pedidoDao->findById($idPedido);
  
