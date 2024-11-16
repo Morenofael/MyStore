@@ -6,8 +6,9 @@ const btnSalvarComprovante = document.getElementById('btnSalvarComprovante');
 const idPedido = document.getElementById('pedidoId').value;
 let idEnderecoEntrega = document.getElementById('idEnderecoEntrega').value;
 let caminhoComprovante = document.getElementById('caminhoComprovante').value;
+
 function salvarEndereco() {
-    idEnderecoEntrega = selEndereco.value; 
+    idEnderecoEntrega = selEndereco.value;
 
     var xhttp = new XMLHttpRequest();
     xhttp.open("POST",
@@ -19,7 +20,7 @@ function salvarEndereco() {
         verificarCampos();
         if(json == "")
             verificarCampos();
-    } 
+    }
     xhttp.send("idEndereco=" + encodeURIComponent(idEnderecoEntrega) +  "&idPedido=" + encodeURIComponent(idPedido));
 }
 
@@ -31,12 +32,13 @@ function salvarComprovante() {
         var formData = new FormData();
         formData.append("file[]", file);
         formData.append("idPedido", idPedido);
-        
+
         var xhttp = new XMLHttpRequest();
         xhttp.open("POST",
             BASE_URL + "/controller/PedidoController.php?action=updateCaminhoComprovante", true);
         xhttp.onload = function() {
             verificarCampos();
+            alterarStatusPedido('NV')
         }
 
         xhttp.send(formData);
@@ -44,17 +46,37 @@ function salvarComprovante() {
     }else{
         alert("Selecione um arquivo");
     }
-    
+
 }
 
 function verificarCampos(){
     if(idEnderecoEntrega){
-        selEndereco.setAttribute("disabled", "disabled");
-        btnSalvarEndereco.setAttribute("disabled", "disabled");
+      selEndereco.setAttribute("disabled", "disabled");
+      btnSalvarEndereco.setAttribute("disabled", "disabled");
+      selEndereco.classList.add("mouse-not-allowed");
+      btnSalvarEndereco.classList.add("mouse-not-allowed");
+      if(!caminhoComprovante){
+        fileComprovante.removeAttribute("disabled");
+        btnSalvarComprovante.removeAttribute("disabled");
+      }
     }
     if(caminhoComprovante){
         fileComprovante.setAttribute("disabled", "disabled");
         btnSalvarComprovante.setAttribute("disabled", "disabled");
+        fileComprovante.classList.add("mouse-not-allowed");
+        btnSalvarComprovante.classList.add("mouse-not-allowed");
     }
+}
+
+function alterarStatusPedido(status){
+  var xhttp = new XMLHttpRequest();
+  xhttp.open("POST",
+    BASE_URL + "/controller/PedidoController.php?action=updateStatus", true);
+  xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+  xhttp.onload = function() {
+    verificarCampos();
+  }
+
+  xhttp.send("status=" + encodeURIComponent(status) + "&idPedido=" + encodeURIComponent(idPedido));
 }
 verificarCampos();
