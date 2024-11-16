@@ -61,7 +61,7 @@ class PedidoController extends Controller {
         $idProduto = $_GET['id'];
         $produto = $this->produtoDao->findById($idProduto);
         $brecho = $this->brechoDao->findById($produto->getIdBrecho());
-        //Cria objeto Pedido 
+        //Cria objeto Pedido
         $pedido = new Pedido();
         $pedido->setVendedor($brecho->getUsuario());
         $pedido->setComprador($this->usuarioDao->findById($_SESSION[SESSAO_USUARIO_ID]));
@@ -74,7 +74,7 @@ class PedidoController extends Controller {
         }else{
             $this->produtoDao->updateDisp($produto, 0); //Torna produto indisponível
             $this->pedidoDao->insert($pedido);
-            $pedidoId = $this->pedidoDao->findLastPedidoFromUser($_SESSION[SESSAO_USUARIO_ID])->getId(); 
+            $pedidoId = $this->pedidoDao->findLastPedidoFromUser($_SESSION[SESSAO_USUARIO_ID])->getId();
             header("location: ./PedidoController.php?action=display&id=" . $pedidoId);
         }
     }
@@ -85,21 +85,32 @@ class PedidoController extends Controller {
         $pedido = $this->pedidoDao->findById($idPedido);
         //TODO add validacao
         if($pedido->getComprador()->getId() == $_SESSION[SESSAO_USUARIO_ID])
-        $this->pedidoDao->updateIdEndereco($idEndereco, $idPedido); 
+        $this->pedidoDao->updateIdEndereco($idEndereco, $idPedido);
     }
- 
+
     protected function updateCaminhoComprovante(){
         $file = $_FILES['file'];
         $idPedido = $_POST['idPedido'];
 
         $pedido = $this->pedidoDao->findById($idPedido);
- 
+
         if($file && $pedido->getComprador()->getId() == $_SESSION[SESSAO_USUARIO_ID]){
             $arquivoNome = $this->arquivoService->salvarImagem($file, 0);
             $this->pedidoDao->updateCaminhoComprovante($arquivoNome, $idPedido);
-            header("location: ./UsuarioController.php?action=display&id=" . $_SESSION[SESSAO_USUARIO_ID]);
         }
-         
+
+    }
+
+    protected function  updateStatus(){
+        $status = $_POST['status'];
+        $idPedido = $_POST['idPedido'];
+
+        $pedido = $this->pedidoDao->findById($idPedido);
+
+        if($status && $pedido->getComprador()->getId() == $_SESSION[SESSAO_USUARIO_ID] or
+        $pedido->getVendedor()->getId() == $_SESSION[SESSAO_USUARIO_ID]){
+            $this->pedidoDao->updateStatus($status, $idPedido);
+        }
     }
 }
 
