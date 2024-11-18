@@ -37,6 +37,9 @@ $imagens = $dados["imagem"];
                 <input name="file[]" type="file" id="fileComprovante" disabled>
                 <button onclick="if(confirm('Tem certeza que deseja salver este comprovante?'))salvarComprovante()" id="btnSalvarComprovante" disabled>salvar</button>
             </div>
+            <div id="status-display">
+                <span>Status do pedido: <?=$pedido->getStatus()?></span>
+            </div>
         </div>
     </div>
 </section>
