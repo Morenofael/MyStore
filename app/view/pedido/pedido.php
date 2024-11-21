@@ -40,10 +40,19 @@ $imagens = $dados["imagem"];
             <div id="status-display">
                 <span>Status do pedido: <?=$pedido->getStatus()?></span>
             </div>
+            <?php if($pedido && $pedido->getVendedor()->getId() == $_SESSION[SESSAO_USUARIO_ID]):?>
+                <select id="selStatus">
+                    <option value="">Altere o status do pedido</option>
+                    <option value="P">Em preparo</option>
+                    <option value="ENV">Enviado para entrega</option>
+                </select>
+                <button onclick="if(confirm('Tem certeza que deseja alterar o status?'))alterarStatusPedido(document.getElementById('selStatus').value)" id="btnSalvarComprovante">salvar</button>
+            <?php endif;?>
         </div>
     </div>
 </section>
 <input type="hidden" value="<?=$pedido->getId()?>" id="pedidoId">
+<input type="hidden" value="<?=$pedido->getStatus()?>" id="pedidoStatus">
 <input type="hidden" value="<?=$pedido->getIdEnderecoEntrega()?>" id="idEnderecoEntrega">
 <input type="hidden" value="<?=$pedido->getCaminhoComprovante()?>" id="caminhoComprovante">
 <input type="hidden" value="<?=BASEURL?>" id="ipnBaseUrl">
