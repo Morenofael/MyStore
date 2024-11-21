@@ -4,8 +4,10 @@ const fileComprovante = document.getElementById('fileComprovante');
 const btnSalvarEndereco = document.getElementById('btnSalvarEndereco');
 const btnSalvarComprovante = document.getElementById('btnSalvarComprovante');
 const idPedido = document.getElementById('pedidoId').value;
+const statusDisplaySpan = document.querySelector('#status-display > span')
 let idEnderecoEntrega = document.getElementById('idEnderecoEntrega').value;
 let caminhoComprovante = document.getElementById('caminhoComprovante').value;
+let pedidoStatus = document.getElementById('pedidoStatus').value;
 
 function salvarEndereco() {
     idEnderecoEntrega = selEndereco.value;
@@ -49,26 +51,8 @@ function salvarComprovante() {
 
 }
 
-function verificarCampos(){
-    if(idEnderecoEntrega){
-      selEndereco.setAttribute("disabled", "disabled");
-      btnSalvarEndereco.setAttribute("disabled", "disabled");
-      selEndereco.classList.add("mouse-not-allowed");
-      btnSalvarEndereco.classList.add("mouse-not-allowed");
-      if(!caminhoComprovante){
-        fileComprovante.removeAttribute("disabled");
-        btnSalvarComprovante.removeAttribute("disabled");
-      }
-    }
-    if(caminhoComprovante){
-        fileComprovante.setAttribute("disabled", "disabled");
-        btnSalvarComprovante.setAttribute("disabled", "disabled");
-        fileComprovante.classList.add("mouse-not-allowed");
-        btnSalvarComprovante.classList.add("mouse-not-allowed");
-    }
-}
-
 function alterarStatusPedido(status){
+  pedidoStatus = status;
   var xhttp = new XMLHttpRequest();
   xhttp.open("POST",
     BASE_URL + "/controller/PedidoController.php?action=updateStatus", true);
@@ -79,4 +63,25 @@ function alterarStatusPedido(status){
 
   xhttp.send("status=" + encodeURIComponent(status) + "&idPedido=" + encodeURIComponent(idPedido));
 }
+
+function verificarCampos(){
+  if(idEnderecoEntrega){
+    selEndereco.setAttribute("disabled", "disabled");
+    btnSalvarEndereco.setAttribute("disabled", "disabled");
+    selEndereco.classList.add("mouse-not-allowed");
+    btnSalvarEndereco.classList.add("mouse-not-allowed");
+    if(!caminhoComprovante){
+      fileComprovante.removeAttribute("disabled");
+      btnSalvarComprovante.removeAttribute("disabled");
+    }
+  }
+  if(caminhoComprovante){
+    fileComprovante.setAttribute("disabled", "disabled");
+    btnSalvarComprovante.setAttribute("disabled", "disabled");
+    fileComprovante.classList.add("mouse-not-allowed");
+    btnSalvarComprovante.classList.add("mouse-not-allowed");
+  }
+  statusDisplaySpan.innerHTML = "Status do pedido: " + pedidoStatus;
+}
+
 verificarCampos();
