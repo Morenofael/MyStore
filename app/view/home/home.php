@@ -16,7 +16,7 @@ $imagens = array_reverse($dados["imagens"]);
             <li><img src="<?= BASEURL ?>/view/img/svg/bussola.svg" alt="Bússola" class="icon"><a href="<?=BASEURL?>/controller/ProdutoController.php?action=list">Explorar</a></li>
             <li><img src="<?= BASEURL ?>/view/img/svg/coracao.svg" alt="Coração" class="icon"><a href="<?= BASEURL ?>/controller/CurtidaController.php?action=list">Curtido</a></li>
             <li><img src="<?= BASEURL ?>/view/img/svg/carrinho.svg" alt="Carrinho" class="icon"><a href="<?=BASEURL?>/controller/PedidoController.php?action=listForComprador">Meus pedidos</a></li>
-            <li><img src="<?= BASEURL ?>/view/img/svg/porquinho.svg" alt="Cofre de porquinho" class="icon"><a href="<?= BASEURL ?>/controller/BrechoController.php?action=create">Vendendo</a></li>
+            <li><img src="<?= BASEURL ?>/view/img/svg/porquinho.svg" alt="Cofre de porquinho" class="icon"><a href="<?= BASEURL ?>/controller/PedidoController.php?action=listForVendedor">Vendendo</a></li>
             <li><img src="<?= BASEURL ?>/view/img/svg/perfil.svg" alt="Perfil" class="icon"><a href="<?= BASEURL ?>/controller/UsuarioController.php?action=display&id=<?= $_SESSION[SESSAO_USUARIO_ID] ?>">Perfil</a></li>
             <li><img src="<?= BASEURL ?>/view/img/svg/engrenagem.svg" alt="Engrenagem" class="icon"><a href="">Configurações</a></li>
         </ul>
@@ -29,11 +29,15 @@ $imagens = array_reverse($dados["imagens"]);
     </div>
 
     <div class="main-content">
-        <div id="main-produto"> 
+        <div id="search-wrapper">
+            <input type="text" name="q" id="txtQuery" placeholder="Pesquise produtos">
+            <img src="<?= BASEURL ?>/view/img/svg/bussola.svg" alt="Engrenagem" class="icon">
+        </div>
+        <div id="main-produto">
             <a href="<?=BASEURL?>/controller/ProdutoController.php?action=display&id=<?=$produtos[0]->getId()?>"><img src="<?=BASEURL?>/view/img/upl_img/<?=$imagens[0][0]->getArquivoNome()?>" alt=""></a>
             <div class="main-produto-info-wrapper">
                 <a href="<?=BASEURL?>/controller/ProdutoController.php?action=display&id=<?=$produtos[0]->getId()?>"><h4><?=$produtos[0]->getNome()?></h4></a>
-                <span><?=$produtos[0]->getDescricao()?></span> 
+                <span><?=$produtos[0]->getDescricao()?></span>
                 <h5>Preço: <?=$produtos[0]->getPrecoReais()?></h5>
                 <div class="flex botoes-produto-wrapper">
                     <button onclick="curtir(this)" data-idProduto="<?=$produtos[0]->getId()?>"><img class="icon" src="<?=BASEURL?>/view/img/svg/coracao.svg" alt="coração"><span>Curtir</span></button>
