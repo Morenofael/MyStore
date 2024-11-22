@@ -48,6 +48,13 @@ class PedidoController extends Controller {
         $this->loadView("pedido/list.php", $dados, $msgErro, $msgSucesso);
     }
 
+    protected function listForVendedor(string $msgErro = "", string $msgSucesso = "") {
+        $pedidos= $this->pedidoDao->listFromVendedor();
+        $dados["lista"] = $pedidos;
+
+        $this->loadView("pedido/list.php", $dados, $msgErro, $msgSucesso);
+    }
+
     protected function display(){
         $id = $_GET['id'];
         $dados["pedido"] = $this->pedidoDao->findById($id);

@@ -36,15 +36,15 @@ class ProdutoController extends Controller {
     protected function list(string $msgErro = "", string $msgSucesso = "") {
         if(! $this->usuarioLogado())
             header("location: HomeController.php?action=home");
-        
+
         $dados["lista"] = $this->produtoDao->listDisp();
         $dados["imagens"] = Array();
         foreach($dados["lista"] as $p){
             array_push($dados["imagens"], $this->imagemDao->findOneImageFromProduto($p->getId()));
-        } 
+        }
         $this->loadView("produto/list.php", $dados);
     }
-    
+
     protected function listByGenero(){
         if($_GET["g"]){
             $genero = $_GET["g"];
@@ -57,12 +57,23 @@ class ProdutoController extends Controller {
         $dados["imagens"] = Array();
         foreach($dados["lista"] as $p){
             array_push($dados["imagens"], $this->imagemDao->findOneImageFromProduto($p->getId()));
-        } 
+        }
         $this->loadView("produto/list.php", $dados);
     }
 
-    protected function listCurtidas(){
-
+    protected function listByTags(){
+        $dados["lista"] = Array();
+        $dados["imagens"] = Array();
+        $tags = explode(" ", $_GET['q']);
+        $produtos = $this->produtoDao->listDisp();
+        foreach($produtos as $p){
+            $pTags = explode(" ",$p->getTags());
+            if(array_intersect($tags, $pTags)){
+                array_push($dados["lista"], $p);
+                array_push($dados["imagens"], $this->imagemDao->findOneImageFromProduto($p->getId()));
+            }
+        }
+        $this->loadView("produto/list.php", $dados);
     }
 
     protected function display(){
@@ -84,8 +95,8 @@ class ProdutoController extends Controller {
         $genero = trim($_POST['genero']) ? trim($_POST['genero']) : NULL;
         $tags = trim($_POST['tags']) ? trim($_POST['tags']) : NULL;
         $brecho = $this->brechoDao->findByIdUsuario($_SESSION[SESSAO_USUARIO_ID]);
-		
-        //Cria objeto Produto 
+
+        //Cria objeto Produto
         $produto = new Produto();
         $produto->setNome($nome);
         $produto->setPreco($preco);
@@ -98,7 +109,7 @@ class ProdutoController extends Controller {
         if(empty($erros)) {
             //Persiste o objeto
             try {
-                
+
                 if($dados["id"] == 0){  //Inserindo
                     if($_FILES["imagem"]['error'][0] != 4){
                         $this->produtoDao->insert($produto);
@@ -106,13 +117,13 @@ class ProdutoController extends Controller {
                         echo "Pelo menos uma imagem deve ser inserida.";
                         exit;
                     }
-                        
+
                     $arquivoImg = $_FILES["imagem"]; //'imagem' é o 'name' do input
                     $totalArquivos = count($arquivoImg['name']);
                     for($i = 0; $i < $totalArquivos; $i++){
                         $arquivoNome = $this->arquivoService->salvarImagem($arquivoImg, $i);
                         $imagem = new Imagem();
-                        $imagem->setIdProduto($this->produtoDao->getLastProdutoFromBrecho($brecho->getId())->getId()); 
+                        $imagem->setIdProduto($this->produtoDao->getLastProdutoFromBrecho($brecho->getId())->getId());
                         $imagem->setArquivoNome($arquivoNome);
                         $this->imagemDao->insert($imagem);
                     }
@@ -126,15 +137,15 @@ class ProdutoController extends Controller {
 
             } catch (PDOException $e) {
                 print_r($e);
-                array_push($erros, "[Erro ao salvar o produto na base de dados.]");                
+                array_push($erros, "[Erro ao salvar o produto na base de dados.]");
             }
         }
 
         //Se há erros, volta para o formulário
-        
+
         //Carregar os valores recebidos por POST de volta para o formulário
         $dados["produto"] = $produto;
-        
+
         $msgsErro = implode("<br>", $erros);
         $this->loadView("produto/form.php", $dados, $msgsErro);
      }
@@ -153,7 +164,7 @@ class ProdutoController extends Controller {
         if(! $produto){
             $this->list("Produto não encontrado");
         }elseif($this->usuarioDao->findByIdBrecho($produto->getIdbrecho())->getId() == $_SESSION[SESSAO_USUARIO_ID]) {
-            
+
             //Setar os dados
             $dados["id"] = $produto->getId();
             $dados["produto"] = $produto;
@@ -177,7 +188,7 @@ class ProdutoController extends Controller {
             //Mensagem q não encontrou o usuário
             $this->list("Usuário não encontrado!");
 
-        }               
+        }
      }
 
    /* protected function listJson() {/*
@@ -187,7 +198,7 @@ class ProdutoController extends Controller {
      }
 
     //Método para buscar o usuário com base no ID recebido por parâmetro GET
-     */ 
+     */
        private function findProdutoById() {
         $id = 0;
         if(isset($_GET['id']))
