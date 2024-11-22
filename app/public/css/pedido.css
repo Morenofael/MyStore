@@ -3,6 +3,12 @@
 	display: grid;
 	grid-template-columns: 30% 70%;
 }
+.esquerda{
+    grid-column: 1 / 2;
+}
+.direita{
+    grid-column: 2 / 3;
+}
 .icon{
 	width: 2rem;
 	height: auto;
@@ -30,6 +36,11 @@
 #comprovante-container{
     display: flex;
     flex-direction: column;
+    width: 30vw;
+}
+#img-comprovante-pix{
+    max-width: 500px;
+    height: auto;
 }
 .mouse-not-allowed{
     cursor: not-allowed;

@@ -8,7 +8,7 @@
 	height: auto;
 }
 .botoes-produto-wrapper > *{
-	color: black;	
+	color: black;
     border: 2px solid black;
     padding: 6px;
     border-radius: 10px;
@@ -35,7 +35,7 @@
 	border-radius: 50px;
 }
 .mouse-pointer{
-	cursor: crosshair;
+	cursor: pointer;
 }
 .sec-img{
 	width: 200px;

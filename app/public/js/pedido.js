@@ -1,6 +1,6 @@
 const BASE_URL = document.getElementById('ipnBaseUrl').value;
-const selEndereco = document.getElementById('selEndereco');
-const fileComprovante = document.getElementById('fileComprovante');
+const selEndereco = document.getElementById('selEndereco') ? document.getElementById('selEndereco') : null;
+const fileComprovante = document.getElementById('fileComprovante') ? document.getElementById('fileComprovante'): null;
 const btnSalvarEndereco = document.getElementById('btnSalvarEndereco');
 const btnSalvarComprovante = document.getElementById('btnSalvarComprovante');
 const idPedido = document.getElementById('pedidoId').value;
@@ -64,8 +64,31 @@ function alterarStatusPedido(status){
   xhttp.send("status=" + encodeURIComponent(status) + "&idPedido=" + encodeURIComponent(idPedido));
 }
 
+function statusPedidoEnumToString(status){
+  switch(status){
+    case 'AI':
+      return 'Aguardando Informações';
+      break;
+    case 'NV':
+      return 'Não visto pelo vendedor';
+      break;
+    case 'P':
+      return 'Em preparo';
+      break;
+    case 'ENV':
+      return 'Enviado para entrega';
+      break;
+    case 'ENT':
+      return 'Entregue';
+      break;
+    default:
+      return '404';
+      break;
+  }
+}
+
 function verificarCampos(){
-  if(idEnderecoEntrega){
+  if(idEnderecoEntrega && selEndereco){
     selEndereco.setAttribute("disabled", "disabled");
     btnSalvarEndereco.setAttribute("disabled", "disabled");
     selEndereco.classList.add("mouse-not-allowed");
@@ -75,13 +98,13 @@ function verificarCampos(){
       btnSalvarComprovante.removeAttribute("disabled");
     }
   }
-  if(caminhoComprovante){
+  if(caminhoComprovante && fileComprovante){
     fileComprovante.setAttribute("disabled", "disabled");
     btnSalvarComprovante.setAttribute("disabled", "disabled");
     fileComprovante.classList.add("mouse-not-allowed");
     btnSalvarComprovante.classList.add("mouse-not-allowed");
   }
-  statusDisplaySpan.innerHTML = "Status do pedido: " + pedidoStatus;
+  statusDisplaySpan.innerHTML = "Status do pedido: " + statusPedidoEnumToString(pedidoStatus);
 }
 
 verificarCampos();
