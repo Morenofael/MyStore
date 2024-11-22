@@ -46,6 +46,12 @@
     display: none;
 }
 
+#search-wrapper{
+    padding: 12px;
+    display: flex;
+    justify-content: flex-end;
+}
+
 #main-produto{
     display: grid;
     gap: 20px;
@@ -87,7 +93,7 @@
     color: black;
  }
 .sec-produtos a div h5, .sec-produtos a div span{
-    padding-left: 10px; 
+    padding-left: 10px;
 }
 .sec-produto-img{
     width: 100%;
