@@ -29,10 +29,11 @@ $imagens = array_reverse($dados["imagens"]);
     </div>
 
     <div class="main-content">
-        <div id="search-wrapper">
+        <form id="frmSearch" action="./ProdutoController.php" method="GET">
+            <input type="hidden" name="action" value="listByTags">
             <input type="text" name="q" id="txtQuery" placeholder="Pesquise produtos">
-            <img src="<?= BASEURL ?>/view/img/svg/bussola.svg" alt="Engrenagem" class="icon">
-        </div>
+            <button type="submit"><img src="<?= BASEURL ?>/view/img/svg/bussola.svg" alt="Engrenagem" class="icon"></button>
+        </form>
         <div id="main-produto">
             <a href="<?=BASEURL?>/controller/ProdutoController.php?action=display&id=<?=$produtos[0]->getId()?>"><img src="<?=BASEURL?>/view/img/upl_img/<?=$imagens[0][0]->getArquivoNome()?>" alt=""></a>
             <div class="main-produto-info-wrapper">
@@ -40,7 +41,7 @@ $imagens = array_reverse($dados["imagens"]);
                 <span><?=$produtos[0]->getDescricao()?></span>
                 <h5>Preço: <?=$produtos[0]->getPrecoReais()?></h5>
                 <div class="flex botoes-produto-wrapper">
-                    <button onclick="curtir(this)" data-idProduto="<?=$produtos[0]->getId()?>"><img class="icon" src="<?=BASEURL?>/view/img/svg/coracao.svg" alt="coração"><span>Curtir</span></button>
+                    <button onclick="curtir(this)" data-idProduto="<?=$produtos[0]->getId()?>" id="buttonCurtir"><img class="icon" src="<?=BASEURL?>/view/img/svg/coracao.svg" alt="coração"><span>Curtir</span></button>
                     <a href="<?=BASEURL?>/controller/ProdutoController.php?action=display&id=<?=$produtos[0]->getId()?>"><span>Comprar</span>
                 </div>
             </div>

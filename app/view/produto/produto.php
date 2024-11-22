@@ -13,14 +13,14 @@ $imagens = $dados["imagens"];
     <div class="esquerda">
         <img src="<?=BASEURL?>/view/img/upl_img/<?=$imagens[0]->getArquivoNome()?>" id="main-img">
         <h4><?= $produto->getDescricao()?></h4>
-        <h4>Gênero:<?= $dados["generoString"]?></h4> 
+        <h4>Gênero:<?= $dados["generoString"]?></h4>
     </div>
     <div class="direita">
         <h3><?=$produto->getNome()?></h3>
-        <h4>R$<?= $produto->getPreco()?></h4> 
+        <h4>R$<?= $produto->getPreco()?></h4>
         <?php if($vendedor->getId() != $_SESSION[SESSAO_USUARIO_ID]) : ?>
         <div class="flex botoes-produto-wrapper">
-            <button onclick="curtir(this)" data-idProduto="<?=$produto->getId()?>"><img class="icon" src="<?=BASEURL?>/view/img/svg/coracao.svg" alt="coração"><span>Curtir</span></button>
+            <button onclick="curtir(this)" data-idProduto="<?=$produto->getId()?>" id="buttonCurtir"><img class="icon" src="<?=BASEURL?>/view/img/svg/coracao.svg" alt="coração"><span>Curtir</span></button>
             <a href="<?=BASEURL?>/controller/PedidoController.php?action=save&id=<?=$produto->getId()?>">Comprar</a>
         </div>
         <?php endif; ?>
@@ -32,7 +32,7 @@ $imagens = $dados["imagens"];
             <span class="muda-index mouse-pointer" onclick="mudarIndex(1)">-></span>
         </div>
     </div>
-    
+
 </div>
 
 
@@ -47,7 +47,7 @@ $imagens = $dados["imagens"];
     <a class="btn btn-danger" onclick="confirm('deseja excluir?')"
         href="<?= BASEURL ?>/controller/ProdutoController.php?action=delete&id=<?=$produto->getId()?>">Excluir</a>
     <?php endif;?>
-    </div>     
+    </div>
 </div>
 <input id="ipnBaseUrl" type="hidden" value="<?= BASEURL ?>">
 <input id="numImg" type="hidden" value="<?= count($imagens) ?>">
