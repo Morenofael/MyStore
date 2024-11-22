@@ -1,9 +1,8 @@
 const BASE_URL = document.getElementById('ipnBaseUrl').value;
-console.log(BASE_URL);
 
 function curtir(button) {
     var idProduto = button.getAttribute('data-idProduto');
-    
+
     var xhttp = new XMLHttpRequest();
     xhttp.open("POST",
                 BASE_URL + "/controller/CurtidaController.php?action=save");
@@ -12,7 +11,7 @@ function curtir(button) {
     xhttp.onload = function() {
         var json = xhttp.responseText;
         if(json == "")
-            checkButtonCurtir(button); 
+            checkButtonCurtir(button);
     }
 
     xhttp.send("idProduto=" + encodeURIComponent(idProduto));
@@ -20,7 +19,7 @@ function curtir(button) {
 
 function descurtir(button) {
     var idProduto = button.getAttribute('data-idProduto');
-    
+
     var xhttp = new XMLHttpRequest();
     xhttp.open("POST",
                 BASE_URL + "/controller/CurtidaController.php?action=delete");
@@ -29,7 +28,7 @@ function descurtir(button) {
     xhttp.onload = function() {
         var json = xhttp.responseText;
         if(json == "")
-            checkButtonCurtir(button); 
+            checkButtonCurtir(button);
     }
 
     xhttp.send("idProduto=" + encodeURIComponent(idProduto));
@@ -46,19 +45,19 @@ function checkButtonCurtir(button){
         curtidas = JSON.parse(json);
         if(curtidas.some(c => c.produto.id == idProduto)){
             button.setAttribute('onclick','descurtir(this)');
-            botaoImagem = document.querySelector("button>img");
+            botaoImagem = document.querySelector("#buttonCurtir>img");
             botaoImagem.src = "http://localhost:8080/app/view/img/svg/coracao-preenchido.svg";
-            botaoTexto = document.querySelector("button>span");
+            botaoTexto = document.querySelector("#buttonCurtir>span");
             botaoTexto.innerText = "Descurtir";
         }else{
             button.setAttribute('onclick','curtir(this)');
-            botaoImagem = document.querySelector("button>img");
+            botaoImagem = document.querySelector("#buttonCurtir>img");
             botaoImagem.src = "http://localhost:8080/app/view/img/svg/coracao.svg";
-            botaoTexto = document.querySelector("button>span");
+            botaoTexto = document.querySelector("#buttonCurtir>span");
             botaoTexto.innerText = "Curtir";
         }
     }
-    
+
     xhttp.send();
 }
 checkButtonCurtir(document.querySelector("button"));
