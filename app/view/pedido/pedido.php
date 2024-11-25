@@ -42,6 +42,9 @@ $imagens = $dados["imagem"];
             <div id="status-display">
                 <span>Status do pedido: <?=$pedido->getStatus()?></span>
             </div>
+            <?php if($pedido->getIdEnderecoEntrega()) : ?>
+                <span>Endereço de entrega: <?=$pedido->getIdEnderecoEntrega()?></span><br>
+            <?php endif;?>
             <?php if($pedido && $pedido->getVendedor()->getId() == $_SESSION[SESSAO_USUARIO_ID] && $pedido->getStatus() != 'AI' && $pedido->getStatus() != "ENT"):?>
                 <select id="selStatus">
                     <option value="">Altere o status do pedido</option>
