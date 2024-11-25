@@ -53,7 +53,23 @@ class PedidoDAO{
         $pedidos = $this->mapPedidos($result);
         return $pedidos;
     }
+    public function listFromVendedor(){
+        $conn = Connection::getConn();
 
+        $sql = "SELECT p.*, " .
+                " uv.nome AS nome_vendedor , uv.email AS email_vendedor, uv.cpf AS cpf_vendedor, uv.telefone AS telefone_vendedor, uv.data_nascimento AS data_nascimento_vendedor, uv.situacao AS situacao_vendedor, uv.foto_perfil AS foto_perfil_vendedor,  " .
+                " uc.nome AS nome_comprador , uc.email AS email_comprador, uc.cpf AS cpf_comprador, uc.telefone AS telefone_comprador, uc.data_nascimento AS data_nascimento_comprador, uc.situacao AS situacao_comprador, uc.foto_perfil AS foto_perfil_comprador,  " .
+                " prod.id_brecho AS id_brecho_produto , prod.nome AS nome_produto, prod.descricao AS descricao_produto, prod.preco AS preco_produto " .
+                " FROM pedidos p " .
+                " JOIN usuarios uv ON (uv.id = p.id_vendedor) JOIN usuarios uc ON (uc.id = p.id_comprador) JOIN produtos prod ON (prod.id = p.id_produto) " .
+               " WHERE p.id_vendedor = ?";
+        $stm = $conn->prepare($sql);
+        $stm->execute([$_SESSION[SESSAO_USUARIO_ID]]);
+        $result = $stm->fetchAll();
+
+        $pedidos = $this->mapPedidos($result);
+        return $pedidos;
+    }
     public function findLastPedidoFromUser(int $idUsuario){
         $conn = Connection::getConn();
 
