@@ -12,7 +12,7 @@ $imagens = $dados["imagens"];
 <div class="lista-produtos flex">
     <?php $i = 0?>
     <?php foreach($dados['lista'] as $c): ?>
-        <a href="<?=BASEURL?>/controller/ProdutoController.php?action=display&id=<?=$c->getId()?>">
+        <a href="<?=BASEURL?>/controller/ProdutoController.php?action=display&id=<?=$c->getProduto()->getId()?>">
             <div>
                 <img src="<?=BASEURL?>/view/img/upl_img/<?=$imagens[$i][0]->getArquivoNome()?>" alt="" class="lista-produto-img">
                 <h5><?=$c->getProduto()->getNome()?></h5>
