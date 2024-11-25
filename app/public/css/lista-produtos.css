@@ -1,6 +1,15 @@
 :root{
     --produto-sec-border-radius: 25px;
 }
+#frmSearch{
+    padding: 12px;
+    display: flex;
+    justify-content: flex-end;
+}
+.icon{
+    width: 2rem;
+    height: auto;
+}
 .flex{
     display: flex;
     flex-wrap: wrap;
