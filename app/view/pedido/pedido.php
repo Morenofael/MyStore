@@ -43,7 +43,7 @@ $imagens = $dados["imagem"];
                 <span>Status do pedido: <?=$pedido->getStatus()?></span>
             </div>
             <?php if($pedido->getIdEnderecoEntrega()) : ?>
-                <span>Endereço de entrega: <?=$pedido->getIdEnderecoEntrega()?></span><br>
+                <span>Endereço de entrega: <?=$dados["enderecoEntrega"]?></span><br>
             <?php endif;?>
             <?php if($pedido && $pedido->getVendedor()->getId() == $_SESSION[SESSAO_USUARIO_ID] && $pedido->getStatus() != 'AI' && $pedido->getStatus() != "ENT"):?>
                 <select id="selStatus">

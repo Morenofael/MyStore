@@ -22,7 +22,7 @@ require_once(__DIR__ . "/../include/menu.php");
                 <tbody>
                     <?php foreach($dados['lista'] as $en): ?>
                         <tr>
-                            <td><?= $en->__toString(); ?></td>
+                            <td><?= $en; ?></td>
                             <td><a class="btn btn-primary" 
                                 href="<?= BASEURL ?>/controller/EnderecoController.php?action=edit&id=<?= $en->getId() ?>">
                                 Alterar</a> 

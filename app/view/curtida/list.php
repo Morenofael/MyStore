@@ -11,7 +11,9 @@ $imagens = $dados["imagens"];
 <?php require_once(__DIR__ . "/../include/sidebar.php") ?>
 <div>
     <h3 class="text-center">Produtos curtidas</h3>
-
+    <?php if(!$dados['lista']):?>
+        <span class="flex center">Parece que você não curtiu nenhum produto :(</span>
+    <?php endif; ?>
     <div class="lista-produtos flex">
         <?php $i = 0?>
         <?php foreach($dados['lista'] as $c): ?>
