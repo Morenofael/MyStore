@@ -26,6 +26,9 @@ class Endereco implements JsonSerializable {
                      "idUsuario" => $this->idUsuario);
     } 
 
+    public function __toString(){
+        return $this->municipio . ", " . $this->bairro . ", " . $this->logradouro . ", " . $this->numero;
+    }
     /**
      * Get the value of logradouro
      */

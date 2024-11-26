@@ -14,9 +14,7 @@ require_once(__DIR__ . "/../include/menu.php");
             <table id="tabEnderecos" class='table table-striped table-bordered'>
                 <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>CEP</th>
-                        <th>Número</th>
+                        <th>Endereço</th>
                         <th>Alterar</th>
                         <th>Excluir</th>
                     </tr>
@@ -24,9 +22,7 @@ require_once(__DIR__ . "/../include/menu.php");
                 <tbody>
                     <?php foreach($dados['lista'] as $en): ?>
                         <tr>
-                            <td><?php echo $en->getId(); ?></td>
-                            <td><?= $en->getCep(); ?></td>
-                            <td><?= $en->getNumero(); ?></td>
+                            <td><?= $en->__toString(); ?></td>
                             <td><a class="btn btn-primary" 
                                 href="<?= BASEURL ?>/controller/EnderecoController.php?action=edit&id=<?= $en->getId() ?>">
                                 Alterar</a> 
