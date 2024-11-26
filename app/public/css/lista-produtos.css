@@ -14,6 +14,9 @@
     display: flex;
     flex-wrap: wrap;
 }
+.center{
+    justify-content: center;
+}
 .lista-produtos{
     gap: 32px;
     justify-content: center;

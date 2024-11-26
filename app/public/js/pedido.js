@@ -60,7 +60,7 @@ function alterarStatusPedido(status){
   xhttp.onload = function() {
     verificarCampos();
   }
-
+  
   xhttp.send("status=" + encodeURIComponent(status) + "&idPedido=" + encodeURIComponent(idPedido));
 }
 
