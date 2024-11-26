@@ -61,6 +61,8 @@ class PedidoController extends Controller {
         $dados["imagem"] = $this->imagemDao->findOneImageFromProduto($dados["pedido"]->getProduto()->getId());
         $dados["generoString"] = $this->prodService->generoCharToString($dados["pedido"]->getProduto()->getGenero());
         $dados["enderecosComprador"] = $this->enderecoDao->findByIdUsuario($dados["pedido"]->getComprador()->getId());
+        if($dados["pedido"]->getIdEnderecoEntrega())
+            $dados["enderecoEntrega"] = $this->enderecoDao->findById($dados["pedido"]->getIdEnderecoEntrega());
         $this->loadView("pedido/pedido.php", $dados);
 }
 
@@ -115,7 +117,7 @@ class PedidoController extends Controller {
         $pedido = $this->pedidoDao->findById($idPedido);
 
         if($status && $pedido->getComprador()->getId() == $_SESSION[SESSAO_USUARIO_ID] or
-        $pedido->getVendedor()->getId() == $_SESSION[SESSAO_USUARIO_ID]){
+        $pedido->getVendedor()->getId() == $_SESSION[SESSAO_USUARIO_ID]&& $pedido->getStatus() != "ENT"){
             $this->pedidoDao->updateStatus($status, $idPedido);
         }
     }
