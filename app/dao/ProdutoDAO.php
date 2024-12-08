@@ -4,6 +4,7 @@
 
 include_once(__DIR__ . "/../connection/Connection.php");
 include_once(__DIR__ . "/../model/Produto.php");
+include_once(__DIR__ . "/../model/Brecho.php");
 
 class ProdutoDAO {
 
@@ -58,7 +59,10 @@ class ProdutoDAO {
     public function findById(int $id) {
         $conn = Connection::getConn();
 
-        $sql = "SELECT * FROM produtos p" .
+        $sql = "SELECT p.*, " .
+                " b.nome AS nome_brecho, b.descricao AS descricao_brecho, b.chave_pix AS chave_pix_brecho " .
+                "FROM produtos p " .
+                " JOIN brechos b ON (b.id = p.id_brecho) " .
                " WHERE p.id = ?";
         $stm = $conn->prepare($sql);    
         $stm->execute([$id]);
@@ -161,6 +165,11 @@ class ProdutoDAO {
         foreach ($result as $reg) {
             $produto = new Produto();
             $produto->setId($reg['id']);
+//TODO CONSERTAR ESSA PORRA DEPOIS
+            $brecho = new Brecho();
+            $brecho->setId($reg["id_brecho"]);
+            $brecho->setNome($reg["brecho_nome"]);
+            $brecho->setDescricao($reg[""])
             $produto->setIdBrecho($reg['id_brecho']);
             $produto->setNome($reg['nome']);
             $produto->setPreco($reg['preco']);

@@ -40,7 +40,7 @@ $imagens = $dados["imagem"];
         </div>
         <?php endif;?>
             <div id="status-display">
-                <span>Status do pedido: <?=$pedido->getStatus()?></span>
+                <span>Status do pedido: <?=$pedido->getStatusTexto()?></span>
             </div>
             <?php if($pedido->getIdEnderecoEntrega()) : ?>
                 <span>Endereço de entrega: <?=$dados["enderecoEntrega"]?></span><br>

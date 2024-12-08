@@ -2,10 +2,11 @@
 #Nome do arquivo: Produto.php
 #Objetivo: classe Model para Produto 
 
+include_once(__DIR__ . "/Brecho.php");
 class Produto implements JsonSerializable {
 
     private ?int $id;
-    private ?int $idBrecho;
+    private ?Brecho $brecho;
     private ?string $nome;
     private ?string $descricao;
     private ?float $preco;
@@ -14,7 +15,7 @@ class Produto implements JsonSerializable {
 
     public function jsonSerialize(): array {
         return array("id" => $this->id,
-                     "idBrecho" => $this->idBrecho,
+                     "brecho" => $this->brecho,
                      "nome" => $this->nome,
                      "descricao" => $this->descricao,
                      "preco" => $this->preco,
@@ -37,17 +38,17 @@ class Produto implements JsonSerializable {
     /**
      * Get the value of idBrecho
      */
-    public function getIdBrecho(): ?int
+    public function getBrecho(): ?int
     {
-        return $this->idBrecho;
+        return $this->brecho;
     }
 
     /**
      * Set the value of idBrecho
      */
-    public function setIdBrecho(?int $idBrecho): self
+    public function setBrecho(?Brecho $brecho): self
     {
-        $this->idBrecho = $idBrecho;
+        $this->brecho = $brecho;
 
         return $this;
     }

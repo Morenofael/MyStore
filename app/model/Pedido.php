@@ -79,7 +79,25 @@ class Pedido implements JsonSerializable {
      {
          return $this->status;
      }
-     
+    
+     public function getStatusTexto(){
+         switch ($this->status){
+            case "NV":
+                return "Não visto";
+                break;
+            case "P":
+                return "Sendo preparado";
+                break;
+            case "ENV":
+                return "Enviado";
+                break;
+            case "ENT":
+                return "Entregue";
+                break;
+            default:
+                return "Não visto";
+         }
+     }     
      /**
       * Set status.
       *
@@ -89,7 +107,7 @@ class Pedido implements JsonSerializable {
      {
          $this->status = $status;
      }
-         
+   
      /**
       * Get caminhoComprovante.
       *

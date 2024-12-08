@@ -19,6 +19,7 @@ require_once(__DIR__ . "/../include/menu.php");
                             <th>Nome</th>
                             <th>Descrição</th>
                             <th>Preço</th>
+                            <th>Status</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -27,6 +28,7 @@ require_once(__DIR__ . "/../include/menu.php");
                                 <td><a href="<?=BASEURL?>/controller/PedidoController.php?action=display&id=<?=$p->getId()?>"><?= $p->getProduto()->getNome(); ?></a></td>
                                 <td><?= $p->getProduto()->getDescricao(); ?></td>
                                 <td><?= $p->getPrecoReais(); ?></td>
+                                <td><?= $p->getStatusTexto(); ?></td>
                         <?php endforeach; ?>
                     </tbody>
                 </table>
