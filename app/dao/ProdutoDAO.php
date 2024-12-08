@@ -4,7 +4,6 @@
 
 include_once(__DIR__ . "/../connection/Connection.php");
 include_once(__DIR__ . "/../model/Produto.php");
-include_once(__DIR__ . "/../model/Brecho.php");
 
 class ProdutoDAO {
 
@@ -89,7 +88,7 @@ class ProdutoDAO {
                " VALUES (:id_brecho, :nome, :preco, :descricao, :genero, :tags)";
         
         $stm = $conn->prepare($sql);
-        $stm->bindValue("id_brecho", $produto->getIdBrecho());
+        $stm->bindValue("id_brecho", $produto->getBrecho()->getId());
         $stm->bindValue("nome", $produto->getNome());
         $stm->bindValue("preco", $produto->getPreco());
         $stm->bindValue("descricao", $produto->getDescricao());
@@ -167,10 +166,12 @@ class ProdutoDAO {
             $produto->setId($reg['id']);
 //TODO CONSERTAR ESSA PORRA DEPOIS
             $brecho = new Brecho();
-            $brecho->setId($reg["id_brecho"]);
-            $brecho->setNome($reg["brecho_nome"]);
-            $brecho->setDescricao($reg[""])
-            $produto->setIdBrecho($reg['id_brecho']);
+            $brecho->setId($reg['id_brecho']);
+            $brecho->setNome($reg['nome_brecho']);
+            $brecho->setDescricao($reg['descricao_brecho']);
+            $brecho->setChavePix($reg['chave_pix_brecho']);
+
+            $produto->setBrecho($brecho);
             $produto->setNome($reg['nome']);
             $produto->setPreco($reg['preco']);
             $produto->setDescricao($reg['descricao']);

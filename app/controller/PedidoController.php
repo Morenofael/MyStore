@@ -70,6 +70,7 @@ class PedidoController extends Controller {
         $idProduto = $_GET['id'];
         $produto = $this->produtoDao->findById($idProduto);
         $brecho = $this->brechoDao->findById($produto->getIdBrecho());
+        
         //Cria objeto Pedido
         $pedido = new Pedido();
         $pedido->setVendedor($brecho->getUsuario());
@@ -92,7 +93,6 @@ class PedidoController extends Controller {
         $idEndereco = $_POST['idEndereco'];
         $idPedido = $_POST['idPedido'];
         $pedido = $this->pedidoDao->findById($idPedido);
-        //TODO add validacao
         if($pedido->getComprador()->getId() == $_SESSION[SESSAO_USUARIO_ID])
         $this->pedidoDao->updateIdEndereco($idEndereco, $idPedido);
     }

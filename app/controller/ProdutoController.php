@@ -81,7 +81,7 @@ class ProdutoController extends Controller {
         $id = $_GET['id'];
         $dados["produto"] = $this->produtoDao->findById($id);
         $dados["generoString"] = $this->produtoService->generoCharToString($dados["produto"]->getGenero());
-        $dados["vendedor"] = $this->usuarioDao->findByIdBrecho($dados["produto"]->getIdBrecho());
+        $dados["vendedor"] = $this->usuarioDao->findByIdBrecho($dados["produto"]->getBrecho()->getId());
         $dados["imagens"] = $this->imagemDao->listByProduto($id);
         $this->loadView("produto/produto.php", $dados);
     }
@@ -103,7 +103,7 @@ class ProdutoController extends Controller {
         $produto->setDescricao($descricao);
         $produto->setGenero($genero);
         $produto->setTags($tags);
-        $produto->setIdBrecho($brecho->getId());
+        $produto->setBrecho($this->brechoDao->findById($brecho->getId()));
         //Validar dados
         $erros = $this->produtoService->validarDados($produto);
         if(empty($erros)) {
@@ -127,7 +127,7 @@ class ProdutoController extends Controller {
                         $imagem->setArquivoNome($arquivoNome);
                         $this->imagemDao->insert($imagem);
                     }
-                    header("location: ./BrechoController.php?action=display&id=" . $produto->getIdBrecho());
+                    header("location: ./BrechoController.php?action=display&id=" . $produto->getBrecho()->getId());
                 }
                 else { //Alterando
                     $produto->setId($dados["id"]);

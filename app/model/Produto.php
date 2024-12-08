@@ -38,7 +38,7 @@ class Produto implements JsonSerializable {
     /**
      * Get the value of idBrecho
      */
-    public function getBrecho(): ?int
+    public function getBrecho(): ?Brecho
     {
         return $this->brecho;
     }
