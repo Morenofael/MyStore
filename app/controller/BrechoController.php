@@ -3,6 +3,7 @@
 require_once(__DIR__ . "/Controller.php");
 require_once(__DIR__ . "/../dao/BrechoDAO.php");
 require_once(__DIR__ . "/../dao/ProdutoDAO.php");
+require_once(__DIR__ . "/../dao/ImagemDAO.php");
 require_once(__DIR__ . "/../model/Brecho.php");
 require_once(__DIR__ . "/../service/BrechoService.php");
 
@@ -10,6 +11,7 @@ class BrechoController extends Controller {
 
     private BrechoDAO $brechoDao;
     private ProdutoDAO $produtoDao;
+    private ImagemDAO $imagemDao;
     private BrechoService $brechoService;
 
     //Método construtor do controller - será executado a cada requisição a está classe
@@ -18,6 +20,7 @@ class BrechoController extends Controller {
             exit;
 
         $this->brechoDao = new BrechoDAO();
+        $this->imagemDao = new ImagemDAO();
         $this->brechoService = new BrechoService();
         $this->produtoDao = new ProdutoDAO();
         //$this->usuarioService = new UsuarioService();
@@ -39,6 +42,11 @@ class BrechoController extends Controller {
         $id = $_GET['id'];
         $dados["brecho"] = $this->brechoDao->findById($id);
         $dados["produtos"] = $this->produtoDao->listByBrecho($dados["brecho"]->getId());
+        $dados["imagens"] = Array();
+        foreach($dados["produtos"] as $p){
+            array_push($dados["imagens"], $this->imagemDao->findOneImageFromProduto($p->getId()));
+        }
+
         $this->loadView("brecho/brecho.php", $dados);
     }
     protected function save() {

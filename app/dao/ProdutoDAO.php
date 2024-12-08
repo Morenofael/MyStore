@@ -164,7 +164,7 @@ class ProdutoDAO {
         foreach ($result as $reg) {
             $produto = new Produto();
             $produto->setId($reg['id']);
-//TODO CONSERTAR ESSA PORRA DEPOIS
+            
             $brecho = new Brecho();
             $brecho->setId($reg['id_brecho']);
             $brecho->setNome($reg['nome_brecho']);

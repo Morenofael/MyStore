@@ -22,9 +22,10 @@ class CurtidaDAO{
         $conn = Connection::getConn();
 
         $sql = "SELECT c.*, " .
-                " p.id_brecho AS id_brecho_produto , p.nome AS nome_produto, p.descricao AS descricao_produto, p.preco AS preco_produto, p.genero AS genero_produto, p.tags AS tags_produto " .
+                " p.id_brecho AS id_brecho_produto , p.nome AS nome_produto, p.descricao AS descricao_produto, p.preco AS preco_produto, p.genero AS genero_produto, p.tags AS tags_produto,  " .
+                " b.nome AS nome_brecho, b.descricao AS descricao_brecho, b.chave_pix AS chave_pix_brecho " .
                 " FROM curtidas c " .
-                " JOIN produtos p ON (p.id = c.id_produto)" .
+                " JOIN produtos p ON (p.id = c.id_produto) JOIN brechos b ON (b.id = p.id_brecho)" .
                 "WHERE c.id_usuario = ? AND disponivel = 1";
         $stm = $conn->prepare($sql);
         $stm->execute([$_SESSION[SESSAO_USUARIO_ID]]);
@@ -87,7 +88,7 @@ class CurtidaDAO{
 
             $produto = new Produto();
             $produto->setId($reg['id_produto']);
-            $produto->setIdBrecho($reg["id_brecho_produto"]);
+            
             $produto->setNome($reg['nome_produto']);
             $produto->setDescricao($reg['descricao_produto']);
             $produto->setPreco($reg['preco_produto']);

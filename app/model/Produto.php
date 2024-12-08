@@ -12,7 +12,10 @@ class Produto implements JsonSerializable {
     private ?float $preco;
     private ?string $genero;
     private ?string $tags;
-
+    
+    public function __construct(){
+        $this->brecho = null;
+    }
     public function jsonSerialize(): array {
         return array("id" => $this->id,
                      "brecho" => $this->brecho,
