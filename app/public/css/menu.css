@@ -25,3 +25,12 @@ nav{
 .nav-preto a{
 	color: black;
 }
+
+/*footer*/
+.footer-categorias-wrapper{
+	display: flex;
+	justify-content: space-around;
+}
+.footer-categorias-wrapper ul{
+	list-style-type: none;
+}
