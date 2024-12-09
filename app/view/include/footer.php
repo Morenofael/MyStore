@@ -1,10 +1,43 @@
 <!-- Footer -->
 <footer class="text-center text-lg-start bg-light text-muted" style="margin-top: 10px;">
-    <!-- Copyright -->
-    <div class="text-center p-4">
-        © 2023 Copyright:
-        <a class="text-reset fw-bold" href="https://foz.ifpr.edu.br" target="blank">IFPR (Campus Foz do Iguaçu)</a>
-    </div>      
+<!--No momento vai ficar assim mesmo. Eu to me inspirando no layout da enjoei   
+pprt zero vontade de fazer isso agora                            9/12/2024-->
+    <div class="footer-categorias-wrapper">
+        <ul>
+            <li><a href="">MS</a></li>
+            <li><a href="">Roupas masculinas</a></li>
+            <li><a href="">Roupas femininas</a></li>
+            <li><a href="">Roupas Unissex</a></li>
+            <li><a href="">Roupas Infantis</a></li>
+        </ul>
+        <ul>
+            <li><a href="">Nike</a></li>
+            <li><a href="">Adidas</a></li>
+            <li><a href="">Under Armour</a></li>
+            <li><a href="">Mizuno</a></li>
+            <li><a href="">Lupo</a></li>
+            <li><a href="">Anta</a></li>
+            <li><a href="">Jordan</a></li>
+            <li><a href="">Asics</a></li>
+            <li><a href="">New Balance</a></li>
+            <li><a href="">Fila</a></li>
+            <li><a href="">Olympikus</a></li>
+        </ul>
+        <ul>
+            <li><a href="">Utilidades</a></li>
+            <li><a href="">Ajuda</a></li>
+            <li><a href="">Como vender</a></li>
+            <li><a href="">Como comprar</a></li>
+            <li><a href="">Termos de uso</a></li>
+        </ul>
+        <ul>
+            <li><a href="">Minha conta</a></li>
+            <li><a href="">Minha loja</a></li>
+            <li><a href="">Minhas vendas</a></li>
+            <li><a href="">Minhas compras</a></li>
+            <li><a href="">Configurações</a></li>
+        </ul>
+    </div>
 </footer>
 
 <!-- BOOTSTRAP: scripts requeridos pelo framework -->
