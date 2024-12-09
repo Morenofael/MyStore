@@ -69,7 +69,7 @@ class PedidoController extends Controller {
     protected function save() {
         $idProduto = $_GET['id'];
         $produto = $this->produtoDao->findById($idProduto);
-        $brecho = $this->brechoDao->findById($produto->getIdBrecho());
+        $brecho = $this->brechoDao->findById($produto->getBrecho()->getId());
         
         //Cria objeto Pedido
         $pedido = new Pedido();
