@@ -1,40 +1,41 @@
 <!-- Footer -->
-<footer class="text-center text-lg-start bg-light text-muted" style="margin-top: 10px;">
+<footer class="text-center text-lg-start text-muted" style="margin-top: 10px;">
 <!--No momento vai ficar assim mesmo. Eu to me inspirando no layout da enjoei   
 pprt zero vontade de fazer isso agora                            9/12/2024-->
     <div class="footer-categorias-wrapper">
         <ul>
-            <li><a href="">MS</a></li>
-            <li><a href="">Roupas masculinas</a></li>
-            <li><a href="">Roupas femininas</a></li>
-            <li><a href="">Roupas Unissex</a></li>
-            <li><a href="">Roupas Infantis</a></li>
+            <li><h5>MS</h5></li>
+            <li><a href="<?=BASEURL?>/controller/ProdutoController.php?action=listByGenero&g=m">Roupas masculinas</a></li>
+            <li><a href="<?=BASEURL?>/controller/ProdutoController.php?action=listByGenero&g=f">Roupas femininas</a></li>
+            <li><a href="<?=BASEURL?>/controller/ProdutoController.php?action=listByGenero&g=u">Roupas Unissex</a></li>
+            <li><a href="<?=BASEURL?>/controller/ProdutoController.php?action=listByGenero&g=i">Roupas Infantis</a></li>
         </ul>
         <ul>
-            <li><a href="">Nike</a></li>
-            <li><a href="">Adidas</a></li>
-            <li><a href="">Under Armour</a></li>
-            <li><a href="">Mizuno</a></li>
-            <li><a href="">Lupo</a></li>
-            <li><a href="">Anta</a></li>
-            <li><a href="">Jordan</a></li>
-            <li><a href="">Asics</a></li>
-            <li><a href="">New Balance</a></li>
-            <li><a href="">Fila</a></li>
-            <li><a href="">Olympikus</a></li>
+            <li><h5>Marcas</h5></li>
+            <li><a href="<?=BASEURL?>/controller/ProdutoController.php?action=listByTags&q=nike">Nike</a></li>
+            <li><a href="<?=BASEURL?>/controller/ProdutoController.php?action=listByTags&q=adidas">Adidas</a></li>
+            <li><a href="<?=BASEURL?>/controller/ProdutoController.php?action=listByTags&q=under-armour">Under Armour</a></li>
+            <li><a href="<?=BASEURL?>/controller/ProdutoController.php?action=listByTags&q=mizuno">Mizuno</a></li>
+            <li><a href="<?=BASEURL?>/controller/ProdutoController.php?action=listByTags&q=lupo">Lupo</a></li>
+            <li><a href="<?=BASEURL?>/controller/ProdutoController.php?action=listByTags&q=anta">Anta</a></li>
+            <li><a href="<?=BASEURL?>/controller/ProdutoController.php?action=listByTags&q=jordan">Jordan</a></li>
+            <li><a href="<?=BASEURL?>/controller/ProdutoController.php?action=listByTags&q=asics">Asics</a></li>
+            <li><a href="<?=BASEURL?>/controller/ProdutoController.php?action=listByTags&q=new-balance">New Balance</a></li>
+            <li><a href="<?=BASEURL?>/controller/ProdutoController.php?action=listByTags&q=fila">Fila</a></li>
+            <li><a href="<?=BASEURL?>/controller/ProdutoController.php?action=listByTags&q=olympikus">Olympikus</a></li>
         </ul>
         <ul>
-            <li><a href="">Utilidades</a></li>
-            <li><a href="">Ajuda</a></li>
-            <li><a href="">Como vender</a></li>
-            <li><a href="">Como comprar</a></li>
-            <li><a href="">Termos de uso</a></li>
+            <li><h5>Utilidades</h5></li>
+            <li><a href="<?=BASEURL?>/controller/HomeController.php?action=help">Ajuda</a></li>
+            <li><a href="<?=BASEURL?>/controller/HomeController.php?action=helpVendedor">Como vender</a></li>
+            <li><a href="<?=BASEURL?>/controller/HomeController.php?action=helpComprador">Como comprar</a></li>
+            <li><a href="<?=BASEURL?>/controller/HomeController.php?action=termosDeUso">Termos de uso</a></li>
         </ul>
         <ul>
-            <li><a href="">Minha conta</a></li>
-            <li><a href="">Minha loja</a></li>
-            <li><a href="">Minhas vendas</a></li>
-            <li><a href="">Minhas compras</a></li>
+            <li><h5>Minha conta</h5></li>
+            <li><a href="<?=BASEURL?>/controller/BrechoController.php?action=create">Minha loja</a></li>
+            <li><a href="<?=BASEURL?>/controller/PedidoController.php?action=listForVendedor">Minhas vendas</a></li>
+            <li><a href="<?=BASEURL?>/controller/PedidoController.php?action=listForComprador">Minhas compras</a></li>
             <li><a href="">Configurações</a></li>
         </ul>
     </div>

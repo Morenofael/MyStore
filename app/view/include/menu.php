@@ -29,10 +29,6 @@ if(isset($_SESSION[SESSAO_USUARIO_NOME]))
             <li class="">
                 <a class="" href="<?=BASEURL?>/controller/ProdutoController.php?action=listByGenero&g=i">Infantil</a>
             </li>
-            <li class="">
-                <a class="" href="#">Ofertas</a>
-            </li>
-
         </ul>
 
         <ul class="nav-list">

@@ -27,10 +27,17 @@ nav{
 }
 
 /*footer*/
+footer{
+	background-color: #D9D9D9;
+}
 .footer-categorias-wrapper{
 	display: flex;
 	justify-content: space-around;
+	text-align: left;
 }
 .footer-categorias-wrapper ul{
 	list-style-type: none;
+}
+.footer-categorias-wrapper a{
+	color: black;
 }
