@@ -41,7 +41,26 @@ class HomeController extends Controller {
         //echo "<pre>" . print_r($dados, true) . "</pre>";
         $this->loadView("home/home.php", $dados);
     }
+    
+    protected function help() {
+        $dados = Array();
+        $this->loadView("home/help.php", $dados);
+    }
+    
+    protected function helpVendedor() {
+        $dados = Array();
+        $this->loadView("home/helpVendedor.php", $dados);
+    }
 
+    protected function helpComprador() {
+        $dados = Array();
+        $this->loadView("home/helpComprador.php", $dados);
+    }
+    
+    protected function termosDeUso() {
+        $dados = Array();
+        $this->loadView("home/termosDeUso.php", $dados);
+    }
 }
 
 //Criar o objeto da classe HomeController
