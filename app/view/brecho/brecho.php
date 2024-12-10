@@ -15,16 +15,9 @@ $imagens = $dados["imagens"];
     <h3 class="text-center">
         <?= $brecho->getNome()?>
     </h3>
-    <div class="container">
-
-        <div class="row" style="margin-top: 10px;">
-
-            <div class="col-6">
-                <h4><?= $brecho->getDescricao()?></h4> 
-            </div>
-
-        </div>
-
+    <div class="col-6">
+        <h4><?= $brecho->getDescricao()?></h4> 
+    </div>
         <div class="row" style="margin-top: 30px;">
             <div class="col-12">
             <a class="btn btn-secondary"
@@ -34,6 +27,7 @@ $imagens = $dados["imagens"];
                 href="<?= BASEURL ?>/controller/BrechoController.php?action=edit&id=<?=$brecho->getId()?>">Editar</a>
             <a class="btn btn-primary"
                 href="<?= BASEURL ?>/controller/ProdutoController.php?action=create">Adicionar produto</a>
+            </div>
             <?php endif;?>
             <div class="lista-produtos flex">
             <?php $i = 0 ?>
@@ -47,8 +41,6 @@ $imagens = $dados["imagens"];
                 </a>   
             <?php $i++ ?>             
             <?php endforeach; ?>
-            <div>
-            </div>
         </div>
     </div>
     </div>
