@@ -16,6 +16,7 @@ require_once __DIR__ . "/../include/menu.php";
         </form>
         <h3>Termos de uso</h3>
         <ol>
+            <li>lorem ipsum</li>
             <li>Não pode vneder pod</li>
             <li>Ñ pode vender diamba (makonha )vencida</li>
             <li>Os originais do samba sao mt bons pprt</li>
