@@ -39,3 +39,33 @@
     min-height: 100px;
     max-height: 300px;
 }
+
+@media only screen and (max-width: 600px) {
+    .nav-list{
+        padding: 0;
+    }
+    .menu-logo-wrapper > span{
+        display: none;
+    }
+
+    body .main{
+        display: flex;
+        flex-direction: column;
+    }
+    #main-produto{
+        display: flex;
+        flex-direction: column;
+        margin: 20px;
+    }
+    #main-produto > a > img{
+        width: auto;
+        min-width: 70vw;
+        max-width: 90vw;
+        max-height: 300px;
+    }
+
+    .sec-produtos{
+        flex-direction: column;
+        align-items: center;
+    }
+}

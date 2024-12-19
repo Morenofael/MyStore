@@ -1,4 +1,5 @@
 <link rel="stylesheet" href="<?=BASEURL?>/public/css/sidebar.css" media="all">
+<span id="sidebar-togler" onclick="togleSidebar()">☰</span>
 <div class="sidebar">
     <ul class="no-decoration">
         <li id="sidebar-untogler" onclick="untogleSidebar()"><img src="<?= BASEURL ?>/view/img/svg/x.svg" alt="Fechar" class="icon">Fechar</li>
@@ -17,3 +18,4 @@
         </div>
     </a>
 </div>
+<script src="<?=BASEURL?>/public/js/sidebar.js"></script>

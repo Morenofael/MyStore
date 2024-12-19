@@ -7,7 +7,6 @@ $produtos = array_reverse($dados["produtos"]);
 $imagens = array_reverse($dados["imagens"]);
 ?>
 <link rel="stylesheet" href="<?= BASEURL ?>/public/css/home.css">
-<span id="sidebar-togler" onclick="togleSidebar()">☰</span>
 <div class="main">
 <?php require_once(__DIR__ . "/../include/sidebar.php") ?>
     <div class="main-content">

@@ -34,6 +34,7 @@ footer{
 	display: flex;
 	justify-content: space-around;
 	text-align: left;
+	flex-wrap: wrap;
 }
 .footer-categorias-wrapper ul{
 	list-style-type: none;

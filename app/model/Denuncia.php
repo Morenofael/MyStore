@@ -40,26 +40,6 @@ class Denuncia implements JsonSerializable {
         $this->id = $id;
     }
     
-    /**
-     * Get pedido.
-     *
-     * @return pedido.
-     */
-    public function getPedido()
-    {
-        return $this->pedido;
-    }
-    
-    /**
-     * Set pedido.
-     *
-     * @param pedido the value to set.
-     */
-    public function setPedido($pedido)
-    {
-        $this->pedido = $pedido;
-    }
-     
      /**
       * Get status.
       *
@@ -119,4 +99,24 @@ class Denuncia implements JsonSerializable {
      {
          $this->texto = $texto;
      }
+    
+    /**
+     * Get pedido.
+     *
+     * @return pedido.
+     */
+    public function getPedido()
+    {
+        return $this->pedido;
+    }
+    
+    /**
+     * Set pedido.
+     *
+     * @param pedido the value to set.
+     */
+    public function setPedido($pedido)
+    {
+        $this->pedido = $pedido;
+    }
 }
