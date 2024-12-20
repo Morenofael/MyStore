@@ -25,11 +25,11 @@ $imagens = $dados["imagens"];
         </div>
         <?php endif; ?>
         <div class="sec-imagens-wrapper">
-            <span class="muda-index mouse-pointer" onclick="mudarIndex(-1)"><-</span>
+            <span class="muda-index mouse-pointer" onclick="mudarIndex(-1)"><img src="<?=BASEURL?>/view/img/svg/seta-esquerda.svg" alt="Seta para a esquerda"></span>
             <?php foreach($imagens as $i):?>
                 <img src="<?=BASEURL?>/view/img/upl_img/<?=$i->getArquivoNome()?>" onclick="mudarMainImagem(<?= array_search($i, $imagens)?>)" class="sec-img mouse-pointer">
             <?php endforeach;?>
-            <span class="muda-index mouse-pointer" onclick="mudarIndex(1)">-></span>
+            <span class="muda-index mouse-pointer" onclick="mudarIndex(1)"><img src="<?=BASEURL?>/view/img/svg/seta-direita.svg" alt="Seta para a direita"></span>
         </div>
     </div>
 

@@ -34,6 +34,10 @@
 	background-color: grey;
 	border-radius: 50px;
 }
+.muda-index img{
+	width: 100%;
+	height: auto;
+}
 .mouse-pointer{
 	cursor: pointer;
 }
