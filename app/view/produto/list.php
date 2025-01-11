@@ -1,7 +1,4 @@
 <?php
-#Nome do arquivo: endereco/list.php
-#Objetivo: interface para listagem de endereços do usuário
-
 require_once(__DIR__ . "/../include/header.php");
 require_once(__DIR__ . "/../include/menu.php");
 $imagens = $dados["imagens"];

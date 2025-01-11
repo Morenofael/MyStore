@@ -5,10 +5,10 @@
 require_once(__DIR__ . "/../include/header.php");
 require_once(__DIR__ . "/../include/menu.php");
 ?>
+<link rel="stylesheet" href="<?=BASEURL?>/public/css/lista.css" media="all">
 <div class="main">
 <?php require_once(__DIR__ . "/../include/sidebar.php") ?>
-    
-    <div class="container">
+    <div class="main-content">
 
     <h3 class="text-center">Produtos</h3>
         <div class="row" style="margin-top: 10px;">

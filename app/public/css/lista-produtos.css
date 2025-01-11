@@ -40,7 +40,7 @@
     max-height: 300px;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 600px){
     .nav-list{
         padding: 0;
     }
