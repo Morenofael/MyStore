@@ -67,6 +67,7 @@ class UsuarioController extends Controller {
         $usuario->setDataNascimento($dataNascimento);
         $usuario->setNivelAcesso(0); //usuário comum
         $usuario->setSituacao(1); //usuário ativo
+
         //Validar os dados
         $erros = $this->usuarioService->validarDados($usuario, $confSenha);
         if(empty($erros)) {
@@ -99,7 +100,7 @@ class UsuarioController extends Controller {
         $msgsErro = implode("<br>", $erros);
         $this->loadView("usuario/form.php", $dados, $msgsErro);
     }
-    
+
     public function insertAlterPfP(){
         if(! $this->usuarioLogado())
             exit;
@@ -134,6 +135,30 @@ class UsuarioController extends Controller {
             $dados["papeis"] = UsuarioPapel::getAllAsArray(); 
 
             $this->loadView("usuario/form.php", $dados);
+        } else 
+            $this->list("Usuário não encontrado");
+    }
+
+    protected function editSenha(){
+        if(! $this->usuarioLogado())
+            exit;
+        $usuario = $this->findUsuarioById();
+        $senhaAtual = trim($_POST['senhaAtual']) ? trim($_POST['senhaAtual']) : NULL;
+        $senha= trim($_POST['senha']) ? trim($_POST['senha']) : NULL;
+        $confSenha = trim($_POST['conf_senha']) ? trim($_POST['conf_senha']) : NULL;
+        if($_POST["id"]){
+            $this->usuarioService->validarMudancaSenha($usuario, $senha,  $confSenha);
+            $this->usuarioDao->editSenha($senha);
+            header("location: ./UsuarioController.php?action=display&id=" . $_SESSION[SESSAO_USUARIO_ID]);
+ 
+        }
+        if($usuario) {
+            //Setar os dados
+            $dados["id"] = $usuario->getId();
+            $dados["usuario"] = $usuario;
+            $dados["papeis"] = UsuarioPapel::getAllAsArray(); 
+
+            $this->loadView("usuario/senha-form.php", $dados);
         } else 
             $this->list("Usuário não encontrado");
     }

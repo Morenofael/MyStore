@@ -131,6 +131,18 @@ class UsuarioDAO {
         $stm->execute();
     }
 
+    public function editSenha(string $senha){
+        $conn = Connection::getConn();
+
+        $sql = "UPDATE usuarios SET senha = :senha " .
+            "WHERE id = :id";
+        $stm = $conn->prepare($sql);
+        $senhaCript = password_hash($senha, PASSWORD_DEFAULT);
+        $stm->bindValue("senha", $senhaCript);
+        $stm->bindValue("id", $_SESSION[SESSAO_USUARIO_ID]);
+        $stm->execute();
+    }
+
     public function editPfP(String $pfp){
         $conn = Connection::getConn();
 

@@ -24,7 +24,6 @@ $usuario = $dados["usuario"];
            <h4>Telefone: <?= $usuario->getTelefone()?></h4>
            <h4>Data de Nascimento: <?= $usuario->getDataNascimento()?></h4>
         </div>
-
     </div>
 
     <div class="row" style="margin-top: 30px;">
@@ -39,6 +38,8 @@ $usuario = $dados["usuario"];
         <a class="btn btn-info"
                 href="<?= BASEURL ?>/controller/UsuarioController.php?action=insertAlterPfp">Adicionar/alterar foto de perfil</a>
         <?php endif; ?>
+        <a class="btn btn-info"
+            href="<?= BASEURL ?>/controller/UsuarioController.php?action=editSenha&id=<?=$_SESSION[SESSAO_USUARIO_ID]?>">Alterar Senha</a>
         </div>
     </div>
 </div>
