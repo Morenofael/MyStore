@@ -1,5 +1,8 @@
 <?php
 #Classe controller para Usuário
+
+use function PHPSTORM_META\type;
+
 require_once(__DIR__ . "/Controller.php");
 require_once(__DIR__ . "/../dao/UsuarioDAO.php");
 require_once(__DIR__ . "/../service/UsuarioService.php");
@@ -139,7 +142,7 @@ class UsuarioController extends Controller {
             $this->list("Usuário não encontrado");
     }
 
-    protected function editSenha(){
+    protected function editSenha(string $msgErro=""){
         if(! $this->usuarioLogado())
             exit;
         $usuario = $this->findUsuarioById();
@@ -147,18 +150,21 @@ class UsuarioController extends Controller {
         $senha= trim($_POST['senha']) ? trim($_POST['senha']) : NULL;
         $confSenha = trim($_POST['conf_senha']) ? trim($_POST['conf_senha']) : NULL;
         if($_POST["id"]){
-            $this->usuarioService->validarMudancaSenha($usuario, $senha,  $confSenha);
+            $erros = $this->usuarioService->validarMudancaSenha($usuario, $senha,  $confSenha);
+            if(empty($erros)){
+
             $this->usuarioDao->editSenha($senha);
-            header("location: ./UsuarioController.php?action=display&id=" . $_SESSION[SESSAO_USUARIO_ID]);
- 
+            header("location: ./UsuarioController.php?action=display&id=" . $_SESSION[SESSAO_USUARIO_ID]);     
+            }
         }
         if($usuario) {
             //Setar os dados
             $dados["id"] = $usuario->getId();
             $dados["usuario"] = $usuario;
             $dados["papeis"] = UsuarioPapel::getAllAsArray(); 
-
-            $this->loadView("usuario/senha-form.php", $dados);
+            if($erros)
+                $msgErro = implode("<br>", $erros);
+            $this->loadView("usuario/senha-form.php", $dados, $msgErro);
         } else 
             $this->list("Usuário não encontrado");
     }

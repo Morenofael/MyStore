@@ -49,7 +49,7 @@ class UsuarioService {
     
     public function validarMudancaSenha(Usuario $usuario, string $senha, string $confSenha){
         $erros = array();
-         if($senha && $confSenha && $senha != $confSenha)
+         if($senha && $senha != $confSenha)
             array_push($erros, "O campo [Senha] deve ser igual ao [Confirmação da senha].");
 
         return $erros;
