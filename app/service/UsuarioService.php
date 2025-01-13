@@ -52,6 +52,9 @@ class UsuarioService {
          if($senha && $senha != $confSenha)
             array_push($erros, "O campo [Senha] deve ser igual ao [Confirmação da senha].");
 
+         if(!$this->usuarioDao->findByLoginSenha($usuario->getLogin(), $usuario->getSenha())){ 
+             array_push($erros, "Senha atual incorreta.");
+         }
         return $erros;
     }
 }

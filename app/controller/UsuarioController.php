@@ -150,6 +150,7 @@ class UsuarioController extends Controller {
         $senha= trim($_POST['senha']) ? trim($_POST['senha']) : NULL;
         $confSenha = trim($_POST['conf_senha']) ? trim($_POST['conf_senha']) : NULL;
         if($_POST["id"]){
+            $usuario->setSenha($senhaAtual);
             $erros = $this->usuarioService->validarMudancaSenha($usuario, $senha,  $confSenha);
             if(empty($erros)){
 
