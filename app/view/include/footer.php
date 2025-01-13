@@ -1,7 +1,5 @@
 <!-- Footer -->
 <footer class="text-center text-lg-start text-muted" style="margin-top: 10px;">
-<!--No momento vai ficar assim mesmo. Eu to me inspirando no layout da enjoei   
-pprt zero vontade de fazer isso agora                            9/12/2024-->
     <div class="footer-categorias-wrapper">
         <ul>
             <li><h5>MS</h5></li>
