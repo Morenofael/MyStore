@@ -14,6 +14,7 @@ $imagens = $dados["imagens"];
         <img src="<?=BASEURL?>/view/img/upl_img/<?=$imagens[0]->getArquivoNome()?>" id="main-img">
         <h4><?= $produto->getDescricao()?></h4>
         <h4>Gênero:<?= $dados["generoString"]?></h4>
+        <h4>Loja: <?=$produto->getBrecho()->getNome()?></h4>
     </div>
     <div class="direita">
         <h3><?=$produto->getNome()?></h3>
