@@ -45,7 +45,7 @@ require_once(__DIR__ . "/../include/header.php");
     <div class="row" style="margin-top: 30px;">
         <div class="col-12">
         <a class="btn btn-secondary"
-                href="<?= BASEURL ?>/controller/UsuarioController.php?action=list">Voltar</a>
+        href="<?= BASEURL ?>/controller/UsuarioController.php?action=display&id=<?= $_SESSION[SESSAO_USUARIO_ID]?>">Voltar</a>
         </div>
     </div>
 </div>

@@ -16,6 +16,7 @@ $imagens = $dados["imagem"];
         <h4><?= $pedido->getProduto()->getPrecoReais()?></h4>
         <h4>Gênero:<?= $dados["generoString"]?></h4>
         <h4>Chave pix para pagamento:<?=$pedido->getProduto()->getBrecho()->getChavePix() ?></h4>
+        <h4>Loja: <?=$pedido->getProduto()->getBrecho()->getNome()?></h4>
     </div>
     <div class="direita">
         <?php if($pedido && $pedido->getComprador()->getId() == $_SESSION[SESSAO_USUARIO_ID]):?>
