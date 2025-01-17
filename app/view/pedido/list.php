@@ -10,7 +10,7 @@ require_once(__DIR__ . "/../include/menu.php");
 <?php require_once(__DIR__ . "/../include/sidebar.php") ?>
     <div class="main-content">
 
-    <h3 class="text-center">Produtos</h3>
+    <h3 class="text-center">Pedidos</h3>
         <div class="row" style="margin-top: 10px;">
             <div class="col-12">
                 <table id="tabProdutos" class='table table-striped table-bordered'>

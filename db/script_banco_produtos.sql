@@ -5,11 +5,11 @@ INSERT INTO imagens (id_produto, arquivo) VALUES (1, "bola-basquete1.jpg");
 INSERT INTO imagens (id_produto, arquivo) VALUES (1, "bola-basquete2.jpg");
 INSERT INTO imagens (id_produto, arquivo) VALUES (1, "bola-basquete3.jpg");
 
-INSERT INTO produtos (id, id_brecho, nome, preco, descricao, genero, tags) VALUES (2, 1, "Tênis Giannis Immortality", 200, "Tênis Giannis Immortality sola levemente gasta amortecimento bom", "m", "tenis basquete giannis");
+INSERT INTO produtos (id, id_brecho, nome, preco, descricao, genero, tags) VALUES (2, 1, "Tênis Giannis Immortality", 200, "Tênis Giannis Immortality sola levemente gasta amortecimento bom", "m", "tenis basquete giannis nike");
 INSERT INTO imagens (id_produto, arquivo) VALUES (2, "giannis1.jpg");
 INSERT INTO imagens (id_produto, arquivo) VALUES (2, "giannis2.jpg");
 
-INSERT INTO produtos (id, id_brecho, nome, preco, descricao, genero, tags) VALUES (3, 1, "Bola de futebol", 100, "Bola de futebol Jabulani a mesma que foi usada na copa da África do Sul", "u", "bola futebol jabulani");
+INSERT INTO produtos (id, id_brecho, nome, preco, descricao, genero, tags) VALUES (3, 1, "Bola de futebol", 100, "Bola de futebol Jabulani a mesma que foi usada na copa da África do Sul", "u", "bola futebol jabulani adidas");
 INSERT INTO imagens (id_produto, arquivo) VALUES (3, "bola-futebol1.jpg");
 INSERT INTO imagens (id_produto, arquivo) VALUES (3, "bola-futebol2.jpg");
 
@@ -21,11 +21,11 @@ INSERT INTO produtos (id, id_brecho, nome, preco, descricao, genero, tags) VALUE
 INSERT INTO imagens (id_produto, arquivo) VALUES (5, "camisa-bragantino1.jpg");
 INSERT INTO imagens (id_produto, arquivo) VALUES (5, "camisa-bragantino2.jpg");
 
-INSERT INTO produtos (id, id_brecho, nome, preco, descricao, genero, tags) VALUES (6, 2, "Camisa do River", 60, "Camisa do River Plate versão torcedor", "u", "camisa river river-plate futebol torcedor");
+INSERT INTO produtos (id, id_brecho, nome, preco, descricao, genero, tags) VALUES (6, 2, "Camisa do River", 60, "Camisa do River Plate versão torcedor", "u", "camisa river river-plate futebol torcedor adidas");
 INSERT INTO imagens (id_produto, arquivo) VALUES (6, "camisa-river1.jpg");
 INSERT INTO imagens (id_produto, arquivo) VALUES (6, "camisa-river2.jpg");
 
-INSERT INTO produtos (id, id_brecho, nome, preco, descricao, genero, tags) VALUES (7, 2, "Camisa do São Paulo", 60, "Camisa do São Paulo versão torcedor", "u", "camisa sp são paulo são-paulo sao sao-paulo futebol torcedor");
+INSERT INTO produtos (id, id_brecho, nome, preco, descricao, genero, tags) VALUES (7, 2, "Camisa do São Paulo", 60, "Camisa do São Paulo versão torcedor", "u", "camisa sp são paulo são-paulo sao sao-paulo futebol adidas torcedor");
 INSERT INTO imagens (id_produto, arquivo) VALUES (7, "camisa-sp1.jpg");
 INSERT INTO imagens (id_produto, arquivo) VALUES (7, "camisa-sp2.jpg");
 INSERT INTO imagens (id_produto, arquivo) VALUES (7, "camisa-sp3.jpg");

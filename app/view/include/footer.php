@@ -15,13 +15,8 @@
             <li><a href="<?=BASEURL?>/controller/ProdutoController.php?action=listByTags&q=adidas">Adidas</a></li>
             <li><a href="<?=BASEURL?>/controller/ProdutoController.php?action=listByTags&q=under-armour">Under Armour</a></li>
             <li><a href="<?=BASEURL?>/controller/ProdutoController.php?action=listByTags&q=mizuno">Mizuno</a></li>
-            <li><a href="<?=BASEURL?>/controller/ProdutoController.php?action=listByTags&q=lupo">Lupo</a></li>
-            <li><a href="<?=BASEURL?>/controller/ProdutoController.php?action=listByTags&q=anta">Anta</a></li>
             <li><a href="<?=BASEURL?>/controller/ProdutoController.php?action=listByTags&q=jordan">Jordan</a></li>
             <li><a href="<?=BASEURL?>/controller/ProdutoController.php?action=listByTags&q=asics">Asics</a></li>
-            <li><a href="<?=BASEURL?>/controller/ProdutoController.php?action=listByTags&q=new-balance">New Balance</a></li>
-            <li><a href="<?=BASEURL?>/controller/ProdutoController.php?action=listByTags&q=fila">Fila</a></li>
-            <li><a href="<?=BASEURL?>/controller/ProdutoController.php?action=listByTags&q=olympikus">Olympikus</a></li>
         </ul>
         <ul>
             <li><h5>Utilidades</h5></li>
