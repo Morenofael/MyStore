@@ -5,7 +5,7 @@ INSERT INTO imagens (id_produto, arquivo) VALUES (1, "bola-basquete1.jpg");
 INSERT INTO imagens (id_produto, arquivo) VALUES (1, "bola-basquete2.jpg");
 INSERT INTO imagens (id_produto, arquivo) VALUES (1, "bola-basquete3.jpg");
 
-INSERT INTO produtos (id, id_brecho, nome, preco, descricao, genero, tags) VALUES (2, 1, "Tênis Giannis Immortality", 200, "Tênis Giannis Immortality sola levemente gasta amortecimento bom", "m", "tenis basquete giannis");
+INSERT INTO produtos (id, id_brecho, nome, preco, descricao, genero, tags) VALUES (2, 1, "Tênis Giannis Immortality", 200, "Tênis Giannis Immortality sola levemente gasta amortecimento bom", "m", "tenis basquete giannis nike");
 INSERT INTO imagens (id_produto, arquivo) VALUES (2, "giannis1.jpg");
 INSERT INTO imagens (id_produto, arquivo) VALUES (2, "giannis2.jpg");
 
