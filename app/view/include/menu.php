@@ -29,6 +29,14 @@ if(isset($_SESSION[SESSAO_USUARIO_NOME]))
             <li class="">
                 <a class="" href="<?=BASEURL?>/controller/ProdutoController.php?action=listByGenero&g=i">Infantil</a>
             </li>
+
+            <!-- links destinados a ADMs--> 
+            <?php if($_SESSION[SESSAO_USUARIO_PAPEL] == 1) :?>
+            <li class="">
+                <a class="" href="<?=BASEURL?>/controller/UsuarioController.php?action=list">Usuarios</a>
+            </li>
+            <?php endif; ?>
+
         </ul>
 
         <ul class="nav-list">
