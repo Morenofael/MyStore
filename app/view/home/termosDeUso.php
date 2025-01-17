@@ -57,16 +57,6 @@ require_once __DIR__ . "/../include/menu.php";
         <p>Atenção! Se qualquer prática violar estes termos de uso, nós poderemos, a nosso exclusivo critério e sem aviso prévio, excluir, cancelar ou bloquear quaisquer anúncios de produtos e comentários que violem as regras aqui estabelecidas, sem prejuízo da aplicação de outras penalidades previstas nestes termos de uso ou que julguemos cabíveis.</p>
         <p>Sobre a sua responsabilidade: aos usar os nossos serviços de intermediação, você compreende que realizamos a intermediação de negócios, sendo as condições de venda dos produtos anunciados na plataforma livremente determinadas entre os usuários. nós não assumimos responsabilidade, nem fornecemos nenhum tipo de garantia dos produtos anunciados.</p>
         <p>Então, todas as operações de compra e venda realizadas na plataforma do Enjoei serão de responsabilidade exclusiva dos usuários vendedores e compradores. Ao usar nossos serviços de intermediação, você aceita e compreende que, ao realizar negociações com outros usuários, o faz por sua conta e risco.</p>
-        <ol>
-            <li>lorem ipsum</li>
-            <li>Não pode vneder pod</li>
-            <li>Ñ pode vender diamba (makonha )vencida</li>
-            <li>Os originais do samba sao mt bons pprt</li>
-            <li>Programar ouvinfo samba é uma vibe</li>
-            <li>Se tiver dificil de mnadar pix da pra mandar umas latas de heinekcen no lugar do dinheiro</li>
-            <li>proibido vender roupa original 🏴‍☠️🏴‍☠️🏴‍☠️</li>
-            <li>proibido dar dinheiro pra netflix 🏴‍☠️🏴‍☠️🏴‍☠️</li>
-       </ol>
     </div>
 </div>
 

@@ -23,6 +23,8 @@ $usuario = $dados["usuario"];
            <h4>CPF: <?= $usuario->getCpf()?></h4>
            <h4>Telefone: <?= $usuario->getTelefone()?></h4>
            <h4>Data de Nascimento: <?= $usuario->getDataNascimento()?></h4>
+           <h1>https://slidemodel.com/templates/simple-user-profile-powerpoint-template/</h1>
+           <h2>usar isso</h2>
         </div>
     </div>
 
