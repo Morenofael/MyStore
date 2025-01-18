@@ -10,38 +10,30 @@ $usuario = $dados["usuario"];
 <h3 class="text-center">
     USUÁRIO
 </h3>
-<div class="container">
-
-    <div class="row" style="margin-top: 10px;">
-        <div class="col-6">
-            <img src="<?= PATH_ARQUIVOS . $usuario->getFotoPerfil()?>" alt="Foto de perfil" class="img-fluid foto-perfil">
-        </div>
-
-        <div class="col-6">
-           <h4>Nome: <?= $usuario->getNome()?></h4>
-           <h4>Email: <?= $usuario->getEmail()?></h4>
-           <h4>CPF: <?= $usuario->getCpf()?></h4>
-           <h4>Telefone: <?= $usuario->getTelefone()?></h4>
-           <h4>Data de Nascimento: <?= $usuario->getDataNascimento()?></h4>
-           <h1>https://slidemodel.com/templates/simple-user-profile-powerpoint-template/</h1>
-           <h2>usar isso</h2>
-        </div>
+<div class="cards-wrapper">
+    <div id="card-usuario">
+        <a href="<?= BASEURL ?>/controller/UsuarioController.php?action=insertAlterPfp"><img src="<?= PATH_ARQUIVOS . $usuario->getFotoPerfil()?>" alt="Foto de perfil" class="img-fluid foto-perfil"></a>
+        <h4>Nome: <?= $usuario->getNome()?></h4>
+        <a class="btn botao"
+            href="<?= BASEURL ?>/controller/UsuarioController.php?action=editSenha&id=<?=$_SESSION[SESSAO_USUARIO_ID]?>">Alterar Senha</a>
     </div>
+    <?php if($usuario->getId() == $_SESSION[SESSAO_USUARIO_ID]): ?>
+        <div class="card-def">
+            <h3>Endereços</h3>
+            <div class="flex">
+                <a class="btn botao"
+                    href="<?= BASEURL ?>/controller/EnderecoController.php?action=create">Adicionar endereço</a>
+                <a class="btn botao"
+                    href="<?= BASEURL ?>/controller/EnderecoController.php?action=list">Meus endereços</a>
+            </div>
+        </div>
+    <?php endif; ?>        
+</div>
 
     <div class="row" style="margin-top: 30px;">
         <div class="col-12">
         <a class="btn btn-secondary"
                 href="<?= BASEURL ?>/../">Voltar</a>
-        <?php if($usuario->getId() == $_SESSION[SESSAO_USUARIO_ID]): ?>
-        <a class="btn btn-info"
-                href="<?= BASEURL ?>/controller/EnderecoController.php?action=create">Adicionar endereço</a>
-        <a class="btn btn-info"
-                href="<?= BASEURL ?>/controller/EnderecoController.php?action=list">Meus endereços</a>
-        <a class="btn btn-info"
-                href="<?= BASEURL ?>/controller/UsuarioController.php?action=insertAlterPfp">Adicionar/alterar foto de perfil</a>
-        <?php endif; ?>
-        <a class="btn btn-info"
-            href="<?= BASEURL ?>/controller/UsuarioController.php?action=editSenha&id=<?=$_SESSION[SESSAO_USUARIO_ID]?>">Alterar Senha</a>
         </div>
     </div>
 </div>

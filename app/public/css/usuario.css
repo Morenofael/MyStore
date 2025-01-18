@@ -1,3 +1,39 @@
+:root{
+	--laranja-ms: #eec197;
+}
+.cards-wrapper{
+	display: flex;
+	justify-content: space-around;
+}
+#card-usuario{
+	width: 300px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
 .foto-perfil{
-	border-radius: 100px;
+	width: 250px;
+	height: 250px;
+	border-radius: 100%;
+	cursor: pointer;
+}
+.foto-perfil:hover{
+	opacity: 50%;
+}
+
+.card-def{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	min-width: 200px;
+	max-width: 400px;
+	
+}
+.botao{
+	border: 2px solid var(--laranja-ms);
+	color: var(--laranja-ms);
+}
+.botao:hover{
+	background-color: var(--laranja-ms);
+	color: white;
 }
