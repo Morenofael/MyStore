@@ -34,10 +34,11 @@ $imagens = $dados["imagem"];
                     <?php endforeach; ?>
             </select>
             <button onclick="if(confirm('Tem certeza que deseja salver este endereço?'))salvarEndereco()" id="btnSalvarEndereco">salvar</button>
+            <span>Caso o endereço não esteja registrado, <a href="<?=BASEURL?>/controller/EnderecoController.php?action=create">clique aqui</a>.</span>
             <br>
 
-            <label for="fileComprovante">Insira o comprovante PIX:</label>
-            <input name="file[]" type="file" id="fileComprovante" disabled>
+            <label for="fileComprovante" class="input-pix">Insira o comprovante PIX:</label>
+            <input name="file[]" type="file" id="fileComprovante"  disabled>
             <button onclick="if(confirm('Tem certeza que deseja salver este comprovante?'))salvarComprovante()" id="btnSalvarComprovante" disabled>salvar</button>
         </div>
         <?php endif;?>

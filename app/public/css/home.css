@@ -1,5 +1,6 @@
 :root{
     --produto-sec-border-radius: 25px;
+	  --laranja-ms: #eec197;
 }
 .main{
     display: grid;
@@ -80,7 +81,14 @@
     padding: 6px;
     border-radius: 10px;
 }
-
+.botao{
+	border: 2px solid var(--laranja-ms);
+	color: var(--laranja-ms);
+}
+.botao:hover{
+	background-color: var(--laranja-ms);
+	color: white;
+}
 .sec-produtos{
     gap: 32px;
 }

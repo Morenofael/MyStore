@@ -27,7 +27,6 @@
 	align-items: center;
 	min-width: 200px;
 	max-width: 400px;
-	
 }
 .botao{
 	border: 2px solid var(--laranja-ms);

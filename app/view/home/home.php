@@ -22,8 +22,8 @@ $imagens = array_reverse($dados["imagens"]);
                 <span><?=$produtos[0]->getDescricao()?></span>
                 <h5>Preço: <?=$produtos[0]->getPrecoReais()?></h5>
                 <div class="flex botoes-produto-wrapper">
-                    <button onclick="curtir(this)" data-idProduto="<?=$produtos[0]->getId()?>" id="buttonCurtir"><img class="icon" src="<?=BASEURL?>/view/img/svg/coracao.svg" alt="coração"><span>Curtir</span></button>
-                    <a href="<?=BASEURL?>/controller/ProdutoController.php?action=display&id=<?=$produtos[0]->getId()?>"><span>Comprar</span>
+                    <button onclick="curtir(this)" data-idProduto="<?=$produtos[0]->getId()?>" id="buttonCurtir" class="btn botao"><img class="icon" src="<?=BASEURL?>/view/img/svg/coracao.svg" alt="coração"><span>Curtir</span></button>
+                    <a href="<?=BASEURL?>/controller/ProdutoController.php?action=display&id=<?=$produtos[0]->getId()?>" class="btn botao"><span>Comprar</span></a>
                 </div>
             </div>
          </div>
