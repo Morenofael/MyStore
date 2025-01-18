@@ -44,7 +44,7 @@ function salvarComprovante() {
         }
 
         xhttp.send(formData);
-
+        location.reload();
     }else{
         alert("Selecione um arquivo");
     }

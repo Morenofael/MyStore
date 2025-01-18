@@ -38,6 +38,14 @@
 	width: 100%;
 	height: auto;
 }
+.botao{
+	border: 2px solid var(--laranja-ms);
+	color: var(--laranja-ms);
+}
+.botao:hover{
+	background-color: var(--laranja-ms);
+	color: white;
+}
 .mouse-pointer{
 	cursor: pointer;
 }

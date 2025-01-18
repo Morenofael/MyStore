@@ -12,7 +12,13 @@ $usuario = $dados["usuario"];
 </h3>
 <div class="cards-wrapper">
     <div id="card-usuario">
-        <a href="<?= BASEURL ?>/controller/UsuarioController.php?action=insertAlterPfp"><img src="<?= PATH_ARQUIVOS . $usuario->getFotoPerfil()?>" alt="Foto de perfil" class="img-fluid foto-perfil"></a>
+        <a href="<?= BASEURL ?>/controller/UsuarioController.php?action=insertAlterPfp">
+            <?php if($usuario->getFotoPerfil()): ?>
+            <img src="<?= PATH_ARQUIVOS . $usuario->getFotoPerfil()?>" alt="Foto de perfil" class="img-fluid foto-perfil">
+            <?php else: ?>
+            <img src="<?= BASEURL?>/view/img/svg/perfil2.svg" alt="Foto de perfil" class="img-fluid foto-perfil">
+            <?php endif; ?>
+        </a>
         <h4>Nome: <?= $usuario->getNome()?></h4>
         <a class="btn botao"
             href="<?= BASEURL ?>/controller/UsuarioController.php?action=editSenha&id=<?=$_SESSION[SESSAO_USUARIO_ID]?>">Alterar Senha</a>

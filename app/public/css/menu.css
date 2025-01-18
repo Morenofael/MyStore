@@ -1,6 +1,9 @@
+:root{
+	--laranja-ms: #eec197;
+}
 nav{
 	padding: 5px;
-	background-color: #FBFBFB; 
+	background-color: #d9d9d9; 
 }
 #conteudoNavbarSuportado{
 	display: flex;
@@ -10,6 +13,9 @@ nav{
 #menu-logo{
 	height: 50px;
 	width: auto;
+}
+ul {
+	margin-bottom: 0;
 }
 .menu-logo-wrapper{
 	display: flex;

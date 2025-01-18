@@ -41,7 +41,14 @@ select {
 	border: 1px solid black;
 	border-radius: 5px;
 }
-
+.botao{
+	border: 2px solid var(--laranja-ms);
+	color: var(--laranja-ms);
+}
+.botao:hover{
+	background-color: var(--laranja-ms);
+	color: white;
+}
 #comprovante-container{
     display: flex;
     flex-direction: column;
@@ -54,7 +61,15 @@ select {
 .mouse-not-allowed{
     cursor: not-allowed;
 }
-
+input[type="file"] {
+    display: none;
+}
+.custom-file-upload {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+}
 @media only screen and (max-width: 600px) {
     .nav-list{
         padding: 0;

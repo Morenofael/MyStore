@@ -1,6 +1,5 @@
 :root{
     --produto-sec-border-radius: 25px;
-	  --laranja-ms: #eec197;
 }
 .main{
     display: grid;
@@ -70,7 +69,7 @@
     flex-direction: column;
     gap: 2px;
 }
-#main-produto a{
+#main-produto a:first-child{
     color: black;
 }
 .botoes-produto-wrapper{

@@ -33,13 +33,13 @@ $imagens = $dados["imagem"];
                         ><?=$en->getCep() . ", " . $en->getLogradouro() . ", " . $en->getNumero()?></option>
                     <?php endforeach; ?>
             </select>
-            <button onclick="if(confirm('Tem certeza que deseja salver este endereço?'))salvarEndereco()" id="btnSalvarEndereco">salvar</button>
+            <button onclick="if(confirm('Tem certeza que deseja salver este endereço?'))salvarEndereco()" id="btnSalvarEndereco" class="btn">salvar</button>
             <span>Caso o endereço não esteja registrado, <a href="<?=BASEURL?>/controller/EnderecoController.php?action=create">clique aqui</a>.</span>
             <br>
 
-            <label for="fileComprovante" class="input-pix">Insira o comprovante PIX:</label>
+            <label for="fileComprovante" class="custom-file-upload">Comprovante PIX</label>
             <input name="file[]" type="file" id="fileComprovante"  disabled>
-            <button onclick="if(confirm('Tem certeza que deseja salver este comprovante?'))salvarComprovante()" id="btnSalvarComprovante" disabled>salvar</button>
+            <button onclick="if(confirm('Tem certeza que deseja salver este comprovante?'))salvarComprovante()" id="btnSalvarComprovante" class="btn" disabled>salvar</button>
         </div>
         <?php endif;?>
             <div id="status-display">
@@ -57,7 +57,7 @@ $imagens = $dados["imagem"];
                 <button onclick="if(confirm('Tem certeza que deseja alterar o status?'))alterarStatusPedido(document.getElementById('selStatus').value)" id="btnSalvarComprovante">salvar</button>
             <?php endif;?>
             <?php if($pedido && $pedido->getComprador()->getId() == $_SESSION[SESSAO_USUARIO_ID] && $pedido->getStatus() != 'AI' && $pedido->getStatus() != 'ENT'):?>
-                <button onclick="if(confirm('Tem certeza que deseja confirmar o recebimento?'))alterarStatusPedido('ENT')">Confirmar recebimento</button>
+                <button class="btn botao" onclick="if(confirm('Tem certeza que deseja confirmar o recebimento?'))alterarStatusPedido('ENT')">Confirmar recebimento</button>
             <?php endif;?>
             <?php if($pedido && $pedido->getComprador()->getId() == $_SESSION[SESSAO_USUARIO_ID] && $pedido->getStatus() == 'ENT'):?>
                 <button onclick="if(confirm('Tem certeza que deseja denunciar o produto?'))alterarStatusPedido('ENT')">Denunciar</button>

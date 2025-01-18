@@ -21,8 +21,8 @@ $imagens = $dados["imagens"];
         <h4>R$<?= $produto->getPreco()?></h4>
         <?php if($vendedor->getId() != $_SESSION[SESSAO_USUARIO_ID]) : ?>
         <div class="flex botoes-produto-wrapper">
-            <button onclick="curtir(this)" data-idProduto="<?=$produto->getId()?>" id="buttonCurtir"><img class="icon" src="<?=BASEURL?>/view/img/svg/coracao.svg" alt="coração"><span>Curtir</span></button>
-            <a href="<?=BASEURL?>/controller/PedidoController.php?action=save&id=<?=$produto->getId()?>">Comprar</a>
+            <button onclick="curtir(this)" data-idProduto="<?=$produto->getId()?>" id="buttonCurtir" class="btn botao"><img class="icon" src="<?=BASEURL?>/view/img/svg/coracao.svg" alt="coração"><span>Curtir</span></button>
+            <a href="<?=BASEURL?>/controller/PedidoController.php?action=save&id=<?=$produto->getId()?>" class="btn botao">Comprar</a>
         </div>
         <?php endif; ?>
         <div class="sec-imagens-wrapper">
