@@ -40,11 +40,10 @@ function salvarComprovante() {
             BASE_URL + "/controller/PedidoController.php?action=updateCaminhoComprovante", true);
         xhttp.onload = function() {
             verificarCampos();
-            alterarStatusPedido('NV')
+            alterarStatusPedido('NV');
         }
 
         xhttp.send(formData);
-        location.reload();
     }else{
         alert("Selecione um arquivo");
     }
@@ -58,7 +57,7 @@ function alterarStatusPedido(status){
     BASE_URL + "/controller/PedidoController.php?action=updateStatus", true);
   xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
   xhttp.onload = function() {
-    verificarCampos();
+    location.reload();
   }
   
   xhttp.send("status=" + encodeURIComponent(status) + "&idPedido=" + encodeURIComponent(idPedido));

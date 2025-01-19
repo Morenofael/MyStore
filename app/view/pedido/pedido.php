@@ -56,11 +56,11 @@ $imagens = $dados["imagem"];
                 </select>
                 <button onclick="if(confirm('Tem certeza que deseja alterar o status?'))alterarStatusPedido(document.getElementById('selStatus').value)" id="btnSalvarComprovante">salvar</button>
             <?php endif;?>
-            <?php if($pedido && $pedido->getComprador()->getId() == $_SESSION[SESSAO_USUARIO_ID] && $pedido->getStatus() != 'AI' && $pedido->getStatus() != 'ENT'):?>
+            <?php if($pedido && $pedido->getComprador()->getId() == $_SESSION[SESSAO_USUARIO_ID] && $pedido->getStatus() == 'ENV' && $pedido->getStatus() != 'ENT'):?>
                 <button class="btn botao" onclick="if(confirm('Tem certeza que deseja confirmar o recebimento?'))alterarStatusPedido('ENT')">Confirmar recebimento</button>
             <?php endif;?>
             <?php if($pedido && $pedido->getComprador()->getId() == $_SESSION[SESSAO_USUARIO_ID] && $pedido->getStatus() == 'ENT'):?>
-                <button onclick="if(confirm('Tem certeza que deseja denunciar o produto?'))alterarStatusPedido('ENT')">Denunciar</button>
+                <button class="btn btn-outline-danger" onclick="if(confirm('Tem certeza que deseja denunciar o produto?'))alterarStatusPedido('ENT')">Denunciar</button>
             <?php endif;?>
             <?php if($pedido && $pedido->getCaminhoComprovante()):?>
                 <div>

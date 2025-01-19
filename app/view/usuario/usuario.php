@@ -6,12 +6,10 @@ require_once(__DIR__ . "/../include/header.php");
 require_once(__DIR__ . "/../include/menu.php");
 $usuario = $dados["usuario"];
 ?>
-    <link rel="stylesheet" href="<?=BASEURL?>/public/css/usuario.css" media="all">
-<h3 class="text-center">
-    USUÁRIO
-</h3>
+<link rel="stylesheet" href="<?=BASEURL?>/public/css/usuario.css" media="all">
 <div class="cards-wrapper">
     <div id="card-usuario">
+        <h3>Usuário</h3>
         <a href="<?= BASEURL ?>/controller/UsuarioController.php?action=insertAlterPfp">
             <?php if($usuario->getFotoPerfil()): ?>
             <img src="<?= PATH_ARQUIVOS . $usuario->getFotoPerfil()?>" alt="Foto de perfil" class="img-fluid foto-perfil">
