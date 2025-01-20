@@ -28,7 +28,9 @@ body{
 .foto-perfil:hover{
 	opacity: 50%;
 }
-
+input[type="file"] {
+    display: none;
+}
 .card-def{
 	display: flex;
 	flex-direction: column;
