@@ -108,13 +108,12 @@ class UsuarioController extends Controller {
         if(! $this->usuarioLogado())
             exit;
         $dados = [];
-        $arquivoImg = $_FILES["imagem"];
+        $arquivoImg = $_FILES["file"];
         if($arquivoImg){
             $arquivoNome = $this->arquivoService->salvarImagem($arquivoImg, 0);
             $this->usuarioDao->editPfP($arquivoNome);
             header("location: ./UsuarioController.php?action=display&id=" . $_SESSION[SESSAO_USUARIO_ID]);
         }
-        $this->loadView("usuario/foto-perfil-form.php", $dados);
     }
     //Método create
     protected function create() {
