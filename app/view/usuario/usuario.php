@@ -33,6 +33,31 @@ $usuario = $dados["usuario"];
                 <a class="btn botao"
                     href="<?= BASEURL ?>/controller/EnderecoController.php?action=list">Meus endereços</a>
             </div>
+            <table id="tabEnderecos" class='table table-striped table-bordered'>
+                <thead>
+                    <tr>
+                        <th>Endereço</th>
+                        <th>Alterar</th>
+                        <th>Excluir</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach($dados['enderecos'] as $en): ?>
+                        <tr>
+                            <td><?= $en; ?></td>
+                            <td><a class="btn btn-primary" 
+                                href="<?= BASEURL ?>/controller/EnderecoController.php?action=edit&id=<?= $en->getId() ?>">
+                                Alterar</a> 
+                            </td>
+                            <td><a class="btn btn-danger" 
+                                onclick="return confirm('Confirma a exclusão do endereço?');"
+                                href="<?= BASEURL ?>/controller/EnderecoController.php?action=delete&id=<?= $en->getId() ?>">
+                                Excluir</a> 
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
         </div>
     <?php endif; ?>        
 </div>

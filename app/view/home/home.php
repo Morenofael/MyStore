@@ -54,7 +54,6 @@ $imagens = array_reverse($dados["imagens"]);
             </a>
         </div>
         <div class="flex cat-princ">
-            <h5>Categorias principais</h5>
             <a id="ver-tudo" href="<?=BASEURL?>/controller/ProdutoController.php?action=list">Ver tudo</a>
         </div>
     </div>
