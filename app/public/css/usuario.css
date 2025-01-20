@@ -24,6 +24,7 @@ body{
 	height: 250px;
 	border-radius: 100%;
 	cursor: pointer;
+	border: 1px solid black;
 }
 .foto-perfil:hover{
 	opacity: 50%;
@@ -34,9 +35,9 @@ input[type="file"] {
 .card-def{
 	display: flex;
 	flex-direction: column;
+	gap: 12px 	;
 	align-items: center;
 	min-width: 200px;
-	max-width: 400px;
 }
 .botao{
 	border: 2px solid var(--laranja-ms);
