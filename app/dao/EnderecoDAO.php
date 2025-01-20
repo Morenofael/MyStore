@@ -41,7 +41,7 @@ class EnderecoDAO{
                " WHERE id = :id";
         
         $stm = $conn->prepare($sql);
-        $$stm->bindValue("numero", $endereco->getNumero());
+        $stm->bindValue("numero", $endereco->getNumero());
         $stm->bindValue("cep", $endereco->getCep());
         $stm->bindValue("logradouro", $endereco->getLogradouro());
         $stm->bindValue("complemento", $endereco->getComplemento());
