@@ -5,6 +5,7 @@ use function PHPSTORM_META\type;
 
 require_once(__DIR__ . "/Controller.php");
 require_once(__DIR__ . "/../dao/UsuarioDAO.php");
+require_once(__DIR__ . "/../dao/EnderecoDAO.php");
 require_once(__DIR__ . "/../service/UsuarioService.php");
 require_once(__DIR__ . "/../service/ArquivoService.php");
 require_once(__DIR__ . "/../model/Usuario.php");
@@ -13,6 +14,7 @@ require_once(__DIR__ . "/../model/enum/UsuarioPapel.php");
 class UsuarioController extends Controller {
 
     private UsuarioDAO $usuarioDao;
+    private EnderecoDAO $enderecoDao;
     private UsuarioService $usuarioService;
     private ArquivoService $arquivoService;
 
@@ -22,6 +24,7 @@ class UsuarioController extends Controller {
         //    exit;
 
         $this->usuarioDao = new UsuarioDAO();
+        $this->enderecoDao = new EnderecoDAO();
         $this->usuarioService = new UsuarioService();
         $this->arquivoService = new ArquivoService();
 
@@ -34,6 +37,7 @@ class UsuarioController extends Controller {
             exit;
         $id = $_GET['id'];
         $dados["usuario"] = $this->usuarioDao->findById($id);
+        $dados["enderecos"] = $this->enderecoDao->listFromUsuario($dados["usuario"]->getId());
         $this->loadView("usuario/usuario.php", $dados);
     }
 
