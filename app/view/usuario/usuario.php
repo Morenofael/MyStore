@@ -33,15 +33,6 @@ $usuario = $dados["usuario"];
         </div>
     <?php endif; ?>        
 </div>
-
-    <div class="row" style="margin-top: 30px;">
-        <div class="col-12">
-        <a class="btn btn-secondary"
-                href="<?= BASEURL ?>/../">Voltar</a>
-        </div>
-    </div>
-</div>
-
 <?php
 require_once(__DIR__ . "/../include/footer.php");
 ?>

@@ -1,9 +1,17 @@
 :root{
 	--laranja-ms: #eec197;
 }
+body{
+	background-image: url('/app/view/img/bg/bg-generic-ms.jpg');
+	background-repeat: no-repeat;
+  	background-attachment: fixed;
+  	background-size: cover;
+}
 .cards-wrapper{
 	display: flex;
 	justify-content: space-around;
+	min-height: 85vh;
+	padding: 50px;
 }
 #card-usuario{
 	width: 300px;

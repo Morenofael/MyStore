@@ -20,6 +20,7 @@
 .lista-produtos{
     gap: 32px;
     justify-content: center;
+    min-height: 80vh;
 }
 .lista-produtos a div{
     width: 250px;
