@@ -10,13 +10,16 @@ $usuario = $dados["usuario"];
 <div class="cards-wrapper">
     <div id="card-usuario">
         <h3>Usuário</h3>
-        <a href="<?= BASEURL ?>/controller/UsuarioController.php?action=insertAlterPfp">
+        <label for="filePfp">
+        <div>
             <?php if($usuario->getFotoPerfil()): ?>
             <img src="<?= PATH_ARQUIVOS . $usuario->getFotoPerfil()?>" alt="Foto de perfil" class="img-fluid foto-perfil">
             <?php else: ?>
             <img src="<?= BASEURL?>/view/img/svg/perfil2.svg" alt="Foto de perfil" class="img-fluid foto-perfil">
             <?php endif; ?>
-        </a>
+        </div>
+        </label>
+        <input type="file" id="filePfp">
         <h4>Nome: <?= $usuario->getNome()?></h4>
         <a class="btn botao"
             href="<?= BASEURL ?>/controller/UsuarioController.php?action=editSenha&id=<?=$_SESSION[SESSAO_USUARIO_ID]?>">Alterar Senha</a>
@@ -33,6 +36,8 @@ $usuario = $dados["usuario"];
         </div>
     <?php endif; ?>        
 </div>
+<input type="hidden" value="/app" id="ipnBaseUrl">
+<script src="<?=BASEURL?>/public/js/usuario.js"></script>
 <?php
 require_once(__DIR__ . "/../include/footer.php");
 ?>
