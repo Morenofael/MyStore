@@ -13,6 +13,10 @@ body{
 	min-height: 85vh;
 	padding: 50px;
 }
+.flex{
+	display: flex;
+	justify-content: center;
+}
 #card-usuario{
 	width: 300px;
 	display: flex;
@@ -46,4 +50,10 @@ input[type="file"] {
 .botao:hover{
 	background-color: var(--laranja-ms);
 	color: white;
+}
+
+@media only screen and (max-width: 600px) {
+	.cards-wrapper{
+		flex-direction: column;
+	}
 }
