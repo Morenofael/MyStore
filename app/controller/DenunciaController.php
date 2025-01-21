@@ -1,20 +1,23 @@
 <?php
-#Classe controller para Usuário
+#Classe controller para Denuncia 
 
 require_once(__DIR__ . "/Controller.php");
 require_once(__DIR__ . "/../dao/UsuarioDAO.php");
-require_once(__DIR__ . "/../dao/EnderecoDAO.php");
-require_once(__DIR__ . "/../service/UsuarioService.php");
+require_once(__DIR__ . "/../dao/PedidoDAO.php");
+require_once(__DIR__ . "/../dao/DenunciaDAO.php");
 require_once(__DIR__ . "/../service/ArquivoService.php");
+require_once(__DIR__ . "/../service/DenunciaService.php");
 require_once(__DIR__ . "/../model/Usuario.php");
+require_once(__DIR__ . "/../model/Denuncia.php");
 require_once(__DIR__ . "/../model/enum/UsuarioPapel.php");
 
 class UsuarioController extends Controller {
 
     private UsuarioDAO $usuarioDao;
-    private EnderecoDAO $enderecoDao;
-    private UsuarioService $usuarioService;
+    private PedidoDAO $pedidoDao;
+    private DenunciaDAO $denunciaDao;
     private ArquivoService $arquivoService;
+    private DenunciaService $denunciaService;
 
     //Método construtor do controller - será executado a cada requisição a está classe
     public function __construct() {
@@ -22,9 +25,10 @@ class UsuarioController extends Controller {
         //    exit;
 
         $this->usuarioDao = new UsuarioDAO();
-        $this->enderecoDao = new EnderecoDAO();
-        $this->usuarioService = new UsuarioService();
+        $this->pedidoDao = new PedidoDAO();
+        $this->denunciaDao = new DenunciaDAO();
         $this->arquivoService = new ArquivoService();
+        $this->denunciaService = new DenunciaService();
 
         $this->handleAction();
     }
@@ -50,80 +54,35 @@ class UsuarioController extends Controller {
     }
 
     protected function save() {
-        //Captura os dados do formulário
-        $dados["id"] = isset($_POST['id']) ? $_POST['id'] : 0;
-        $nome = trim($_POST['nome']) ? trim($_POST['nome']) : NULL;
-        $email = trim($_POST['email']) ? trim($_POST['email']) : NULL;
-        $login = trim($_POST['email']) ? trim($_POST['email']) : NULL;
-        $senha = trim($_POST['senha']) ? trim($_POST['senha']) : NULL;
-        $confSenha = trim($_POST['conf_senha']) ? trim($_POST['conf_senha']) : NULL;
-        $cpf = trim($_POST['cpf']) ? trim($_POST['cpf']) : NULL;
-        $telefone = trim($_POST['telefone']) ? trim($_POST['telefone']) : NULL;
-        $dataNascimento = trim($_POST['data_nascimento']) ? trim($_POST['data_nascimento']) : NULL;
+        $idPedido = $_GET['id'];
+        $pedido = $this->pedidoDao->findById($idPedido);
+        $texto = trim($_POST['texto']) ? trim($_POST['texto']) : NULL;
+         
+        $denuncia = new Denuncia();
+        $denuncia->setPedido($pedido);
+        $denuncia->setTexto($texto); 
 
-        //Cria objeto Usuario
-        $usuario = new Usuario();
-        $usuario->setNome($nome);
-        $usuario->setEmail($email);
-        $usuario->setLogin($login);
-        $usuario->setSenha($senha);
-        $usuario->setCpf($cpf);
-        $usuario->setTelefone($telefone);
-        $usuario->setDataNascimento($dataNascimento);
-        $usuario->setNivelAcesso(0); //usuário comum
-        $usuario->setSituacao(1); //usuário ativo
-
-        //Validar os dados
-        $erros = $this->usuarioService->validarDados($usuario, $confSenha);
-        if(empty($erros)) {
-            //Persiste o objeto
-            try {
-                
-                if($dados["id"] == 0)  //Inserindo
-                    $this->usuarioDao->insert($usuario);
-                else { //Alterando
-                    $usuario->setId($dados["id"]);
-                    $this->usuarioDao->update($usuario);
-                }
-
-                $msg = "Usuário salvo com sucesso.";
-                $this->list("", $msg);
-                exit;
-            } catch (PDOException $e) {
+        $erros = $this->denunciaService->validarDados($denuncia);
+        if(empty($erros)){
+            try{
+                $arquivoImg = $_FILES["imagem"];
+                $arquivoNome = $this->arquivoService->salvarImagem($arquivoImg, 0);
+                $denuncia->setCaminhoImagem($arquivoNome); 
+                $this->denunciaDao->insert($denuncia);
+            }catch (PDOException $e){
                 print_r($e);
-                array_push($erros, "[Erro ao salvar o usuário na base de dados.]");                
+                array_push($erros, "[Erro ao salvar denúncia na base de dados]");
             }
         }
-
-        //Se há erros, volta para o formulário
-        
-        //Carregar os valores recebidos por POST de volta para o formulário
-        $dados["usuario"] = $usuario;
-        $dados["confSenha"] = $confSenha;
-        $dados["papeis"] = UsuarioPapel::getAllAsArray();
-        
-        $msgsErro = implode("<br>", $erros);
-        $this->loadView("usuario/form.php", $dados, $msgsErro);
     }
 
-    public function insertAlterPfP(){
-        if(! $this->usuarioLogado())
-            exit;
-        $dados = [];
-        $arquivoImg = $_FILES["file"];
-        if($arquivoImg){
-            $arquivoNome = $this->arquivoService->salvarImagem($arquivoImg, 0);
-            $this->usuarioDao->editPfP($arquivoNome);
-            header("location: ./UsuarioController.php?action=display&id=" . $_SESSION[SESSAO_USUARIO_ID]);
-        }
-    }
     //Método create
     protected function create() {
         //echo "Chamou o método create!";
         
         $dados["id"] = 0;
-        $dados["papeis"] = UsuarioPapel::getAllAsArray(); 
-        $this->loadView("usuario/form.php", $dados);
+        $dados["idPedido"] = $_GET["id"];
+        $this->loadView("denuncia/form.php", $dados);
     }
 
     //Método edit

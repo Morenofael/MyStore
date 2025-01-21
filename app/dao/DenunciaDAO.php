@@ -2,13 +2,11 @@
 #Nome do arquivo: PedidoDAO.php
 #Objetivo: classe DAO para o model de Pedido
 
-#Eu realmente ando sem tempo nem paciência. São dez da noite e eu to aqui começando essa porra      10/12/2024
-#pqp cara que preguiça de pensar                                                                    11/12/2024
 include_once(__DIR__ . "/../connection/Connection.php");
 include_once(__DIR__ . "/../model/Denuncia.php");
 include_once(__DIR__ . "/../model/Pedido.php");
 
-class DAO{
+class DenunciaDAO{
 
     //Método para buscar um usuário por seu ID
     public function findById(int $id) {
@@ -45,7 +43,7 @@ class DAO{
                " VALUES (:id_pedido, :status, :caminho_imagem, :texto)";
 
         $stm = $conn->prepare($sql);
-        $stm->bindValue("id_pedido", $denuncia->getIdPedido());
+        $stm->bindValue("id_pedido", $denuncia->getPedido()->getId());
         $stm->bindValue("status", $denuncia->getStatus());
         $stm->bindValue("caminho_imagem", $denuncia->getCaminhoImagem());
         $stm->bindValue("texto", $denuncia->getTexto());
