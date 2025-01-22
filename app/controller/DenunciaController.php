@@ -11,7 +11,7 @@ require_once(__DIR__ . "/../model/Usuario.php");
 require_once(__DIR__ . "/../model/Denuncia.php");
 require_once(__DIR__ . "/../model/enum/UsuarioPapel.php");
 
-class UsuarioController extends Controller {
+class DenunciaController extends Controller {
 
     private UsuarioDAO $usuarioDao;
     private PedidoDAO $pedidoDao;
@@ -39,7 +39,6 @@ class UsuarioController extends Controller {
             exit;
         $id = $_GET['id'];
         $dados["usuario"] = $this->usuarioDao->findById($id);
-        $dados["enderecos"] = $this->enderecoDao->listFromUsuario($dados["usuario"]->getId());
         $this->loadView("usuario/usuario.php", $dados);
     }
 
@@ -54,7 +53,7 @@ class UsuarioController extends Controller {
     }
 
     protected function save() {
-        $idPedido = $_GET['id'];
+        $idPedido = $_POST['idPedido'];
         $pedido = $this->pedidoDao->findById($idPedido);
         $texto = trim($_POST['texto']) ? trim($_POST['texto']) : NULL;
          
@@ -65,10 +64,11 @@ class UsuarioController extends Controller {
         $erros = $this->denunciaService->validarDados($denuncia);
         if(empty($erros)){
             try{
-                $arquivoImg = $_FILES["imagem"];
+                $arquivoImg = $_FILES["file"];
                 $arquivoNome = $this->arquivoService->salvarImagem($arquivoImg, 0);
                 $denuncia->setCaminhoImagem($arquivoNome); 
                 $this->denunciaDao->insert($denuncia);
+                header("location: HomeController.php?action=home");
             }catch (PDOException $e){
                 print_r($e);
                 array_push($erros, "[Erro ao salvar denúncia na base de dados]");
@@ -80,8 +80,7 @@ class UsuarioController extends Controller {
     protected function create() {
         //echo "Chamou o método create!";
         
-        $dados["id"] = 0;
-        $dados["idPedido"] = $_GET["id"];
+        $dados["idPedido"] = $_GET["idPedido"];
         $this->loadView("denuncia/form.php", $dados);
     }
 
@@ -164,4 +163,4 @@ class UsuarioController extends Controller {
 
 
 #Criar objeto da classe para assim executar o construtor
-new UsuarioController();
+new DenunciaController();

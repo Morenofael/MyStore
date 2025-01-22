@@ -60,7 +60,7 @@ $imagens = $dados["imagem"];
                 <button class="btn botao" onclick="if(confirm('Tem certeza que deseja confirmar o recebimento?'))alterarStatusPedido('ENT')">Confirmar recebimento</button>
             <?php endif;?>
             <?php if($pedido && $pedido->getComprador()->getId() == $_SESSION[SESSAO_USUARIO_ID] && $pedido->getStatus() == 'ENT'):?>
-                <button class="btn btn-outline-danger" onclick="if(confirm('Tem certeza que deseja denunciar o produto?'))alterarStatusPedido('ENT')">Denunciar</button>
+                <a href="<?=BASEURL?>/controller/DenunciaController.php?action=create&idPedido=<?=$pedido->getId()?>" class="btn btn-outline-danger" onclick="if(confirm('Tem certeza que deseja denunciar o produto?'))">Denunciar</a>
             <?php endif;?>
             <?php if($pedido && $pedido->getCaminhoComprovante()):?>
                 <div>

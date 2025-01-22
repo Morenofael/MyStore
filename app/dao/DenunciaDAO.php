@@ -44,7 +44,7 @@ class DenunciaDAO{
 
         $stm = $conn->prepare($sql);
         $stm->bindValue("id_pedido", $denuncia->getPedido()->getId());
-        $stm->bindValue("status", $denuncia->getStatus());
+        $stm->bindValue("status", "NV");
         $stm->bindValue("caminho_imagem", $denuncia->getCaminhoImagem());
         $stm->bindValue("texto", $denuncia->getTexto());
         $stm->execute();

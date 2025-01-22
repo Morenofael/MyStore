@@ -70,12 +70,13 @@ CREATE TABLE curtidas(
 ALTER TABLE curtidas ADD CONSTRAINT fk_produto_curtida FOREIGN KEY (id_produto) REFERENCES produtos (id) ON DELETE CASCADE;
 ALTER TABLE curtidas ADD CONSTRAINT fk_usuario_curtida FOREIGN KEY (id_usuario) REFERENCES usuarios (id) ON DELETE CASCADE;
 
-CREATE TABLE denuncia(
+CREATE TABLE denuncias(
 	id INT AUTO_INCREMENT NOT NULL,
 	id_pedido INT NOT NULL,
 	texto VARCHAR(2048) NOT NULL,
 	status ENUM('NV', 'PRO', 'INPRO'),
 	caminho_imagem VARCHAR(256)
+	constraint pk_denuncias primary key (id)
 );
 
 CREATE TABLE pedidos(
