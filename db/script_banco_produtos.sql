@@ -83,11 +83,11 @@ INSERT INTO produtos (id, id_brecho, nome, preco, descricao, genero, tags) VALUE
 INSERT INTO imagens (id_produto, arquivo) VALUES (22, "camiseta-asics1.jpg");
 INSERT INTO imagens (id_produto, arquivo) VALUES (22, "camiseta-asics2.jpg");
 
-INSERT INTO produtos (id, id_brecho, nome, preco, descricao, genero, tags) VALUES (23, 2, "Sacola Jordan para esporte", 60, "Sacola Jordan para levar equipamento.", "u", "Jordan sacola treino");
+INSERT INTO produtos (id, id_brecho, nome, preco, descricao, genero, tags) VALUES (23, 2, "Sacola Jordan para esporte", 60, "Sacola Jordan para levar equipamento.", "u", "jordan sacola treino");
 INSERT INTO imagens (id_produto, arquivo) VALUES (23, "sacola-jordan1.jpg");
 INSERT INTO imagens (id_produto, arquivo) VALUES (23, "sacola-jordan2.jpg");
 INSERT INTO imagens (id_produto, arquivo) VALUES (23, "sacola-jordan3.jpg");
 
-INSERT INTO produtos (id, id_brecho, nome, preco, descricao, genero, tags) VALUES (24, 2, "Chinelo preto Jordan", 60, "Chinelo Jordan cor preta tamanho adulto.", "f", "Jordan chinelo");
+INSERT INTO produtos (id, id_brecho, nome, preco, descricao, genero, tags) VALUES (24, 2, "Chinelo preto Jordan", 60, "Chinelo Jordan cor preta tamanho adulto.", "f", "jordan chinelo");
 INSERT INTO imagens (id_produto, arquivo) VALUES (24, "chinelo-jordan1.jpg");
 INSERT INTO imagens (id_produto, arquivo) VALUES (24, "chinelo-jordan2.jpg");
