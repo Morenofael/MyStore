@@ -74,3 +74,20 @@ INSERT INTO imagens (id_produto, arquivo) VALUES (19, "legging-mizuno2.jpg");
 INSERT INTO produtos (id, id_brecho, nome, preco, descricao, genero, tags) VALUES (20, 1, "Short de compressão Mizuno", 100, "Short de compressão da Mizuno. Ótimo para praticar esportes e ir à academia.", "f", "mizuno short compressao compressão legging esporte pratica academia");
 INSERT INTO imagens (id_produto, arquivo) VALUES (20, "shorts-compressao1.jpg");
 INSERT INTO imagens (id_produto, arquivo) VALUES (20, "short-compressao2.jpg");
+
+INSERT INTO produtos (id, id_brecho, nome, preco, descricao, genero, tags) VALUES (21, 1, "Short asics preto", 35, "Short asics preto excelente para treino e corrida.", "m", "asics short shots esporte pratica academia treino");
+INSERT INTO imagens (id_produto, arquivo) VALUES (21, "short-asics1.jpg");
+INSERT INTO imagens (id_produto, arquivo) VALUES (21, "short-asics2.jpg");
+
+INSERT INTO produtos (id, id_brecho, nome, preco, descricao, genero, tags) VALUES (22, 2, "Camiseta asics tenista", 20, "Camiseta asics azul para jogar têniz.", "f", "asics camiseta camisa esporte pratica treino tenis");
+INSERT INTO imagens (id_produto, arquivo) VALUES (22, "camiseta-asics1.jpg");
+INSERT INTO imagens (id_produto, arquivo) VALUES (22, "camiseta-asics2.jpg");
+
+INSERT INTO produtos (id, id_brecho, nome, preco, descricao, genero, tags) VALUES (23, 2, "Sacola Jordan para esporte", 60, "Sacola Jordan para levar equipamento.", "u", "Jordan sacola treino");
+INSERT INTO imagens (id_produto, arquivo) VALUES (23, "sacola-jordan1.jpg");
+INSERT INTO imagens (id_produto, arquivo) VALUES (23, "sacola-jordan2.jpg");
+INSERT INTO imagens (id_produto, arquivo) VALUES (23, "sacola-jordan3.jpg");
+
+INSERT INTO produtos (id, id_brecho, nome, preco, descricao, genero, tags) VALUES (24, 2, "Chinelo preto Jordan", 60, "Chinelo Jordan cor preta tamanho adulto.", "f", "Jordan chinelo");
+INSERT INTO imagens (id_produto, arquivo) VALUES (24, "chinelo-jordan1.jpg");
+INSERT INTO imagens (id_produto, arquivo) VALUES (24, "chinelo-jordan2.jpg");
