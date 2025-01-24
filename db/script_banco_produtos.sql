@@ -38,3 +38,39 @@ INSERT INTO imagens (id_produto, arquivo) VALUES (9, "chuteira-adidas1.jpg");
 
 INSERT INTO produtos (id, id_brecho, nome, preco, descricao, genero, tags) VALUES (10, 2, "Taco de baseball", 100, "Taco de baseball de alumínio", "u", "taco baseball aluminio metal");
 INSERT INTO imagens (id_produto, arquivo) VALUES (10, "taco-baseball1.jpg");
+
+INSERT INTO produtos (id, id_brecho, nome, preco, descricao, genero, tags) VALUES (11, 1, "Short Nike", 50, "Short da Nike Yakees para treino", "u", "nike baseball basquete short shorts");
+INSERT INTO imagens (id_produto, arquivo) VALUES (11, "short-nike1.jpg");
+INSERT INTO imagens (id_produto, arquivo) VALUES (11, "short-nike2.jpg");
+
+INSERT INTO produtos (id, id_brecho, nome, preco, descricao, genero, tags) VALUES (12, 1, "Nike Dunk Low vermelho infantil", 90, "Tênis Nike dunk low infantil tamanho 30", "i", "nike  basquete tenis");
+INSERT INTO imagens (id_produto, arquivo) VALUES (12, "nike-dunk-low1.jpg");
+INSERT INTO imagens (id_produto, arquivo) VALUES (12, "nike-dunk-low2.jpg");
+INSERT INTO imagens (id_produto, arquivo) VALUES (12, "nike-dunk-low3.jpg");
+
+INSERT INTO produtos (id, id_brecho, nome, preco, descricao, genero, tags) VALUES (13, 1, "Camiseta Under Armour infantil", 50, "Camiseta Under Armour infaltil azul com estampa", "i", "under armor armour ua under-armour  basquete camisa camiseta");
+INSERT INTO imagens (id_produto, arquivo) VALUES (13, "camiseta-ua1.jpg");
+
+INSERT INTO produtos (id, id_brecho, nome, preco, descricao, genero, tags) VALUES (14, 2, "Casaco Under Armour infantil", 50, "Casaco Under Armour infaltil preto com estampa", "i", "under armor armour ua under-armour  basquete casaco agasalho");
+INSERT INTO imagens (id_produto, arquivo) VALUES (14, "casaco-ua1.jpg");
+
+INSERT INTO produtos (id, id_brecho, nome, preco, descricao, genero, tags) VALUES (15, 1, "Camiseta Under Armour cinza", 50, "Camiseta Under Armour feminina cinza lisa", "f", "under armor armour ua under-armour  basquete camisa camiseta");
+INSERT INTO imagens (id_produto, arquivo) VALUES (15, "camiseta-ua2.jpg");
+
+INSERT INTO produtos (id, id_brecho, nome, preco, descricao, genero, tags) VALUES (16, 2, "Short Under Armour azul", 50, "Short Under Armour masculino para correr e praticar esportes", "m", "under armor armour ua under-armour  corrida short shorts");
+INSERT INTO imagens (id_produto, arquivo) VALUES (16, "short-ua1.jpg");
+
+INSERT INTO produtos (id, id_brecho, nome, preco, descricao, genero, tags) VALUES (17, 1, "Casaco corta vento mizuno", 90, "Casaco corta-vento Mizuno. Excelente para praticar esportes.", "m", "mizuno casaco corta-vento corrida correr");
+INSERT INTO imagens (id_produto, arquivo) VALUES (17, "corta-vento-mizuno1.jpg");
+
+INSERT INTO produtos (id, id_brecho, nome, preco, descricao, genero, tags) VALUES (18, 2, "Camiseta aeroflow Mizuno", 90, "Camiseta aeroflow Mizuno. Ótima para praticar esportes.", "m", "mizuno camiseta aeroflow esporte pratica");
+INSERT INTO imagens (id_produto, arquivo) VALUES (18, "camiseta-aeroflow-mizuno1.jpg");
+INSERT INTO imagens (id_produto, arquivo) VALUES (18, "camiseta-aeroflow-mizuno2.jpg");
+
+INSERT INTO produtos (id, id_brecho, nome, preco, descricao, genero, tags) VALUES (19, 1, "Calça legging Mizuno", 100, "Calça legging Mizuno. Ótima para praticar esportes e ir à academia.", "f", "mizuno calça calca legging esporte pratica academia");
+INSERT INTO imagens (id_produto, arquivo) VALUES (19, "legging-mizuno1.jpg");
+INSERT INTO imagens (id_produto, arquivo) VALUES (19, "legging-mizuno2.jpg");
+
+INSERT INTO produtos (id, id_brecho, nome, preco, descricao, genero, tags) VALUES (20, 1, "Short de compressão Mizuno", 100, "Short de compressão da Mizuno. Ótimo para praticar esportes e ir à academia.", "f", "mizuno short compressao compressão legging esporte pratica academia");
+INSERT INTO imagens (id_produto, arquivo) VALUES (20, "shorts-compressao1.jpg");
+INSERT INTO imagens (id_produto, arquivo) VALUES (20, "short-compressao2.jpg");
