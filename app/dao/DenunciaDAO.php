@@ -18,18 +18,18 @@ class DenunciaDAO{
                 " uc.nome AS nome_comprador , uc.email AS email_comprador, uc.cpf AS cpf_comprador, uc.telefone AS telefone_comprador, uc.data_nascimento AS data_nascimento_comprador, uc.situacao AS situacao_comprador, uc.foto_perfil AS foto_perfil_comprador,  " .
                 " prod.id_brecho AS id_brecho_produto , prod.nome AS nome_produto, prod.descricao AS descricao_produto, prod.preco AS preco_produto, prod.genero AS genero_produto, " .
                 "  b.nome AS nome_brecho, b.descricao AS descricao_brecho, b.chave_pix AS chave_pix_brecho" .
-                " FROM pedidos p " .
+                " FROM denuncias d " .
                 " JOIN pedidos ped ON (ped.id = d.id_pedido) JOIN usuarios uv ON (uv.id = p.id_vendedor) JOIN usuarios uc ON (uc.id = p.id_comprador) JOIN produtos prod ON (prod.id = p.id_produto) JOIN brechos b ON (b.id = prod.id_brecho)" .
                " WHERE d.id = ?";
         $stm = $conn->prepare($sql);
         $stm->execute([$id]);
         $result = $stm->fetchAll();
 
-        $pedidos = $this->mapDenuncias($result);
+        $denuncia = $this->mapDenuncias($result);
 
-        if(count($pedidos) == 1)
-            return $pedidos[0];
-        elseif(count($pedidos) == 0)
+        if(count($denuncia) == 1)
+            return $denuncia[0];
+        elseif(count($denuncia) == 0)
             return null;
 
         die("DenunciaDAO.findById()" .
@@ -49,13 +49,31 @@ class DenunciaDAO{
         $stm->bindValue("texto", $denuncia->getTexto());
         $stm->execute();
     }
+    
+    public function list(){
+        $conn = Connection::getConn();
+        $sql = "SELECT d.*, " .
+                " ped.data AS data_pedido, ped.status AS status_pedido, ped.id_endereco AS id_endereco, ped.caminho_comprovante AS caminho_comprovante, ped.valor_total AS preco_pedido, " .
+                " uv.nome AS nome_vendedor , uv.email AS email_vendedor, uv.cpf AS cpf_vendedor, uv.telefone AS telefone_vendedor, uv.data_nascimento AS data_nascimento_vendedor, uv.situacao AS situacao_vendedor, uv.foto_perfil AS foto_perfil_vendedor,  " .
+                " uc.nome AS nome_comprador , uc.email AS email_comprador, uc.cpf AS cpf_comprador, uc.telefone AS telefone_comprador, uc.data_nascimento AS data_nascimento_comprador, uc.situacao AS situacao_comprador, uc.foto_perfil AS foto_perfil_comprador,  " .
+                " prod.id_brecho AS id_brecho_produto , prod.nome AS nome_produto, prod.descricao AS descricao_produto, prod.preco AS preco_produto, prod.genero AS genero_produto, " .
+                "  b.nome AS nome_brecho, b.descricao AS descricao_brecho, b.chave_pix AS chave_pix_brecho" .
+                " FROM denuncias d " .
+                " JOIN pedidos ped ON (ped.id = d.id_pedido) JOIN usuarios uv ON (uv.id = ped.id_vendedor) JOIN usuarios uc ON (uc.id = ped.id_comprador) JOIN produtos prod ON (prod.id = ped.id_produto) JOIN brechos b ON (b.id = prod.id_brecho) ";
 
+        $stm = $conn->prepare($sql);
+        $stm->execute();
+        $result = $stm->fetchAll();
+
+        $denuncias = $this->mapDenuncias($result);
+        return $denuncias;
+    }
 
     //Método para excluir um Usuario pelo seu ID
     public function deleteById(int $id) {
         $conn = Connection::getConn();
 
-        $sql = "DELETE FROM pedidos WHERE id = :id";
+        $sql = "DELETE FROM denuncias WHERE id = :id";
 
         $stm = $conn->prepare($sql);
         $stm->bindValue("id", $id);
@@ -64,7 +82,7 @@ class DenunciaDAO{
 
     //Método para converter um registro da base de dados em um objeto Usuario
     private function mapDenuncias($result) {
-        $pedidos = array();
+        $denuncias = array();
         foreach ($result as $reg) {
             $pedido = new Pedido();
             $pedido->setId($reg['id']);
@@ -102,6 +120,8 @@ class DenunciaDAO{
             $produto->setPreco($reg['preco_produto']);
             $produto->setGenero($reg['genero_produto']);
 
+            $pedido->setProduto($produto);
+
             $brecho = new Brecho();
             $brecho->setId($reg['id_brecho']);
             $brecho->setNome($reg['nome_brecho']);
@@ -109,17 +129,24 @@ class DenunciaDAO{
             $brecho->setChavePix($reg['chave_pix_brecho']);
             $produto->setBrecho($brecho);
 
-            $pedido->setProduto($produto);
-
+            $produto->setBrecho($brecho);
             $pedido->setidEnderecoEntrega($reg['id_endereco']);
 
             $pedido->setCaminhoComprovante($reg["caminho_comprovante"]);
             $pedido->setPreco($reg["valor_total"]);
+            
+            $denuncia = new Denuncia();
+            
+            $denuncia->setId($reg['id']);
+            $denuncia->setStatus($reg['status']);
+            $denuncia->setTexto($reg['texto']);
+            $denuncia->setCaminhoImagem($reg['caminho_imagem']);
+            $denuncia->setPedido($pedido);
 
-            array_push($pedidos, $pedido);
+            array_push($denuncias, $denuncia);
         }
 
-        return $pedidos;
+        return $denuncias;
     }
 
 }

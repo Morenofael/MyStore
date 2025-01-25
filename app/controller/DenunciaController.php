@@ -45,11 +45,11 @@ class DenunciaController extends Controller {
     protected function list(string $msgErro = "", string $msgSucesso = "") {
         if(! $this->usuarioLogado() || $_SESSION[SESSAO_USUARIO_PAPEL] != 1)
             header("location: HomeController.php?action=home");
-        $usuarios = $this->usuarioDao->list();
+        $denuncias = $this->denunciaDao->list();
         //print_r($usuarios);
-        $dados["lista"] = $usuarios;
+        $dados["lista"] = $denuncias;
 
-        $this->loadView("usuario/list.php", $dados, $msgErro, $msgSucesso);
+        $this->loadView("denuncia/list.php", $dados, $msgErro, $msgSucesso);
     }
 
     protected function save() {
