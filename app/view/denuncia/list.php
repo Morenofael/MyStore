@@ -4,9 +4,12 @@
 
 require_once(__DIR__ . "/../include/header.php");
 require_once(__DIR__ . "/../include/menu.php");
+echo "<pre>";
+print_r($dados['lista']);
+echo "</pre>";
 ?>
 
-<h3 class="text-center">Seus endereços</h3>
+<h3 class="text-center">Denuncias</h3>
 
 <div class="container">
     <div class="row" style="margin-top: 10px;">
