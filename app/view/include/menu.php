@@ -32,8 +32,11 @@ if(isset($_SESSION[SESSAO_USUARIO_NOME]))
 
             <!-- links destinados a ADMs--> 
             <?php if($_SESSION[SESSAO_USUARIO_PAPEL] == 1) :?>
-            <li class="">
+             <li class="">
                 <a class="" href="<?=BASEURL?>/controller/UsuarioController.php?action=list">Usuarios</a>
+            </li>
+            <li class="">
+                <a class="" href="<?=BASEURL?>/controller/DenunciaController.php?action=list">Denuncia</a>
             </li>
             <?php endif; ?>
 

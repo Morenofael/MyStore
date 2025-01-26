@@ -49,7 +49,22 @@ class Denuncia implements JsonSerializable {
      {
          return $this->status;
      }
-     
+
+    public function getStatusTexto(){
+        switch($this->status){
+            case "NV":
+                return "Não Visto";
+                break;
+            case "INPRO":
+                return "Improcedente";
+                break;
+            case "PRO":
+                return "Procedente";
+                break;
+            default:
+                return "404";
+        }
+    }    
      /**
       * Set status.
       *

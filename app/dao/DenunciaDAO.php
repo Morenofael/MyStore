@@ -54,8 +54,8 @@ class DenunciaDAO{
         $conn = Connection::getConn();
         $sql = "SELECT d.*, " .
                 " ped.data AS data_pedido, ped.status AS status_pedido, ped.id_endereco AS id_endereco, ped.caminho_comprovante AS caminho_comprovante, ped.valor_total AS preco_pedido, " .
-                " uv.nome AS nome_vendedor , uv.email AS email_vendedor, uv.cpf AS cpf_vendedor, uv.telefone AS telefone_vendedor, uv.data_nascimento AS data_nascimento_vendedor, uv.situacao AS situacao_vendedor, uv.foto_perfil AS foto_perfil_vendedor,  " .
-                " uc.nome AS nome_comprador , uc.email AS email_comprador, uc.cpf AS cpf_comprador, uc.telefone AS telefone_comprador, uc.data_nascimento AS data_nascimento_comprador, uc.situacao AS situacao_comprador, uc.foto_perfil AS foto_perfil_comprador,  " .
+                " ped.id_vendedor AS id_vendedor, uv.nome AS nome_vendedor , uv.email AS email_vendedor, uv.cpf AS cpf_vendedor, uv.telefone AS telefone_vendedor, uv.data_nascimento AS data_nascimento_vendedor, uv.situacao AS situacao_vendedor, uv.foto_perfil AS foto_perfil_vendedor,  " .
+                " ped.id_comprador AS id_comprador , uc.nome AS nome_comprador , uc.email AS email_comprador, uc.cpf AS cpf_comprador, uc.telefone AS telefone_comprador, uc.data_nascimento AS data_nascimento_comprador, uc.situacao AS situacao_comprador, uc.foto_perfil AS foto_perfil_comprador,  " .
                 " prod.id_brecho AS id_brecho_produto , prod.nome AS nome_produto, prod.descricao AS descricao_produto, prod.preco AS preco_produto, prod.genero AS genero_produto, " .
                 "  b.nome AS nome_brecho, b.descricao AS descricao_brecho, b.chave_pix AS chave_pix_brecho" .
                 " FROM denuncias d " .
@@ -85,7 +85,7 @@ class DenunciaDAO{
         $denuncias = array();
         foreach ($result as $reg) {
             $pedido = new Pedido();
-            $pedido->setId($reg['id']);
+            $pedido->setId($reg['id_pedido']);
             $pedido->setData($reg['data']);
             $pedido->setStatus($reg['status']);
 

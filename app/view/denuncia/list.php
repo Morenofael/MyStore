@@ -4,9 +4,6 @@
 
 require_once(__DIR__ . "/../include/header.php");
 require_once(__DIR__ . "/../include/menu.php");
-echo "<pre>";
-print_r($dados['lista']);
-echo "</pre>";
 ?>
 
 <h3 class="text-center">Denuncias</h3>
@@ -17,24 +14,21 @@ echo "</pre>";
             <table id="tabEnderecos" class='table table-striped table-bordered'>
                 <thead>
                     <tr>
-                        <th>Endereço</th>
-                        <th>Alterar</th>
-                        <th>Excluir</th>
+                        <th>Pedido</th>
+                        <th>Reclamação</th>
+                        <th>Comprador</th>
+                        <th>Vendedor</th>
+                        <th>Procedência</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach($dados['lista'] as $en): ?>
+                    <?php foreach($dados['lista'] as $d): ?>
                         <tr>
-                            <td><?= $en; ?></td>
-                            <td><a class="btn btn-primary" 
-                                href="<?= BASEURL ?>/controller/EnderecoController.php?action=edit&id=<?= $en->getId() ?>">
-                                Alterar</a> 
-                            </td>
-                            <td><a class="btn btn-danger" 
-                                onclick="return confirm('Confirma a exclusão do endereço?');"
-                                href="<?= BASEURL ?>/controller/EnderecoController.php?action=delete&id=<?= $en->getId() ?>">
-                                Excluir</a> 
-                            </td>
+                            <td><a href="<?=BASEURL?>/controller/PedidoController.php?action=display&id=<?= $d->getPedido()->getId()?>"><?= $d->getPedido()->getProduto()->getNome()?></a></td>
+                            <td><?= $d->getTexto()?></td>
+                            <td><a href="<?=BASEURL?>/controller/UsuarioController.php?action=display&id=<?= $d->getPedido()->getComprador()->getId()?>"><?= $d->getPedido()->getComprador()->getNome()?></a></td>
+                            <td><a href="<?=BASEURL?>/controller/UsuarioController.php?action=display&id=<?= $d->getPedido()->getVendedor()->getId()?>"><?= $d->getPedido()->getVendedor()->getNome()?></a></td>
+                            <td><?= $d->getStatusTexto()?></td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
