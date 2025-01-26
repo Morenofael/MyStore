@@ -21,8 +21,10 @@ $usuario = $dados["usuario"];
         </label>
         <input type="file" id="filePfp">
         <h4>Nome: <?= $usuario->getNome()?></h4>
+        <?php if($usuario->getId() == $_SESSION[SESSAO_USUARIO_ID]): ?>
         <a class="btn botao"
             href="<?= BASEURL ?>/controller/UsuarioController.php?action=editSenha&id=<?=$_SESSION[SESSAO_USUARIO_ID]?>">Alterar Senha</a>
+        <?php endif; ?>
     </div>
     <?php if($usuario->getId() == $_SESSION[SESSAO_USUARIO_ID]): ?>
         <div class="card-def">
