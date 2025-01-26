@@ -28,7 +28,7 @@ require_once(__DIR__ . "/../include/menu.php");
                             <td><?= $d->getTexto()?></td>
                             <td><a href="<?=BASEURL?>/controller/UsuarioController.php?action=display&id=<?= $d->getPedido()->getComprador()->getId()?>"><?= $d->getPedido()->getComprador()->getNome()?></a></td>
                             <td><a href="<?=BASEURL?>/controller/UsuarioController.php?action=display&id=<?= $d->getPedido()->getVendedor()->getId()?>"><?= $d->getPedido()->getVendedor()->getNome()?></a></td>
-                            <td><?= $d->getStatusTexto()?></td>
+                            <td><?=$d->getStatusTexto()?></td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>

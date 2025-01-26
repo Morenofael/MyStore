@@ -109,7 +109,6 @@ class UsuarioController extends Controller {
     public function insertAlterPfP(){
         if(! $this->usuarioLogado())
             exit;
-        $dados = [];
         $arquivoImg = $_FILES["file"];
         if($arquivoImg){
             $arquivoNome = $this->arquivoService->salvarImagem($arquivoImg, 0);
@@ -117,6 +116,15 @@ class UsuarioController extends Controller {
             header("location: ./UsuarioController.php?action=display&id=" . $_SESSION[SESSAO_USUARIO_ID]);
         }
     }
+
+    public function alterSituacao(){
+        if(!$this->usuarioLogado())
+            exit;
+        if($_SESSION[SESSAO_USUARIO_PAPEL] != 1)
+            exit;
+        $this->usuarioDao->editSituacao($_POST['situacao'], $_POST['id']);
+    }
+
     //Método create
     protected function create() {
         //echo "Chamou o método create!";

@@ -155,6 +155,19 @@ class UsuarioDAO {
         $stm->execute();
     }
 
+    public function editSituacao($situacao, $id){
+        $conn = Connection::getConn();
+
+        $sql = "UPDATE usuarios SET situacao = :situacao " .
+            "WHERE id = :id";
+
+        $stm = $conn->prepare($sql);
+        $stm->bindValue("situacao", $situacao);
+        $stm->bindValue("id", $id);
+        $stm->execute();
+
+    }
+
     //Método para atualizar um Usuario
     public function update(Usuario $usuario) {
         $conn = Connection::getConn();
