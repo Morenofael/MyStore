@@ -5,9 +5,6 @@
 require_once(__DIR__ . "/../include/header.php");
 require_once(__DIR__ . "/../include/menu.php");
 $usuario = $dados["usuario"];
-echo "<pre>";
-print_r($usuario);
-echo "</pre>";
 ?>
 <link rel="stylesheet" href="<?=BASEURL?>/public/css/usuario.css" media="all">
 <div class="cards-wrapper">
@@ -31,8 +28,8 @@ echo "</pre>";
         <?php if($_SESSION[SESSAO_USUARIO_PAPEL] == 1): ?>
             <label for="selSituacao">Situação:</label>
             <select id="selSituacao" name="situacao">
-                <option value="1" <?php if($usuario->getSituacao == 1) echo "selected" ?>>Ativo</option>
-                <option value="0" <?php if($usuario->getSituacao == 0) echo "selected" ?>>Inativo</option>
+                <option value="1" <?php if($usuario->getSituacao() == 1) echo "selected" ?>>Ativo</option>
+                <option value="0" <?php if($usuario->getSituacao() == 0) echo "selected" ?>>Inativo</option>
             </select>   
         <?php endif; ?>
     </div>

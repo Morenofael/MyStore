@@ -30,7 +30,6 @@ require_once(__DIR__ . "/../include/header.php");
                     <button type="submit" class="">Logar</button>
                 </form>
                 <div class="form-link-wrapper">
-                    <a href="#">Esqueceu sua senha?</a>
                     <a href="/app/controller/UsuarioController.php?action=create" class="">Cadastre-se</a>
                 </div>
 
