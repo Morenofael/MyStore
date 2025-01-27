@@ -2,7 +2,6 @@
 #Classe controller para Denuncia 
 
 require_once(__DIR__ . "/Controller.php");
-require_once(__DIR__ . "/../dao/UsuarioDAO.php");
 require_once(__DIR__ . "/../dao/PedidoDAO.php");
 require_once(__DIR__ . "/../dao/DenunciaDAO.php");
 require_once(__DIR__ . "/../service/ArquivoService.php");
@@ -13,7 +12,6 @@ require_once(__DIR__ . "/../model/enum/UsuarioPapel.php");
 
 class DenunciaController extends Controller {
 
-    private UsuarioDAO $usuarioDao;
     private PedidoDAO $pedidoDao;
     private DenunciaDAO $denunciaDao;
     private ArquivoService $arquivoService;
@@ -24,7 +22,6 @@ class DenunciaController extends Controller {
         //if(! $this->usuarioLogado())
         //    exit;
 
-        $this->usuarioDao = new UsuarioDAO();
         $this->pedidoDao = new PedidoDAO();
         $this->denunciaDao = new DenunciaDAO();
         $this->arquivoService = new ArquivoService();
@@ -38,8 +35,8 @@ class DenunciaController extends Controller {
         if(! $this->usuarioLogado())
             exit;
         $id = $_GET['id'];
-        $dados["usuario"] = $this->usuarioDao->findById($id);
-        $this->loadView("usuario/usuario.php", $dados);
+        $dados["denuncia"] = $this->denunciaDao->findById($id);
+        $this->loadView("denuncia/denuncia.php", $dados);
     }
 
     protected function list(string $msgErro = "", string $msgSucesso = "") {
@@ -84,79 +81,22 @@ class DenunciaController extends Controller {
         $this->loadView("denuncia/form.php", $dados);
     }
 
-    //Método edit
-    protected function edit() {
-        $usuario = $this->findUsuarioById();
-        
-        if($usuario) {
-            $usuario->setSenha("");
-            
-            //Setar os dados
-            $dados["id"] = $usuario->getId();
-            $dados["usuario"] = $usuario;
-            $dados["papeis"] = UsuarioPapel::getAllAsArray(); 
-
-            $this->loadView("usuario/form.php", $dados);
-        } else 
-            $this->list("Usuário não encontrado");
-    }
-
-    protected function editSenha(string $msgErro=""){
-        if(! $this->usuarioLogado())
+    protected function alterStatus(){
+        if(!$this->usuarioLogado())
             exit;
-        $usuario = $this->findUsuarioById();
-        $senhaAtual = trim($_POST['senhaAtual']) ? trim($_POST['senhaAtual']) : NULL;
-        $senha= trim($_POST['senha']) ? trim($_POST['senha']) : NULL;
-        $confSenha = trim($_POST['conf_senha']) ? trim($_POST['conf_senha']) : NULL;
-        if($_POST["id"]){
-            $usuario->setSenha($senhaAtual);
-            $erros = $this->usuarioService->validarMudancaSenha($usuario, $senha,  $confSenha);
-            if(empty($erros)){
-
-            $this->usuarioDao->editSenha($senha);
-            header("location: ./UsuarioController.php?action=display&id=" . $_SESSION[SESSAO_USUARIO_ID]);     
-            }
-        }
-        if($usuario) {
-            //Setar os dados
-            $dados["id"] = $usuario->getId();
-            $dados["usuario"] = $usuario;
-            $dados["papeis"] = UsuarioPapel::getAllAsArray(); 
-            if($erros)
-                $msgErro = implode("<br>", $erros);
-            $this->loadView("usuario/senha-form.php", $dados, $msgErro);
-        } else 
-            $this->list("Usuário não encontrado");
-    }
-
-    //Método para excluir
-    protected function delete() {
-        $usuario = $this->findUsuarioById();
-        if($usuario) {
-            //Excluir
-            $this->usuarioDao->deleteById($usuario->getId());
-            $this->list("", "Usuário excluído com sucesso!");
-        } else {
-            //Mensagem q não encontrou o usuário
-            $this->list("Usuário não encontrado!");
-
-        }               
-    }
-
-    protected function listJson() {
-        $listaUsuarios = $this->usuarioDao->list();
-        $json = json_encode($listaUsuarios);
-        echo $json;
+        if($_SESSION[SESSAO_USUARIO_PAPEL] != 1)
+            exit;
+        $this->denunciaDao->editStatus($_POST['status'], $_POST['id']);
     }
 
     //Método para buscar o usuário com base no ID recebido por parâmetro GET
-    private function findUsuarioById() {
+    private function findDenunciaById() {
         $id = 0;
         if(isset($_GET['id']))
             $id = $_GET['id'];
 
-        $usuario = $this->usuarioDao->findById($id);
-        return $usuario;
+        $denuncia = $this->denunciaDao->findById($id);
+        return $denuncia;
     }
 
 }
