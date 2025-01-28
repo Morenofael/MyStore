@@ -33,6 +33,10 @@ body{
 .foto-perfil:hover{
 	opacity: 50%;
 }
+
+.card-def{
+	max-width: 50vw;
+}
 input[type="file"] {
     display: none;
 }

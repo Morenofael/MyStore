@@ -39,8 +39,6 @@ $usuario = $dados["usuario"];
             <div class="flex">
                 <a class="btn botao"
                     href="<?= BASEURL ?>/controller/EnderecoController.php?action=create">Adicionar endereço</a>
-                <a class="btn botao"
-                    href="<?= BASEURL ?>/controller/EnderecoController.php?action=list">Meus endereços</a>
             </div>
             <table id="tabEnderecos" class='table table-striped table-bordered'>
                 <thead>
