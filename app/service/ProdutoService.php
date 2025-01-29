@@ -20,6 +20,10 @@ class ProdutoService{
 
         if(! $produto->getPreco())
             array_push($erros, "O campo [Email] é obrigatório.");
+
+        //verifica a situacao do usuario
+        if($produto->getBrecho()->getUsuario()->getSituacao() == 0)
+            array_push($erros, "Sua conta não está autorizada a cadastrar produtos");
         
         return $erros;
         

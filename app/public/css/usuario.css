@@ -34,6 +34,18 @@ body{
 	opacity: 50%;
 }
 
+.mouse-not-allowed {
+  cursor: not-allowed;
+
+}
+select {
+  height: 35px;
+  padding: 20px 20px 20px 15px;
+  background-color: transparent;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
 .card-def{
 	max-width: 50vw;
 }

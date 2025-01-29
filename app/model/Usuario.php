@@ -131,6 +131,19 @@ class Usuario implements JsonSerializable {
         return $this->nivelAcesso;
     }
 
+    public function getNivelAcessoString():?string{
+        switch($this->nivelAcesso){
+            case 0:
+                return "Usuário";
+                break;
+            case 1:
+                return "Administrador";
+                break;
+            default:
+                return null;
+        }
+    }
+
     public function setNivelAcesso(?int $nivelAcesso): self
     {
         $this->nivelAcesso = $nivelAcesso;
