@@ -25,7 +25,7 @@ require_once(__DIR__ . "/../include/menu.php");
                     <?php foreach($dados['lista'] as $d): ?>
                         <tr>
                             <td><a href="<?=BASEURL?>/controller/PedidoController.php?action=display&id=<?= $d->getPedido()->getId()?>"><?= $d->getPedido()->getProduto()->getNome()?></a></td>
-                            <td><?= $d->getTexto()?></td>
+                            <td><a href="<?=BASEURL?>/controller/DenunciaController.php?action=display&id=<?= $d->getId()?>"><?= $d->getTexto()?></a></td>
                             <td><a href="<?=BASEURL?>/controller/UsuarioController.php?action=display&id=<?= $d->getPedido()->getComprador()->getId()?>"><?= $d->getPedido()->getComprador()->getNome()?></a></td>
                             <td><a href="<?=BASEURL?>/controller/UsuarioController.php?action=display&id=<?= $d->getPedido()->getVendedor()->getId()?>"><?= $d->getPedido()->getVendedor()->getNome()?></a></td>
                             <td><?=$d->getStatusTexto()?></td>

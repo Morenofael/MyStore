@@ -1,18 +1,20 @@
 const BASE_URL = document.getElementById('ipnBaseUrl').value;
-const idPedido = document.getElementById('pedidoId').value;
-let denunciaStatus = document.getElementById('pedidoStatus').value;
+const idDenuncia = document.getElementById('hddIdDenuncia').value;
+const selStatusDenuncia = document.getElementById('selStatusDenuncia');
 
-function alterarStatusDenuncia(status){
-  pedidoStatus = status;
-  var xhttp = new XMLHttpRequest();
-  xhttp.open("POST",
-    BASE_URL + "/controller/PedidoController.php?action=updateStatus", true);
-  xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-  xhttp.onload = function() {
-    location.reload();
-  }
-  
-  xhttp.send("status=" + encodeURIComponent(status) + "&idPedido=" + encodeURIComponent(idPedido));
+selStatusDenuncia.addEventListener("change",()=>alterarStatusDenuncia());
+
+function alterarStatusDenuncia(){
+  var formData = new FormData();
+    formData.append("status", selStatusDenuncia.value);
+    formData.append("id", idDenuncia);
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("POST",
+            BASE_URL + "/controller/DenunciaController.php?action=alterStatus", true);
+        xhttp.onload = function() {
+        }
+
+        xhttp.send(formData);
 }
 
 
