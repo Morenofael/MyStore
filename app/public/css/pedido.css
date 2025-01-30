@@ -13,6 +13,10 @@
 	width: 2rem;
 	height: auto;
 }
+.flex-display{
+    display: flex;
+    align-items: center;
+}
 .botoes-produto-wrapper > *{
 	color: black;
     border: 2px solid black;

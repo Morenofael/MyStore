@@ -10,11 +10,6 @@ require_once(__DIR__ . "/../include/menu.php");
 
 <div class="container">
     <div class="row">
-        <div class="col-3">
-            <a class="btn btn-success" 
-                href="<?= BASEURL ?>/controller/UsuarioController.php?action=create">
-                Inserir</a>
-        </div>
 
         <div class="col-9">
             <?php require_once(__DIR__ . "/../include/msg.php"); ?>
@@ -30,7 +25,6 @@ require_once(__DIR__ . "/../include/menu.php");
                         <th>Nome</th>
                         <th>Login</th>
                         <th>Nível de acesso</th>
-                        <th>Alterar</th>
                         <th>Excluir</th>
                     </tr>
                 </thead>
@@ -38,13 +32,9 @@ require_once(__DIR__ . "/../include/menu.php");
                     <?php foreach($dados['lista'] as $usu): ?>
                         <tr>
                             <td><?php echo $usu->getId(); ?></td>
-                            <td><?= $usu->getNome(); ?></td>
+                            <td><a href="<?=BASEURL?>/controller/UsuarioController.php?action=display&id=<?=$usu->getId()?>"><?= $usu->getNome(); ?></a></td>
                             <td><?= $usu->getLogin(); ?></td>
                             <td><?= $usu->getNivelAcessoString(); ?></td>
-                            <td><a class="btn btn-primary" 
-                                href="<?= BASEURL ?>/controller/UsuarioController.php?action=edit&id=<?= $usu->getId() ?>">
-                                Alterar</a> 
-                            </td>
                             <td><a class="btn btn-danger" 
                                 onclick="return confirm('Confirma a exclusão do usuário?');"
                                 href="<?= BASEURL ?>/controller/UsuarioController.php?action=delete&id=<?= $usu->getId() ?>">

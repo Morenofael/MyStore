@@ -1,5 +1,6 @@
 .main{
     display: flex;
+		gap: 16px;
 }
 .info-wrapper, .info{
     display: flex;

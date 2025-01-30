@@ -49,12 +49,14 @@ $imagens = $dados["imagem"];
                 <span>Endereço de entrega: <?=$dados["enderecoEntrega"]?></span><br>
             <?php endif;?>
             <?php if($pedido && $pedido->getVendedor()->getId() == $_SESSION[SESSAO_USUARIO_ID] && $pedido->getStatus() != 'AI' && $pedido->getStatus() != "ENT"):?>
+            <div class="flex-display">
                 <select id="selStatus">
                     <option value="">Altere o status do pedido</option>
                     <option value="P">Em preparo</option>
                     <option value="ENV">Enviado para entrega</option>
                 </select>
-                <button onclick="if(confirm('Tem certeza que deseja alterar o status?'))alterarStatusPedido(document.getElementById('selStatus').value)" id="btnSalvarComprovante">salvar</button>
+                <button class="btn button" onclick="if(confirm('Tem certeza que deseja alterar o status?'))alterarStatusPedido(document.getElementById('selStatus').value)" id="btnSalvarComprovante">salvar</button>
+                </div>
             <?php endif;?>
             <?php if($pedido && $pedido->getComprador()->getId() == $_SESSION[SESSAO_USUARIO_ID] && $pedido->getStatus() == 'ENV' && $pedido->getStatus() != 'ENT'):?>
                 <button class="btn botao" onclick="if(confirm('Tem certeza que deseja confirmar o recebimento?'))alterarStatusPedido('ENT')">Confirmar recebimento</button>

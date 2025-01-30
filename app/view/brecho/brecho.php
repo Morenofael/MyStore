@@ -24,7 +24,7 @@ $imagens = $dados["imagens"];
                 href="<?= BASEURL ?>/../">Voltar</a>
             <?php if($brecho->getId_usuario() == $_SESSION[SESSAO_USUARIO_ID]):?>
             <a class="btn btn-success"
-                href="<?= BASEURL ?>/controller/BrechoController.php?action=edit&id=<?=$brecho->getId()?>">Editar</a>
+                href="<?= BASEURL ?>/controller/BrechoController.php?action=edit&id=<?=$brecho->getId()?>">Editar brechó</a>
             <a class="btn btn-primary"
                 href="<?= BASEURL ?>/controller/ProdutoController.php?action=create">Adicionar produto</a>
             </div>
