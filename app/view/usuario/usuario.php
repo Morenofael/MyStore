@@ -68,7 +68,7 @@ $usuario = $dados["usuario"];
         </div>
     <?php endif; ?>        
 </div>
-<input type="hidden" value="/app" id="ipnBaseUrl">
+<input type="hidden" value="<?=BASEURL?>" id="ipnBaseUrl">
 <input type="hidden" value="<?=$usuario->getId()?>" id="ipnIdUsuario">
 <script src="<?=BASEURL?>/public/js/usuario.js"></script>
 <?php
