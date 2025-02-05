@@ -43,6 +43,12 @@ class UsuarioService {
         if($usuario->getSenha() && $confSenha && $usuario->getSenha() != $confSenha)
             array_push($erros, "O campo [Senha] deve ser igual ao [Confirmação da senha].");
 
+        //Validar maioridade
+        $dataNascimento = new DateTime($usuario->getDataNascimento());
+        $dataHoje = new DateTime(date("Y-m-d"));
+        if($dataNascimento->diff($dataHoje)->days < 18*365)
+            array_push($erros, "Você precisa ter mais de 18 anos para se cadastrar");
+
         return $erros;
         
     }
